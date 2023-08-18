@@ -8,7 +8,11 @@ function ComponentLibraryScreen() {
     <View className="flex items-center mt-10">
       <Text className='w-1/2 text-center mb-6 font-bold'>Inputs</Text>
       <PurpleBackdrop>
+        <Text className='mb-2'>Text input</Text>
         <TextInput placeholder='Enter some text' />
+
+        <Text className='mb-2 mt-6'>Text input with password type</Text>
+        <TextInput placeholder='Password' type='password' />
       </PurpleBackdrop>
 
       <Text className='w-1/2 text-center mb-6 font-bold mt-6'>Buttons and Anchors</Text>
