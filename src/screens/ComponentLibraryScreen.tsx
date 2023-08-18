@@ -1,12 +1,15 @@
 import React from 'react'
 import { Text, View } from 'react-native'
-import Counter from '../components/Counter'
+
+import TextInput from '../components/inputs/TextInput'
 
 function ComponentLibraryScreen() {
   return (
     <View className="flex items-center mt-10">
       <Text className='w-1/2 text-center mb-6 font-bold'>Inputs</Text>
-      {/* develop inputs here */}
+      <PurpleBackdrop>
+        <TextInput placeholder='Enter some text' />
+      </PurpleBackdrop>
 
       <Text className='w-1/2 text-center mb-6 font-bold mt-6'>Buttons and Anchors</Text>
       {/* develop buttons and anchors here */}
@@ -31,6 +34,20 @@ function ComponentLibraryScreen() {
 
       <Text className='w-1/2 text-center mb-6 font-bold mt-6'>Wizard</Text>
       {/* develop wizard here */}
+    </View>
+  )
+}
+
+/**
+ * This is a helper component to allow white or light coloured components
+ * to be easily viewable.
+ */
+function PurpleBackdrop(props: { children: React.ReactNode }) {
+  return (
+    <View className='w-full h-auto p-2 flex items-center'>
+      <View className='w-4/5 bg-purple-400 p-2 rounded'>
+        {props.children}
+      </View>
     </View>
   )
 }
