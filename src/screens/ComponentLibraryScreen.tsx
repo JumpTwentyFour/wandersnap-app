@@ -6,33 +6,33 @@ import TextInput from '../components/inputs/TextInput'
 function ComponentLibraryScreen() {
   return (
     <View className="flex items-center mt-10">
-      <Text className='w-1/2 text-center mb-6 font-bold'>Inputs</Text>
+      <Text className='w-1/2 mb-6 font-bold text-center'>Inputs</Text>
       <PurpleBackdrop>
         <TextInput placeholder='Enter some text' />
       </PurpleBackdrop>
 
-      <Text className='w-1/2 text-center mb-6 font-bold mt-6'>Buttons and Anchors</Text>
+      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Buttons and Anchors</Text>
       {/* develop buttons and anchors here */}
 
-      <Text className='w-1/2 text-center mb-6 font-bold mt-6'>Headers</Text>
+      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Headers</Text>
       {/* develop headers here */}
 
-      <Text className='w-1/2 text-center mb-6 font-bold mt-6'>Listings</Text>
+      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Listings</Text>
       {/* develop listings here */}
 
-      <Text className='w-1/2 text-center mb-6 font-bold mt-6'>Drawers</Text>
+      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Drawers</Text>
       {/* develop drawers here */}
 
-      <Text className='w-1/2 text-center mb-6 font-bold mt-6'>Tabs</Text>
+      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Tabs</Text>
       {/* develop tabs here */}
 
-      <Text className='w-1/2 text-center mb-6 font-bold mt-6'>Overlay</Text>
+      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Overlay</Text>
       {/* develop overlay here */}
 
-      <Text className='w-1/2 text-center mb-6 font-bold mt-6'>Map</Text>
+      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Map</Text>
       {/* develop map here */}
 
-      <Text className='w-1/2 text-center mb-6 font-bold mt-6'>Wizard</Text>
+      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Wizard</Text>
       {/* develop wizard here */}
     </View>
   )
@@ -44,8 +44,8 @@ function ComponentLibraryScreen() {
  */
 function PurpleBackdrop(props: { children: React.ReactNode }) {
   return (
-    <View className='w-full h-auto p-2 flex items-center'>
-      <View className='w-4/5 bg-purple-400 p-2 rounded'>
+    <View className='flex items-center w-full h-auto p-2'>
+      <View className='w-4/5 p-2 bg-purple-400 rounded'>
         {props.children}
       </View>
     </View>
