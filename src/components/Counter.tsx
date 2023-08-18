@@ -9,9 +9,9 @@ function Counter() {
       <Text>You clicked {count} times</Text>
       <Pressable
         onPress={() => setCount(count + 1)}
-        className='bg-green-400 text-white py-2 px-4 rounded-md shadow drop-shadow mt-2'
+        className='bg-green-400 py-2 px-4 rounded-md shadow drop-shadow mt-3'
       >
-        <Text>Click me!</Text>
+        <Text className='text-white'>Click me!</Text>
       </Pressable>
     </View>
   )
