@@ -7,7 +7,10 @@ function Counter() {
   return (
     <View className='w-full flex items-center mt-2'>
       <Text>You clicked {count} times</Text>
-      <Pressable onPress={() => setCount(count + 1)} className='bg-green-400 text-white py-2 px-4 rounded-md shadow drop-shadow mt-2'>
+      <Pressable
+        onPress={() => setCount(count + 1)}
+        className='bg-green-400 text-white py-2 px-4 rounded-md shadow drop-shadow mt-2'
+      >
         <Text>Click me!</Text>
       </Pressable>
     </View>
