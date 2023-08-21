@@ -1,16 +1,9 @@
 import React from 'react'
 import cn from 'classnames'
-import { Text, Pressable, GestureResponderEvent } from 'react-native'
+import { Text, Pressable } from 'react-native'
+import { ButtonProps } from '@/types/button'
 
-interface Props {
-  variant?: 'primary' | 'secondary' | 'tertiary'
-  type?: 'solid' | 'outline'
-  label: string
-  disabled?: boolean
-  onPress?: (event: GestureResponderEvent) => void
-}
-
-function Button(props: Props) {
+function Button(props: ButtonProps) {
   const {
     variant,
     type,

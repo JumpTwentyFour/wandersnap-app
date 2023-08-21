@@ -5,6 +5,7 @@ import cn from 'classnames'
 import ScrollView from '@/components/views/ScrollView'
 import TextInput from '@/components/inputs/TextInput'
 import Button from '@/components/pressables/Button'
+import { ButtonType, ButtonVariant } from '@/types/button'
 
 function ComponentLibraryScreen() {
   return (
@@ -21,31 +22,31 @@ function ComponentLibraryScreen() {
       <Text className='w-full my-6 font-bold text-center'>Buttons and Anchors</Text>
       {/* develop buttons and anchors here */}
       <Backdrop>
-        <Button label='Primary Button' variant='primary' type='solid' onPress={() => console.log('Primary Button pressed')}/>
+        <Button label='Primary Button' variant={ButtonVariant.Primary} type={ButtonType.Solid} onPress={() => console.log('Primary Button pressed')}/>
       </Backdrop>
       <Backdrop bgClass='bg-purple-400'>
-        <Button label='Primary Button disabled' variant='primary' type='solid' disabled/>
+        <Button label='Primary Button disabled' variant={ButtonVariant.Primary} type={ButtonType.Solid} disabled/>
       </Backdrop>
       <Backdrop>
-        <Button label='Primary Button Outline' variant='primary' type='outline' />
+        <Button label='Primary Button Outline' variant={ButtonVariant.Primary} type={ButtonType.Outline} />
       </Backdrop>
       <Backdrop>
-        <Button variant='secondary' label='Secondary Button' type='solid' />
+        <Button variant={ButtonVariant.Secondary} type={ButtonType.Solid} label='Secondary Button' />
       </Backdrop>
       <Backdrop bgClass='bg-purple-400'>
-        <Button variant='secondary' label='Secondary Button disabled' type='solid' disabled/>
+        <Button variant={ButtonVariant.Secondary} type={ButtonType.Solid} label='Secondary Button disabled' disabled />
       </Backdrop>
       <Backdrop bgClass='bg-purple-400'>
-        <Button variant='secondary' label='Secondary Button Outline' type='outline' />
+        <Button variant={ButtonVariant.Secondary} type={ButtonType.Outline} label='Secondary Button Outline' />
       </Backdrop>
       <Backdrop bgClass='bg-purple-400'>
-        <Button variant='secondary' label='Secondary Button without style' />
+        <Button variant={ButtonVariant.Secondary} label='Secondary Button without style' />
       </Backdrop>
       <Backdrop bgClass="bg-slate-900">
-        <Button variant='tertiary' label='Tertiary Button Solid' type='solid' />
+        <Button variant={ButtonVariant.Tertiary} type={ButtonType.Solid} label='Tertiary Button Solid' />
       </Backdrop>
       <Backdrop bgClass="bg-slate-900">
-        <Button variant='tertiary' label='Tertiary Button Solid' type='outline' />
+        <Button variant={ButtonVariant.Tertiary} type={ButtonType.Outline} label='Tertiary Button Solid' />
       </Backdrop>
 
       <Text className='w-full my-6 font-bold text-center'>Headers</Text>
