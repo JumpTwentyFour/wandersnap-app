@@ -1,5 +1,5 @@
-import classNames from 'classnames'
 import React from 'react'
+import cn from 'classnames'
 import { Text, Pressable, GestureResponderEvent } from 'react-native'
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
   type: 'solid' | 'outline'
   label: string
   disabled?: boolean
-  onPress?:((event: GestureResponderEvent) => void) | null | undefined
+  onPress?: ((event: GestureResponderEvent) => void) | null | undefined
 }
 
 function Button(props: Props) {
@@ -19,7 +19,7 @@ function Button(props: Props) {
     onPress,
   } = props
 
-  const buttonStyles = classNames({
+  const buttonStyles = cn({
     'flex h-12 flex-col items-center justify-center rounded-full px-10 py-3 shadow': type === 'solid',
     'flex h-12 flex-col items-center justify-center rounded-full px-10 py-3 shadow border border-solid': type === 'outline',
     'bg-[#7E5BFF]': variant === 'primary' && !disabled && type === 'solid',
@@ -30,7 +30,7 @@ function Button(props: Props) {
     'bg-[#F9F8FF99]': variant === 'secondary' && disabled && type === 'solid',
   })
 
-  const labelStyles = classNames({
+  const labelStyles = cn({
     'text-12 text-white': (variant === 'primary' && !disabled && type === 'solid') || (variant === 'secondary' && type === 'outline' && !disabled),
     'text-12 text-[#F9F8FF99]': variant === 'primary' && disabled,
     'text-12 text-[#7E5BFF]': (variant === 'secondary' && type === 'solid') || (variant === 'primary' && type === 'outline'),
