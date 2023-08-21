@@ -19,34 +19,34 @@ function Button(props: Props) {
     onPress,
   } = props
 
-  const isPrimarySolid = variant === 'primary' && type === 'solid'
-  const isPrimaryOutline = variant === 'primary' && type === 'outline'
-  const isSecondarySolid = variant === 'secondary' && type === 'solid'
-  const isSecondaryOutline = variant === 'secondary' && type === 'outline'
-  const isTertiarySolid = variant === 'tertiary' && type === 'solid'
-  const isTertiaryOutline = variant === 'tertiary' && type === 'outline'
+  const isPrimary = variant === 'primary'
+  const isSecondary = variant === 'secondary'
+  const isTertiary = variant === 'tertiary'
+  const isSolid = type === 'solid'
+  const isOutline = type === 'solid'
+  const hasNoType = type === undefined || null
 
   const buttonStyles = cn({
-    'flex h-12 flex-col items-center justify-center rounded-full px-10 py-3 shadow': type === 'solid' && variant !== 'tertiary',
-    'flex h-12 flex-col items-center justify-center rounded-full px-10 py-3 shadow border border-solid': type === 'outline' && variant !== 'tertiary',
-    'flex h-12 flex-col items-center justify-center px-10 py-3': type === undefined || null && variant !== 'tertiary',
-    'flex px-4 py-1 items-center rounded-full': isTertiarySolid,
-    'flex px-4 py-1 items-center rounded-full border border-solid': isTertiaryOutline,
-    'bg-[#7E5BFF]': isPrimarySolid && !disabled,
-    'border-[#7E5BFF]': isPrimaryOutline && !disabled,
-    'bg-[#F9F8FF33]': isPrimarySolid && disabled,
-    'bg-[#F9F8FF]': isSecondarySolid && !disabled,
-    'border-[#F9F8FF]':isSecondaryOutline,
-    'bg-[#F9F8FF99]': isSecondarySolid && disabled,
-    'bg-[#9F85FF40]': isTertiarySolid,
-    'border-[#9F85FF40]': isTertiaryOutline,
+    'flex h-12 flex-col items-center justify-center rounded-full px-10 py-3 shadow': isSolid && !isTertiary,
+    'flex h-12 flex-col items-center justify-center rounded-full px-10 py-3 shadow border border-solid': isOutline && !isTertiary,
+    'flex h-12 flex-col items-center justify-center px-10 py-3': hasNoType && !isTertiary,
+    'flex px-4 py-1 items-center rounded-full': isTertiary && isSolid,
+    'flex px-4 py-1 items-center rounded-full border border-solid': isTertiary && isOutline,
+    'bg-[#7E5BFF]': isPrimary && isSolid && !disabled,
+    'border-[#7E5BFF]': isPrimary && isOutline && !disabled,
+    'bg-[#F9F8FF33]': isPrimary && isSolid && disabled,
+    'bg-[#F9F8FF]': isSecondary && isSolid && !disabled,
+    'border-[#F9F8FF]':isSecondary && isOutline,
+    'bg-[#F9F8FF99]': isSecondary && isSolid && disabled,
+    'bg-[#9F85FF40]': isTertiary && isSolid,
+    'border-[#9F85FF40]': isTertiary && isOutline,
   })
 
   const labelStyles = cn({
-    'text-12 text-white': (isPrimarySolid && !disabled) || (isSecondaryOutline && !disabled) || (variant === 'tertiary' && type !== undefined || null),
-    'text-12 text-[#F9F8FF99]': variant === 'primary' && disabled,
-    'text-12 text-[#7E5BFF]': (isSecondarySolid) || (isPrimaryOutline),
-    'text-15 text-[#F9F8FF]': (variant === 'secondary' && type === undefined || null),
+    'text-12 text-white': (isPrimary && isSolid && !disabled) || (isSecondary && isOutline && !disabled) || (isTertiary && !hasNoType),
+    'text-12 text-[#F9F8FF99]': isPrimary && disabled,
+    'text-12 text-[#7E5BFF]': (isSecondary && isSolid) || (isPrimary && isOutline),
+    'text-15 text-[#F9F8FF]': (isSecondary && hasNoType),
   })
 
   return  (
