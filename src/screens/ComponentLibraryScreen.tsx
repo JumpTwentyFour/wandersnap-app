@@ -1,17 +1,17 @@
 import React from 'react'
-import { ScrollView, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 
+import ScrollView from '@/components/views/ScrollView'
 import TextInput from '@/components/inputs/TextInput'
 import Button from '@/components/pressables/Button'
 
 function ComponentLibraryScreen() {
   return (
-    <ScrollView >
-      <View className="flex items-center mt-10">
-        <Text className='w-1/2 mb-6 font-bold text-center'>Inputs</Text>
-        <PurpleBackdrop>
-          <Text className='mb-2'>Text input</Text>
-          <TextInput placeholder='Enter some text' />
+    <ScrollView className='mt-10'>
+      <Text className='w-full mb-6 font-bold text-center'>Inputs</Text>
+      <PurpleBackdrop>
+        <Text className='mb-2'>Text input</Text>
+        <TextInput placeholder='Enter some text' />
 
           <Text className='mt-6 mb-2'>Text input with password type</Text>
           <TextInput placeholder='Password' type='password' />
@@ -61,7 +61,6 @@ function ComponentLibraryScreen() {
 
         <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Wizard</Text>
         {/* develop wizard here */}
-      </View>
     </ScrollView>
   )
 }
