@@ -17,7 +17,7 @@ function ComponentLibraryScreen() {
         <TextInput placeholder='Password' type='password' />
       </PurpleBackdrop>
 
-      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Buttons and Anchors</Text>
+      <Text className='w-full mt-6 mb-6 font-bold text-center'>Buttons and Anchors</Text>
       {/* develop buttons and anchors here */}
       <Backdrop>
         <Button label='Primary Button' variant='primary' type='solid' onPress={() => console.log('Primary Button pressed')}/>
@@ -41,25 +41,25 @@ function ComponentLibraryScreen() {
         <Button variant='secondary' label='Secondary Button without style' />
       </PurpleBackdrop>
 
-      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Headers</Text>
+      <Text className='w-full mt-6 mb-6 font-bold text-center'>Headers</Text>
       {/* develop headers here */}
 
-      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Listings</Text>
+      <Text className='w-full mt-6 mb-6 font-bold text-center'>Listings</Text>
       {/* develop listings here */}
 
-      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Drawers</Text>
+      <Text className='w-full mt-6 mb-6 font-bold text-center'>Drawers</Text>
       {/* develop drawers here */}
 
-      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Tabs</Text>
+      <Text className='w-full mt-6 mb-6 font-bold text-center'>Tabs</Text>
       {/* develop tabs here */}
 
-      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Overlay</Text>
+      <Text className='w-full mt-6 mb-6 font-bold text-center'>Overlay</Text>
       {/* develop overlay here */}
 
-      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Map</Text>
+      <Text className='w-full mt-6 mb-6 font-bold text-center'>Map</Text>
       {/* develop map here */}
 
-      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Wizard</Text>
+      <Text className='w-full mt-6 mb-6 font-bold text-center'>Wizard</Text>
       {/* develop wizard here */}
     </ScrollView>
   )
