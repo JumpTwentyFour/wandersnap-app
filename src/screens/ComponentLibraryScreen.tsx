@@ -1,9 +1,9 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 
-import ScrollView from '../components/views/ScrollView'
-import TextInput from '../components/inputs/TextInput'
-import Button from '../components/pressables/Button'
+import ScrollView from '@/components/views/ScrollView'
+import TextInput from '@/components/inputs/TextInput'
+import Button from '@/components/pressables/Button'
 
 function ComponentLibraryScreen() {
   return (
@@ -36,6 +36,9 @@ function ComponentLibraryScreen() {
       </PurpleBackdrop>
       <PurpleBackdrop>
         <Button variant='secondary' label='Secondary Button Outline' type='outline' />
+      </PurpleBackdrop>
+      <PurpleBackdrop>
+        <Button variant='secondary' label='Secondary Button without style' />
       </PurpleBackdrop>
 
       <Text className='w-full mt-6 mb-6 font-bold text-center'>Headers</Text>
