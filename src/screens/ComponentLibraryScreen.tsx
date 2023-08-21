@@ -46,7 +46,7 @@ function ComponentLibraryScreen() {
         <Button variant={ButtonVariant.Tertiary} type={ButtonType.Solid} label='Tertiary Button Solid' />
       </Backdrop>
       <Backdrop bgClass="bg-slate-900">
-        <Button variant={ButtonVariant.Tertiary} type={ButtonType.Outline} label='Tertiary Button Solid' />
+        <Button variant={ButtonVariant.Tertiary} type={ButtonType.Outline} label='Tertiary Button Outline' />
       </Backdrop>
 
       <Text className='w-full my-6 font-bold text-center'>Headers</Text>

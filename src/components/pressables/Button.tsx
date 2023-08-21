@@ -16,7 +16,7 @@ function Button(props: ButtonProps) {
   const isSecondary = variant === 'secondary'
   const isTertiary = variant === 'tertiary'
   const isSolid = type === 'solid'
-  const isOutline = type === 'solid'
+  const isOutline = type === 'outline'
   const hasNoType = type === undefined || null
 
   const buttonStyles = cn({
