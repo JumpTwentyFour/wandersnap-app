@@ -40,6 +40,12 @@ function ComponentLibraryScreen() {
       <PurpleBackdrop>
         <Button variant='secondary' label='Secondary Button without style' />
       </PurpleBackdrop>
+      <SlateBackdrop>
+        <Button variant='tertiary' label='Tertiary Button Solid' type='solid' />
+      </SlateBackdrop>
+      <SlateBackdrop>
+        <Button variant='tertiary' label='Tertiary Button Solid' type='outline' />
+      </SlateBackdrop>
 
       <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Headers</Text>
       {/* develop headers here */}
@@ -73,6 +79,16 @@ function PurpleBackdrop(props: { children: React.ReactNode }) {
   return (
     <View className='flex items-center w-full h-auto p-2'>
       <View className='w-4/5 p-2 bg-purple-400 rounded'>
+        {props.children}
+      </View>
+    </View>
+  )
+}
+
+function SlateBackdrop(props: { children: React.ReactNode }) {
+  return (
+    <View className='flex items-center w-full h-auto p-2'>
+      <View className='w-4/5 p-2 bg-[#242423] rounded'>
         {props.children}
       </View>
     </View>
