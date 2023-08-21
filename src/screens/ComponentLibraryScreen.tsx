@@ -2,6 +2,7 @@ import React from 'react'
 import { Text, View } from 'react-native'
 
 import TextInput from '../components/inputs/TextInput'
+import Button from '../components/pressables/Button'
 
 function ComponentLibraryScreen() {
   return (
@@ -13,6 +14,24 @@ function ComponentLibraryScreen() {
 
       <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Buttons and Anchors</Text>
       {/* develop buttons and anchors here */}
+      <Backdrop>
+        <Button label='Primary Button' variant='primary' type='solid' />
+      </Backdrop>
+      <PurpleBackdrop>
+        <Button label='Primary Button disabled' variant='primary' type='solid' disabled/>
+      </PurpleBackdrop>
+      <Backdrop>
+        <Button label='Primary Button Outline' variant='primary' type='outline' />
+      </Backdrop>
+      <Backdrop>
+        <Button variant='secondary' label='Secondary Button' type='solid' />
+      </Backdrop>
+      <PurpleBackdrop>
+        <Button variant='secondary' label='Secondary Button disabled' type='solid' disabled/>
+      </PurpleBackdrop>
+      <PurpleBackdrop>
+        <Button variant='secondary' label='Secondary Button Outline' type='outline' />
+      </PurpleBackdrop>
 
       <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Headers</Text>
       {/* develop headers here */}
@@ -46,6 +65,16 @@ function PurpleBackdrop(props: { children: React.ReactNode }) {
   return (
     <View className='flex items-center w-full h-auto p-2'>
       <View className='w-4/5 p-2 bg-purple-400 rounded'>
+        {props.children}
+      </View>
+    </View>
+  )
+}
+
+function Backdrop(props: { children: React.ReactNode }) {
+  return (
+    <View className='flex items-center w-full h-auto p-2'>
+      <View className='w-4/5 p-2 rounded'>
         {props.children}
       </View>
     </View>
