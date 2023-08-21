@@ -5,6 +5,17 @@ module.exports = function(api) {
 
   return {
     presets: ['babel-preset-expo'],
-    plugins: ['nativewind/babel'],
+    plugins: [
+      'nativewind/babel',
+      [
+        'module-resolver',
+        {
+          root: ['.'],
+          extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+          alias: {
+            '@': './src',
+          },
+        },
+      ]],
   }
 }

@@ -1,16 +1,12 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { RootStackParamList } from '@/types/navigator'
 
 import HomeScreen from './src/screens/HomeScreen'
 import ComponentLibraryScreen from './src/screens/ComponentLibraryScreen'
 
-export type RootStackParamList = {
-  Home: undefined;
-  ComponentLibrary: undefined;
-}
-
-const Stack = createNativeStackNavigator()
+const Stack = createNativeStackNavigator<RootStackParamList>()
 
 export default function App() {
   return (
