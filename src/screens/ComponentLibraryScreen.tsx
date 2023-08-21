@@ -1,8 +1,8 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 
-import TextInput from '../components/inputs/TextInput'
-import Button from '../components/pressables/Button'
+import TextInput from '@/components/inputs/TextInput'
+import Button from '@/components/pressables/Button'
 
 function ComponentLibraryScreen() {
   return (
