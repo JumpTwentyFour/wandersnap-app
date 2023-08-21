@@ -1,10 +1,8 @@
 import React from 'react'
 import { Text, View, Pressable } from 'react-native'
-import type { NativeStackScreenProps } from '@react-navigation/native-stack'
-import type { RootStackParamList } from '../../App'
-import Counter from '../components/Counter'
+import { SetupProps } from '@/types/props'
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
+type Props = SetupProps<'Home'>
 
 function HomeScreen({ navigation }: Props) {
   return (
@@ -17,8 +15,6 @@ function HomeScreen({ navigation }: Props) {
       >
         <Text className='text-white'>Go to component library</Text>
       </Pressable>
-
-      <Counter />
     </View>
   )
 }

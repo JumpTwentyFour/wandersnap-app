@@ -1,14 +1,18 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 
-import TextInput from '../components/inputs/TextInput'
+import TextInput from '@/components/inputs/TextInput'
 
 function ComponentLibraryScreen() {
   return (
     <View className="flex items-center mt-10">
       <Text className='w-1/2 mb-6 font-bold text-center'>Inputs</Text>
       <PurpleBackdrop>
+        <Text className='mb-2'>Text input</Text>
         <TextInput placeholder='Enter some text' />
+
+        <Text className='mb-2 mt-6'>Text input with password type</Text>
+        <TextInput placeholder='Password' type='password' />
       </PurpleBackdrop>
 
       <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Buttons and Anchors</Text>
