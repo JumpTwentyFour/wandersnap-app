@@ -4,7 +4,7 @@ import { Text, Pressable, GestureResponderEvent } from 'react-native'
 
 interface Props {
   variant?: 'primary' | 'secondary' | 'tertiary'
-  type: 'solid' | 'outline'
+  type?: 'solid' | 'outline'
   label: string
   disabled?: boolean
   onPress?:((event: GestureResponderEvent) => void) | null | undefined
@@ -13,7 +13,7 @@ interface Props {
 function Button(props: Props) {
   const {
     variant = 'primary',
-    type = 'solid',
+    type,
     label = 'Button',
     disabled = false,
     onPress,
@@ -22,6 +22,7 @@ function Button(props: Props) {
   const buttonStyles = classNames({
     'flex h-12 flex-col items-center justify-center rounded-full px-10 py-3 shadow': type === 'solid',
     'flex h-12 flex-col items-center justify-center rounded-full px-10 py-3 shadow border border-solid': type === 'outline',
+    'flex h-12 flex-col items-center justify-center px-10 py-3': type === undefined || null,
     'bg-[#7E5BFF]': variant === 'primary' && !disabled && type === 'solid',
     'border-[#7E5BFF]': variant === 'primary' && !disabled && type === 'outline',
     'bg-[#F9F8FF33]': variant === 'primary' && disabled && type === 'solid',
@@ -34,6 +35,7 @@ function Button(props: Props) {
     'text-12 text-white': (variant === 'primary' && !disabled && type === 'solid') || (variant === 'secondary' && type === 'outline' && !disabled),
     'text-12 text-[#F9F8FF99]': variant === 'primary' && disabled,
     'text-12 text-[#7E5BFF]': (variant === 'secondary' && type === 'solid') || (variant === 'primary' && type === 'outline'),
+    'text-15 text-[#F9F8FF]': (variant === 'secondary' && type === undefined || null),
   })
 
   return  (
