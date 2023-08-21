@@ -7,7 +7,7 @@ interface Props {
   type: 'solid' | 'outline'
   label: string
   disabled?: boolean
-  onPress?: ((event: GestureResponderEvent) => void) | null | undefined
+  onPress?: (event: GestureResponderEvent) => void
 }
 
 function Button(props: Props) {
