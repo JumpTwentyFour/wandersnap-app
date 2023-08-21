@@ -13,7 +13,7 @@ function ComponentLibraryScreen() {
         <Text className='mb-2'>Text input</Text>
         <TextInput placeholder='Enter some text' />
 
-        <Text className='mb-2 mt-6'>Text input with password type</Text>
+        <Text className='mt-6 mb-2'>Text input with password type</Text>
         <TextInput placeholder='Password' type='password' />
       </PurpleBackdrop>
 
