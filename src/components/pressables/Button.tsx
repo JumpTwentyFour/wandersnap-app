@@ -1,12 +1,13 @@
 import classNames from 'classnames'
 import React from 'react'
-import { Text, Pressable } from 'react-native'
+import { Text, Pressable, GestureResponderEvent } from 'react-native'
 
 interface Props {
   variant?: "primary" | "secondary" | "tertiary"
   type: "solid" | "outline"
   label: string
   disabled?: boolean
+  onPress?:((event: GestureResponderEvent) => void) | null | undefined
 }
 
 function Button(props: Props) {
@@ -15,6 +16,7 @@ function Button(props: Props) {
         type = 'solid',
         label = 'Button',
         disabled = false,
+        onPress
     } = props
 
     const buttonStyles = classNames({
@@ -38,7 +40,7 @@ function Button(props: Props) {
     <Pressable
       className={buttonStyles}
       disabled={disabled}
-      onPress={() => console.log('pressed')}
+      onPress={(event) => onPress && onPress(event)}
     >
         <Text className={labelStyles}>{label}</Text>
     </Pressable>

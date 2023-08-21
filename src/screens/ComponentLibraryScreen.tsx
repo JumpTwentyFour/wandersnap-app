@@ -15,7 +15,7 @@ function ComponentLibraryScreen() {
       <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Buttons and Anchors</Text>
       {/* develop buttons and anchors here */}
       <Backdrop>
-        <Button label='Primary Button' variant='primary' type='solid' />
+        <Button label='Primary Button' variant='primary' type='solid' onPress={() => console.log('Primary Button pressed')}/>
       </Backdrop>
       <PurpleBackdrop>
         <Button label='Primary Button disabled' variant='primary' type='solid' disabled/>
