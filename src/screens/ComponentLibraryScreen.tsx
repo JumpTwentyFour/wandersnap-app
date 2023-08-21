@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 
-import TextInput from '../components/inputs/TextInput'
+import TextInput from '@/components/inputs/TextInput'
 
 function ComponentLibraryScreen() {
   return (

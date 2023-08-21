@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { TextInput as NativeInput, View, KeyboardTypeOptions } from 'react-native'
-import EyeIcon from '../../assets/icons/eye.svg'
-import EyeSlashIcon from '../../assets/icons/eye-slash.svg'
+import EyeIcon from '@/assets/icons/eye.svg'
+import EyeSlashIcon from '@/assets/icons/eye-slash.svg'
 import { Pressable } from 'react-native'
 
 interface Props {
