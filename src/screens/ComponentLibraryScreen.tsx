@@ -1,18 +1,23 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 
+import ScrollView from '../components/views/ScrollView'
 import TextInput from '../components/inputs/TextInput'
 import Button from '../components/pressables/Button'
 
 function ComponentLibraryScreen() {
   return (
-    <View className="flex items-center mt-10">
-      <Text className='w-1/2 mb-6 font-bold text-center'>Inputs</Text>
+    <ScrollView className='mt-10'>
+      <Text className='w-full mb-6 font-bold text-center'>Inputs</Text>
       <PurpleBackdrop>
+        <Text className='mb-2'>Text input</Text>
         <TextInput placeholder='Enter some text' />
+
+        <Text className='mb-2 mt-6'>Text input with password type</Text>
+        <TextInput placeholder='Password' type='password' />
       </PurpleBackdrop>
 
-      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Buttons and Anchors</Text>
+      <Text className='w-full mt-6 mb-6 font-bold text-center'>Buttons and Anchors</Text>
       {/* develop buttons and anchors here */}
       <Backdrop>
         <Button label='Primary Button' variant='primary' type='solid' onPress={() => console.log('Primary Button pressed')}/>
@@ -33,27 +38,27 @@ function ComponentLibraryScreen() {
         <Button variant='secondary' label='Secondary Button Outline' type='outline' />
       </PurpleBackdrop>
 
-      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Headers</Text>
+      <Text className='w-full mt-6 mb-6 font-bold text-center'>Headers</Text>
       {/* develop headers here */}
 
-      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Listings</Text>
+      <Text className='w-full mt-6 mb-6 font-bold text-center'>Listings</Text>
       {/* develop listings here */}
 
-      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Drawers</Text>
+      <Text className='w-full mt-6 mb-6 font-bold text-center'>Drawers</Text>
       {/* develop drawers here */}
 
-      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Tabs</Text>
+      <Text className='w-full mt-6 mb-6 font-bold text-center'>Tabs</Text>
       {/* develop tabs here */}
 
-      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Overlay</Text>
+      <Text className='w-full mt-6 mb-6 font-bold text-center'>Overlay</Text>
       {/* develop overlay here */}
 
-      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Map</Text>
+      <Text className='w-full mt-6 mb-6 font-bold text-center'>Map</Text>
       {/* develop map here */}
 
-      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Wizard</Text>
+      <Text className='w-full mt-6 mb-6 font-bold text-center'>Wizard</Text>
       {/* develop wizard here */}
-    </View>
+    </ScrollView>
   )
 }
 
