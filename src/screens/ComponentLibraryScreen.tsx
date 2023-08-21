@@ -13,54 +13,54 @@ function ComponentLibraryScreen() {
         <Text className='mb-2'>Text input</Text>
         <TextInput placeholder='Enter some text' />
 
-          <Text className='mt-6 mb-2'>Text input with password type</Text>
-          <TextInput placeholder='Password' type='password' />
-        </PurpleBackdrop>
+        <Text className='mt-6 mb-2'>Text input with password type</Text>
+        <TextInput placeholder='Password' type='password' />
+      </PurpleBackdrop>
 
-        <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Buttons and Anchors</Text>
-        {/* develop buttons and anchors here */}
-        <Backdrop>
-          <Button label='Primary Button' variant='primary' type='solid' onPress={() => console.log('Primary Button pressed')}/>
-        </Backdrop>
-        <PurpleBackdrop>
-          <Button label='Primary Button disabled' variant='primary' type='solid' disabled/>
-        </PurpleBackdrop>
-        <Backdrop>
-          <Button label='Primary Button Outline' variant='primary' type='outline' />
-        </Backdrop>
-        <Backdrop>
-          <Button variant='secondary' label='Secondary Button' type='solid' />
-        </Backdrop>
-        <PurpleBackdrop>
-          <Button variant='secondary' label='Secondary Button disabled' type='solid' disabled/>
-        </PurpleBackdrop>
-        <PurpleBackdrop>
-          <Button variant='secondary' label='Secondary Button Outline' type='outline' />
-        </PurpleBackdrop>
-        <PurpleBackdrop>
-          <Button variant='secondary' label='Secondary Button without style' />
-        </PurpleBackdrop>
+      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Buttons and Anchors</Text>
+      {/* develop buttons and anchors here */}
+      <Backdrop>
+        <Button label='Primary Button' variant='primary' type='solid' onPress={() => console.log('Primary Button pressed')}/>
+      </Backdrop>
+      <PurpleBackdrop>
+        <Button label='Primary Button disabled' variant='primary' type='solid' disabled/>
+      </PurpleBackdrop>
+      <Backdrop>
+        <Button label='Primary Button Outline' variant='primary' type='outline' />
+      </Backdrop>
+      <Backdrop>
+        <Button variant='secondary' label='Secondary Button' type='solid' />
+      </Backdrop>
+      <PurpleBackdrop>
+        <Button variant='secondary' label='Secondary Button disabled' type='solid' disabled/>
+      </PurpleBackdrop>
+      <PurpleBackdrop>
+        <Button variant='secondary' label='Secondary Button Outline' type='outline' />
+      </PurpleBackdrop>
+      <PurpleBackdrop>
+        <Button variant='secondary' label='Secondary Button without style' />
+      </PurpleBackdrop>
 
-        <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Headers</Text>
-        {/* develop headers here */}
+      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Headers</Text>
+      {/* develop headers here */}
 
-        <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Listings</Text>
-        {/* develop listings here */}
+      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Listings</Text>
+      {/* develop listings here */}
 
-        <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Drawers</Text>
-        {/* develop drawers here */}
+      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Drawers</Text>
+      {/* develop drawers here */}
 
-        <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Tabs</Text>
-        {/* develop tabs here */}
+      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Tabs</Text>
+      {/* develop tabs here */}
 
-        <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Overlay</Text>
-        {/* develop overlay here */}
+      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Overlay</Text>
+      {/* develop overlay here */}
 
-        <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Map</Text>
-        {/* develop map here */}
+      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Map</Text>
+      {/* develop map here */}
 
-        <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Wizard</Text>
-        {/* develop wizard here */}
+      <Text className='w-1/2 mt-6 mb-6 font-bold text-center'>Wizard</Text>
+      {/* develop wizard here */}
     </ScrollView>
   )
 }
