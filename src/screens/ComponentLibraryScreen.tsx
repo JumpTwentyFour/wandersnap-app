@@ -1,65 +1,73 @@
 import React from 'react'
 import { Text, View } from 'react-native'
+import cn from 'classnames'
 
 import ScrollView from '@/components/views/ScrollView'
 import TextInput from '@/components/inputs/TextInput'
 import Button from '@/components/pressables/Button'
+import { ButtonType, ButtonVariant } from '@/types/button'
 
 function ComponentLibraryScreen() {
   return (
     <ScrollView className='mt-10'>
-      <Text className='w-full mb-6 font-bold text-center'>Inputs</Text>
-      <PurpleBackdrop>
+      <Text className='w-full my-6 font-bold text-center'>Inputs</Text>
+      <Backdrop bgClass='bg-purple-400'>
         <Text className='mb-2'>Text input</Text>
         <TextInput placeholder='Enter some text' />
 
         <Text className='mt-6 mb-2'>Text input with password type</Text>
         <TextInput placeholder='Password' type='password' />
-      </PurpleBackdrop>
+      </Backdrop>
 
-      <Text className='w-full mt-6 mb-6 font-bold text-center'>Buttons and Anchors</Text>
+      <Text className='w-full my-6 font-bold text-center'>Buttons and Anchors</Text>
       {/* develop buttons and anchors here */}
       <Backdrop>
-        <Button label='Primary Button' variant='primary' type='solid' onPress={() => console.log('Primary Button pressed')}/>
+        <Button label='Primary Button' variant={ButtonVariant.Primary} type={ButtonType.Solid} onPress={() => console.log('Primary Button pressed')}/>
       </Backdrop>
-      <PurpleBackdrop>
-        <Button label='Primary Button disabled' variant='primary' type='solid' disabled/>
-      </PurpleBackdrop>
-      <Backdrop>
-        <Button label='Primary Button Outline' variant='primary' type='outline' />
+      <Backdrop bgClass='bg-purple-400'>
+        <Button label='Primary Button disabled' variant={ButtonVariant.Primary} type={ButtonType.Solid} disabled/>
       </Backdrop>
       <Backdrop>
-        <Button variant='secondary' label='Secondary Button' type='solid' />
+        <Button label='Primary Button Outline' variant={ButtonVariant.Primary} type={ButtonType.Outline} />
       </Backdrop>
-      <PurpleBackdrop>
-        <Button variant='secondary' label='Secondary Button disabled' type='solid' disabled/>
-      </PurpleBackdrop>
-      <PurpleBackdrop>
-        <Button variant='secondary' label='Secondary Button Outline' type='outline' />
-      </PurpleBackdrop>
-      <PurpleBackdrop>
-        <Button variant='secondary' label='Secondary Button without style' />
-      </PurpleBackdrop>
+      <Backdrop>
+        <Button variant={ButtonVariant.Secondary} type={ButtonType.Solid} label='Secondary Button' />
+      </Backdrop>
+      <Backdrop bgClass='bg-purple-400'>
+        <Button variant={ButtonVariant.Secondary} type={ButtonType.Solid} label='Secondary Button disabled' disabled />
+      </Backdrop>
+      <Backdrop bgClass='bg-purple-400'>
+        <Button variant={ButtonVariant.Secondary} type={ButtonType.Outline} label='Secondary Button Outline' />
+      </Backdrop>
+      <Backdrop bgClass='bg-purple-400'>
+        <Button variant={ButtonVariant.Secondary} label='Secondary Button without style' />
+      </Backdrop>
+      <Backdrop bgClass="bg-slate-900">
+        <Button variant={ButtonVariant.Tertiary} type={ButtonType.Solid} label='Tertiary Button Solid' />
+      </Backdrop>
+      <Backdrop bgClass="bg-slate-900">
+        <Button variant={ButtonVariant.Tertiary} type={ButtonType.Outline} label='Tertiary Button Outline' />
+      </Backdrop>
 
-      <Text className='w-full mt-6 mb-6 font-bold text-center'>Headers</Text>
+      <Text className='w-full my-6 font-bold text-center'>Headers</Text>
       {/* develop headers here */}
 
-      <Text className='w-full mt-6 mb-6 font-bold text-center'>Listings</Text>
+      <Text className='w-full my-6 font-bold text-center'>Listings</Text>
       {/* develop listings here */}
 
-      <Text className='w-full mt-6 mb-6 font-bold text-center'>Drawers</Text>
+      <Text className='w-full my-6 font-bold text-center'>Drawers</Text>
       {/* develop drawers here */}
 
-      <Text className='w-full mt-6 mb-6 font-bold text-center'>Tabs</Text>
+      <Text className='w-full my-6 font-bold text-center'>Tabs</Text>
       {/* develop tabs here */}
 
-      <Text className='w-full mt-6 mb-6 font-bold text-center'>Overlay</Text>
+      <Text className='w-full my-6 font-bold text-center'>Overlay</Text>
       {/* develop overlay here */}
 
-      <Text className='w-full mt-6 mb-6 font-bold text-center'>Map</Text>
+      <Text className='w-full my-6 font-bold text-center'>Map</Text>
       {/* develop map here */}
 
-      <Text className='w-full mt-6 mb-6 font-bold text-center'>Wizard</Text>
+      <Text className='w-full my-6 font-bold text-center'>Wizard</Text>
       {/* develop wizard here */}
     </ScrollView>
   )
@@ -69,20 +77,10 @@ function ComponentLibraryScreen() {
  * This is a helper component to allow white or light coloured components
  * to be easily viewable.
  */
-function PurpleBackdrop(props: { children: React.ReactNode }) {
+function Backdrop(props: { children: React.ReactNode, bgClass?: string }) {
   return (
     <View className='flex items-center w-full h-auto p-2'>
-      <View className='w-4/5 p-2 bg-purple-400 rounded'>
-        {props.children}
-      </View>
-    </View>
-  )
-}
-
-function Backdrop(props: { children: React.ReactNode }) {
-  return (
-    <View className='flex items-center w-full h-auto p-2'>
-      <View className='w-4/5 p-2 rounded'>
+      <View className={cn('w-4/5 p-2 rounded', props.bgClass)}>
         {props.children}
       </View>
     </View>
