@@ -79,8 +79,8 @@ function ComponentLibraryScreen() {
           <Icon name='ChevronUpIcon' size='md' colour='#7E5BFF'/>
           <Icon name='ChevronDownIcon' size='md' colour='#7E5BFF'/>
           <Icon name='ExclamationCircleIcon' size='md' colour='#7E5BFF'/>
-          <Icon name='EllypsisIcon' size='md' colour='#7E5BFF'/>
-          <Icon name='EllypsisCircleIcon' size='md' colour='#7E5BFF'/>
+          <Icon name='EllipsisIcon' size='md' colour='#7E5BFF'/>
+          <Icon name='EllipsisCircleIcon' size='md' colour='#7E5BFF'/>
           <Icon name='LockIcon' size='md' colour='#7E5BFF'/>
           <Icon name='PhotoIcon' size='md' colour='#7E5BFF'/>
           <Icon name='PlusIcon' size='md' colour='#7E5BFF'/>
