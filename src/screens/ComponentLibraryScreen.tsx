@@ -8,6 +8,7 @@ import Button from '@/components/pressables/Button'
 import { ButtonType, ButtonVariant } from '@/types/button'
 import IconButton from '@/components/pressables/IconButton'
 import Icon from '@/components/Icon/Icon'
+import AuthHeader from '@/components/headers/AuthHeader'
 
 function ComponentLibraryScreen() {
   return (
@@ -79,8 +80,8 @@ function ComponentLibraryScreen() {
           <Icon name='ChevronUpIcon' size='md' colour='#7E5BFF'/>
           <Icon name='ChevronDownIcon' size='md' colour='#7E5BFF'/>
           <Icon name='ExclamationCircleIcon' size='md' colour='#7E5BFF'/>
-          <Icon name='EllypsisIcon' size='md' colour='#7E5BFF'/>
-          <Icon name='EllypsisCircleIcon' size='md' colour='#7E5BFF'/>
+          <Icon name='EllipsisIcon' size='md' colour='#7E5BFF'/>
+          <Icon name='EllipsisCircleIcon' size='md' colour='#7E5BFF'/>
           <Icon name='LockIcon' size='md' colour='#7E5BFF'/>
           <Icon name='PhotoIcon' size='md' colour='#7E5BFF'/>
           <Icon name='PlusIcon' size='md' colour='#7E5BFF'/>
@@ -99,7 +100,9 @@ function ComponentLibraryScreen() {
       </View>
 
       <Text className='w-full my-6 font-bold text-center'>Headers</Text>
-      {/* develop headers here */}
+      <Backdrop bgClass='bg-indigo-400'>
+        <AuthHeader />
+      </Backdrop>
 
       <Text className='w-full my-6 font-bold text-center'>Listings</Text>
       {/* develop listings here */}
