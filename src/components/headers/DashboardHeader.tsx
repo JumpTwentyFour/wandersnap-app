@@ -2,8 +2,7 @@ import React from 'react'
 import { Text } from 'react-native'
 
 interface DashboardHeaderProps {
-    // props here
-    children: React.ReactNode
+  children: React.ReactNode
 }
 
 const DashboardHeader = (props: DashboardHeaderProps) => {
