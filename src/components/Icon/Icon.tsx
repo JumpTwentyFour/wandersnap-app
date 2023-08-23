@@ -1,15 +1,10 @@
-import React, { FC, SVGProps, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { icons } from '@/assets/icons'
+import {  IconType, IconProps } from '@/types/icon'
 
-interface IconProps {
-  size: 'sm' | 'md' | 'lg';
-  name: string;
-  colour: string;
-}
-
-const Icon = (props: IconProps) => {
-  const importedIconRef = useRef<FC<SVGProps<SVGSVGElement>>>()
-  const [loading, setLoading] = React.useState(false)
+function Icon(props: IconProps) {
+  const importedIconRef = useRef<IconType>()
+  const [loading, setLoading] = useState(false)
   
   const iconSizes = {
     'sm': {
@@ -28,7 +23,7 @@ const Icon = (props: IconProps) => {
 
   useEffect(() => {
     setLoading(true)
-    const importIcon = async () => {
+    async function importIcon()  {
       try {
         const { default: Icon } = await icons[props.name]
         importedIconRef.current = Icon
@@ -45,7 +40,13 @@ const Icon = (props: IconProps) => {
 
   const ImportedIcon = importedIconRef.current
 
-  return <ImportedIcon width={iconSizes[props.size].width} height={iconSizes[props.size].height} fill={props.colour}  />
+  return (
+    <ImportedIcon 
+      width={iconSizes[props.size].width} 
+      height={iconSizes[props.size].height} 
+      fill={props.colour}  
+    />
+  )
 }
 
 export default Icon
