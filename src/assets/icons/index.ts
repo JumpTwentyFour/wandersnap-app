@@ -1,10 +1,4 @@
-import { FC, SVGProps } from 'react'
-
-interface IconMap {
-    [key: string]: {
-      default: FC<SVGProps<SVGSVGElement>>;
-    };
-  }
+import { IconMap } from '@/types/icon'
   
 export const icons: IconMap = {
   EyeIcon: require('./eye.svg'),
