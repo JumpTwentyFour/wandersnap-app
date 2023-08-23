@@ -1,25 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { icons } from '@/assets/icons'
-import {  IconType, IconProps } from '@/types/icon'
+import {  IconType, IconProps, IconSize } from '@/types/icon'
+
+const ICON_SIZES = {
+  [IconSize.Small]: {
+    height: 20,
+    width: 20,
+  },
+  [IconSize.Medium]: {
+    height: 30,
+    width: 30,
+  },
+  [IconSize.Large]: {
+    height: 35,
+    width: 35,
+  },
+}
 
 function Icon(props: IconProps) {
   const importedIconRef = useRef<IconType>()
   const [loading, setLoading] = useState(false)
-  
-  const iconSizes = {
-    'sm': {
-      height: 20,
-      width: 20,
-    },
-    'md': {
-      height: 30,
-      width: 30,
-    },
-    'lg': {
-      height: 35,
-      width: 35,
-    },
-  }
 
   useEffect(() => {
     setLoading(true)
@@ -42,8 +42,8 @@ function Icon(props: IconProps) {
 
   return (
     <ImportedIcon 
-      width={iconSizes[props.size].width} 
-      height={iconSizes[props.size].height} 
+      width={ICON_SIZES[props.size].width} 
+      height={ICON_SIZES[props.size].height} 
       fill={props.colour}  
     />
   )
