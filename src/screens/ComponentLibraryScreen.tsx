@@ -10,6 +10,7 @@ import IconButton from '@/components/pressables/IconButton'
 import Icon from '@/components/Icon/Icon'
 import AuthHeader from '@/components/headers/AuthHeader'
 import { IconSize } from '@/types/icon'
+import DashboardHeader from '@/components/headers/DashboardHeader'
 
 function ComponentLibraryScreen() {
   return (
@@ -103,6 +104,12 @@ function ComponentLibraryScreen() {
       <Text className='w-full my-6 font-bold text-center'>Headers</Text>
       <Backdrop bgClass='bg-indigo-400'>
         <AuthHeader />
+      </Backdrop>
+
+      <Backdrop bgClass='bg-slate-700'>
+        <DashboardHeader>
+          My trips
+        </DashboardHeader>
       </Backdrop>
 
       <Text className='w-full my-6 font-bold text-center'>Listings</Text>
