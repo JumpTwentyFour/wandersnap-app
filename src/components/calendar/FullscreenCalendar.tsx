@@ -6,6 +6,8 @@ import ScrollingCalendar from '@/components/calendar/ScrollingCalendar'
 import Button from '@/components/pressables/Button'
 import { StartEndDates } from '@/types/dates'
 import { ButtonType, ButtonVariant } from '@/types/button'
+import Icon from '../Icon/Icon'
+import { IconSize } from '@/types/icon'
 
 enum WhichPress {
   Start = 'start',
@@ -92,12 +94,15 @@ function FullscreenCalendar(props: Props) {
     <View className='bg-[#242423] w-full h-full relative'>
       <View className='h-16' />
       <View className='h-30'>
-        <View className='flex flex-row w-full justify-around mb-5'>
-          <View>
+        <View className='flex flex-row w-full justify-center items-center mb-5'>
+          <View className='w-40 px-4'>
             <Text className='text-white'>Start date</Text>
             <Text className='text-white text-xl mt-2 h-8'>{formattedStartDate}</Text>
           </View>
-          <View>
+          <View className='w-10 flex items-center'>
+            <Icon name='ArrowRight' size={IconSize.Small} colour='#fff' />
+          </View>
+          <View className='w-40 px-4'>
             <Text className='text-white'>End date</Text>
             <Text className='text-white text-xl mt-2 h-8'>{formattedEndDate}</Text>
           </View>
@@ -106,7 +111,6 @@ function FullscreenCalendar(props: Props) {
           {DAYS_OF_WEEK.map(day => <Text className='text-white text-xs' key={day}>{day}</Text>)}
         </View>
       </View>
-
       <View style={{ height: Dimensions.get('window').height - 280 }}>
         <ScrollingCalendar onDayPress={handleDayPress} minDate={minDate} selectedDates={selectedDateRange} />
       </View>

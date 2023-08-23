@@ -1,11 +1,16 @@
 import React, { useRef, useState } from 'react'
-import { View, Pressable } from 'react-native'
+import { View, Pressable, TextInput as NativeInput } from 'react-native'
 import { FullWindowOverlay } from 'react-native-screens'
 import { Portal } from '@gorhom/portal'
+import { format } from 'date-fns'
 import TextInput from '@/components/inputs/TextInput'
 import FullscreenCalendar from '@/components/calendar/FullscreenCalendar'
-import { TextInput as NativeInput } from 'react-native'
 import { StartEndDates } from '@/types/dates'
+
+const FALLBACK_SELECTED = {
+  startDate: format(new Date(), 'yyyy-MM-dd'),
+  endDate: format(new Date(), 'yyyy-MM-dd'),
+}
 
 function CalendarInput() {
   const [showCalendar, setShowCalendar] = useState(false)
@@ -48,7 +53,7 @@ function CalendarInput() {
       {showCalendar && (
         <Portal>
           <FullWindowOverlay>
-            <FullscreenCalendar onCancel={handleCancel} onAddDates={handleAddDates} selectedDates={dates} />
+            <FullscreenCalendar onCancel={handleCancel} onAddDates={handleAddDates} selectedDates={dates || FALLBACK_SELECTED} />
           </FullWindowOverlay>
         </Portal>
       )}
