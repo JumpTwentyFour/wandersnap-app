@@ -17,16 +17,18 @@ function ComponentLibraryScreen() {
   return (
     <ScrollView className='mt-10'>
       <Text className='w-full my-6 font-bold text-center'>Inputs</Text>
+      <Title>Text input</Title>
       <Backdrop bgClass='bg-purple-400'>
-        <Text className='mb-2'>Text input</Text>
         <TextInput placeholder='Enter some text' />
+      </Backdrop>
 
-        <Text className='mt-6 mb-2'>Text input with password type</Text>
+      <Title>Text input with password type</Title>
+      <Backdrop bgClass='bg-purple-400'>
         <TextInput placeholder='Password' type='password' />
       </Backdrop>
 
       <Text className='w-full my-6 font-bold text-center'>Buttons and Anchors</Text>
-      {/* develop buttons and anchors here */}
+      <Title>Primary buttons</Title>
       <Backdrop>
         <Button label='Primary Button' variant={ButtonVariant.Primary} type={ButtonType.Solid} onPress={() => console.log('Primary Button pressed')}/>
       </Backdrop>
@@ -36,6 +38,8 @@ function ComponentLibraryScreen() {
       <Backdrop>
         <Button label='Primary Button Outline' variant={ButtonVariant.Primary} type={ButtonType.Outline} />
       </Backdrop>
+
+      <Title>Seconday buttons</Title>
       <Backdrop>
         <Button variant={ButtonVariant.Secondary} type={ButtonType.Solid} label='Secondary Button' />
       </Backdrop>
@@ -48,12 +52,16 @@ function ComponentLibraryScreen() {
       <Backdrop bgClass='bg-purple-400'>
         <Button variant={ButtonVariant.Secondary} label='Secondary Button without style' />
       </Backdrop>
+
+      <Title>Tertiary buttons</Title>
       <Backdrop bgClass="bg-slate-900">
         <Button variant={ButtonVariant.Tertiary} type={ButtonType.Solid} label='Tertiary Button Solid' />
       </Backdrop>
       <Backdrop bgClass="bg-slate-900">
         <Button variant={ButtonVariant.Tertiary} type={ButtonType.Outline} label='Tertiary Button Outlines' />
       </Backdrop>
+
+      <Title>Icon buttons</Title>
       <View className='flex flex-row items-center my-1 justify-evenly'>
         <IconButton bgClass='bg-purple-400' icon='EyeSlashIcon' size={IconSize.Small} colour='#F9F8FF'/>
         <IconButton bgClass='bg-purple-400' icon='ChevronLeftIcon' size={IconSize.Medium} colour='#F9F8FF'/>
@@ -103,17 +111,17 @@ function ComponentLibraryScreen() {
       </View>
 
       <Text className='w-full my-6 font-bold text-center'>Headers</Text>
-      <Text className='w-full pl-12 text-gray-500 font-mont-bold'>Auth Header</Text>
+      <Title>Auth Header</Title>
       <Backdrop bgClass='bg-indigo-400'>
         <AuthHeader />
       </Backdrop>
-      <Text className='w-full pl-12 text-gray-500 font-mont-bold'>Dashboard Header</Text>
+      <Title>Dashboard Header</Title>
       <Backdrop bgClass='bg-slate-700'>
         <DashboardHeader>
           My trips
         </DashboardHeader>
       </Backdrop>
-      <Text className='w-full pl-12 text-gray-500 font-mont-bold'>Trip Header</Text>
+      <Title>Trip Header</Title>
       <Backdrop bgClass='bg-slate-700/50'>
         <TripHeader />
       </Backdrop>
@@ -150,6 +158,12 @@ function Backdrop(props: { children: React.ReactNode, bgClass?: string }) {
         {props.children}
       </View>
     </View>
+  )
+}
+
+function Title(props: { children: React.ReactNode }) {
+  return (
+    <Text className='w-full pl-12 text-gray-500 font-mont-bold'>{props.children}</Text>
   )
 }
 
