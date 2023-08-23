@@ -21,7 +21,7 @@ function TextInput(props: Props) {
   return  (
     <View className='relative'>
       <NativeInput
-        className='w-full border-b border-white rounded-md p-2 text-white'
+        className='w-full p-2 text-white border-b border-white rounded-md'
         placeholder={props.placeholder}
         placeholderTextColor='#f4f4f5'
         keyboardType={props.type === 'password' ? 'default' : props.type}
@@ -32,7 +32,7 @@ function TextInput(props: Props) {
           onPress={handleShowPassword}
           className='absolute right-2 bottom-2'
         >
-          {showPassword ? <EyeSlashIcon /> : <EyeIcon />}
+          {showPassword ? <EyeSlashIcon fill="#fff"/> : <EyeIcon fill='#fff'/>}
         </Pressable>
       )}
     </View>
