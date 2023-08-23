@@ -20,8 +20,19 @@ function ScrollingCalendar(props: Props) {
     return props.selectedDates.reduce((acc: CalendarProps['markedDates'], date) => {
       const isFirst = props.selectedDates?.[0] === date
       const isLast = props.selectedDates?.[props.selectedDates.length - 1] === date
+      const isSingular = props.selectedDates?.length === 1
 
       if (!acc) return acc
+
+      if (isSingular) {
+        acc[date] = {
+          ...DAY_OPTIONS,
+          startingDay: true,
+          endingDay: true,
+        }
+
+        return acc
+      }
 
       if (isFirst) {
         acc[date] = {
