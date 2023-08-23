@@ -3,6 +3,7 @@ import cn from 'classnames'
 import { Pressable } from 'react-native'
 import { IconButtonProps } from '@/types/iconButtton'
 import Icon from '../Icon/Icon'
+import { IconSize } from '@/types/icon'
 
 export const IconButton = (props:IconButtonProps): JSX.Element => {
   const {
@@ -18,9 +19,9 @@ export const IconButton = (props:IconButtonProps): JSX.Element => {
 
   const buttonStyles = cn({
     'flex items-center justify-center rounded-full': true,
-    'h-8 w-8': size === 'sm',
-    'h-11 w-11': size === 'md',
-    'h-14 w-14': size === 'lg',
+    'h-8 w-8': size === IconSize.Small,
+    'h-11 w-11': size === IconSize.Medium,
+    'h-14 w-14': size === IconSize.Large,
   })
 
 
