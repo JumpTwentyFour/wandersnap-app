@@ -10,21 +10,23 @@ import ComponentLibraryScreen from './src/screens/ComponentLibraryScreen'
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
 export default function App() {
-  useFonts({
-    'Montserrat': require('./assets/fonts/Montserrat-Regular.ttf'),
+  const [ loaded ] = useFonts({
+    'Montserrat-Regular': require('./assets/fonts/Montserrat-Regular.ttf'),
     'Montserrat-Light': require('./assets/fonts/Montserrat-Light.ttf'),
     'Montserrat-Bold': require('./assets/fonts/Montserrat-Bold.ttf'),
-    'Comfortaa': require('./assets/fonts/Comfortaa-Regular.ttf'),
+    'Comfortaa-Regular': require('./assets/fonts/Comfortaa-Regular.ttf'),
     'Comfortaa-Light': require('./assets/fonts/Comfortaa-Light.ttf'),
     'Comfortaa-Bold': require('./assets/fonts/Comfortaa-Bold.ttf'),
   })
-  
+
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} options={{ title: HomeScreen.title }} />
-        <Stack.Screen name="ComponentLibrary" component={ComponentLibraryScreen} options={{ title: ComponentLibraryScreen.title }} />
-      </Stack.Navigator>
+      {loaded && (
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={HomeScreen} options={{ title: HomeScreen.title }} />
+          <Stack.Screen name="ComponentLibrary" component={ComponentLibraryScreen} options={{ title: ComponentLibraryScreen.title }} />
+        </Stack.Navigator>
+      )}
     </NavigationContainer>
   )
 }
