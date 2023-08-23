@@ -13,6 +13,7 @@ enum WhichPress {
 interface Props {
   onCancel: () => void
   onAddDates: (startDate: string, endDate: string) => void
+  initialDate?: string
 }
 
 const DAYS_OF_WEEK = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
@@ -43,7 +44,9 @@ function FullscreenCalendar(props: Props) {
   }, [startDate, endDate])
 
   const selectedDateRange = useMemo(() => {
-    if (!startDate || !endDate) return []
+    if (!startDate) return []
+
+    if (!endDate) return [startDate]
 
     const dates = eachDayOfInterval({
       start: new Date(startDate),
@@ -70,7 +73,12 @@ function FullscreenCalendar(props: Props) {
   }
 
   function handleAddDates() {
-    if (!startDate || !endDate) return
+    if (!startDate) return
+
+    if (!endDate) {
+      onAddDates(startDate, startDate)
+      return
+    }
 
     onAddDates(startDate, endDate)
   }
@@ -95,7 +103,7 @@ function FullscreenCalendar(props: Props) {
       </View>
 
       <View style={{ height: Dimensions.get('window').height - 280 }}>
-        <ScrollingCalendar onDayPress={handleDayPress} minDate={minDate} selectedDates={selectedDateRange} />
+        <ScrollingCalendar onDayPress={handleDayPress} minDate={minDate} selectedDates={selectedDateRange} initialDate={props.initialDate} />
       </View>
 
       <View className='bg-[#7E5BFF] h-24 flex flex-row justify-around items-center pb-3'>

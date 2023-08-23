@@ -6,6 +6,7 @@ import EyeSlashIcon from '@/assets/icons/eye-slash.svg'
 
 interface Props {
   placeholder?: string
+  value?: string
   type?: 'password' | KeyboardTypeOptions
   className?: string
   onFocus?: () => void
@@ -34,6 +35,7 @@ function TextInput(props: Props, ref: Ref<NativeInput>) {
         onBlur={props.onBlur}
         onChangeText={props.onChangeText}
         ref={ref}
+        value={props.value}
       />
       {props.type === 'password' && (
         <Pressable
