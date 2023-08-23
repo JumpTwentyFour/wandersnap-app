@@ -11,6 +11,7 @@ import Icon from '@/components/Icon/Icon'
 import AuthHeader from '@/components/headers/AuthHeader'
 import { IconSize } from '@/types/icon'
 import DashboardHeader from '@/components/headers/DashboardHeader'
+import TripHeader from '@/components/headers/TripHeader'
 
 function ComponentLibraryScreen() {
   return (
@@ -102,14 +103,19 @@ function ComponentLibraryScreen() {
       </View>
 
       <Text className='w-full my-6 font-bold text-center'>Headers</Text>
+      <Text className='w-full pl-12 text-gray-500 font-mont-bold'>Auth Header</Text>
       <Backdrop bgClass='bg-indigo-400'>
         <AuthHeader />
       </Backdrop>
-
+      <Text className='w-full pl-12 text-gray-500 font-mont-bold'>Dashboard Header</Text>
       <Backdrop bgClass='bg-slate-700'>
         <DashboardHeader>
           My trips
         </DashboardHeader>
+      </Backdrop>
+      <Text className='w-full pl-12 text-gray-500 font-mont-bold'>Trip Header</Text>
+      <Backdrop bgClass='bg-slate-700/50'>
+        <TripHeader />
       </Backdrop>
 
       <Text className='w-full my-6 font-bold text-center'>Listings</Text>
