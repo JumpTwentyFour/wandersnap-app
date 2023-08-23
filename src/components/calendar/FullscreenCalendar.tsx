@@ -1,9 +1,9 @@
 import React, { useMemo, useState } from 'react'
 import { View, Text, Dimensions } from 'react-native'
 import { DateData } from 'react-native-calendars'
-import { format } from 'date-fns'
+import { format, eachDayOfInterval } from 'date-fns'
 import ScrollingCalendar from '@/components/calendar/ScrollingCalendar'
-import Button from '../pressables/Button'
+import Button from '@/components/pressables/Button'
 
 enum WhichPress {
   Start = 'start',
@@ -35,6 +35,23 @@ function FullscreenCalendar(props: Props) {
 
     return format(new Date(endDate), 'dd MMM yyyy')
   }, [endDate])
+
+  const minDate = useMemo(() => {
+    if (!startDate || (startDate && endDate)) return
+
+    return startDate
+  }, [startDate, endDate])
+
+  const selectedDateRange = useMemo(() => {
+    if (!startDate || !endDate) return []
+
+    const dates = eachDayOfInterval({
+      start: new Date(startDate),
+      end: new Date(endDate),
+    })
+
+    return dates.map(date => format(date, 'yyyy-MM-dd'))
+  }, [startDate, endDate])
 
   function handleDayPress(day: DateData) {
     if (whichPress === WhichPress.Start) {
@@ -78,10 +95,10 @@ function FullscreenCalendar(props: Props) {
       </View>
 
       <View style={{ height: Dimensions.get('window').height - 280 }}>
-        <ScrollingCalendar onDayPress={handleDayPress} />
+        <ScrollingCalendar onDayPress={handleDayPress} minDate={minDate} selectedDates={selectedDateRange} />
       </View>
 
-      <View className='bg-purple-500 h-24 flex flex-row justify-around items-center pb-3'>
+      <View className='bg-[#7E5BFF] h-24 flex flex-row justify-around items-center pb-3'>
         <Button label='Cancel' onPress={onCancel} type='outline' variant='secondary' />
         <Button label='Add dates' onPress={handleAddDates} type='solid' variant='secondary' />
       </View>
