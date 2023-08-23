@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { Ref, forwardRef, useState } from 'react'
 import { TextInput as NativeInput, View, KeyboardTypeOptions, Pressable } from 'react-native'
 import cn from 'classnames'
 import EyeIcon from '@/assets/icons/eye.svg'
@@ -13,7 +13,7 @@ interface Props {
   onChangeText?: (text: string) => void
 }
 
-function TextInput(props: Props) {
+function TextInput(props: Props, ref: Ref<NativeInput>) {
   const [showPassword, setShowPassword] = useState(false)
 
   function handleShowPassword() {
@@ -33,6 +33,7 @@ function TextInput(props: Props) {
         onFocus={props.onFocus}
         onBlur={props.onBlur}
         onChangeText={props.onChangeText}
+        ref={ref}
       />
       {props.type === 'password' && (
         <Pressable
@@ -46,4 +47,4 @@ function TextInput(props: Props) {
   )
 }
 
-export default TextInput
+export default forwardRef(TextInput)
