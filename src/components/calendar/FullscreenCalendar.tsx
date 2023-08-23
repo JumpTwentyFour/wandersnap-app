@@ -1,9 +1,10 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { View, Text, Dimensions } from 'react-native'
 import { DateData } from 'react-native-calendars'
 import { format, eachDayOfInterval } from 'date-fns'
 import ScrollingCalendar from '@/components/calendar/ScrollingCalendar'
 import Button from '@/components/pressables/Button'
+import { StartEndDates } from '@/types/dates'
 
 enum WhichPress {
   Start = 'start',
@@ -13,26 +14,26 @@ enum WhichPress {
 interface Props {
   onCancel: () => void
   onAddDates: (startDate: string, endDate: string) => void
-  initialDate?: string
+  selectedDates?: StartEndDates
 }
 
 const DAYS_OF_WEEK = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
 
 function FullscreenCalendar(props: Props) {
-  const { onCancel, onAddDates } = props
+  const { onCancel, onAddDates, selectedDates } = props
 
   const [whichPress, setWhichPress] = useState<WhichPress>(WhichPress.Start)
-  const [startDate, setStartDate] = useState<string | null>(null)
-  const [endDate, setEndDate] = useState<string | null>(null)
+  const [startDate, setStartDate] = useState<string | undefined>()
+  const [endDate, setEndDate] = useState<string | undefined>()
   
   const formattedStartDate = useMemo(() => {
-    if (!startDate) return null
+    if (!startDate) return undefined
 
     return format(new Date(startDate), 'dd MMM yyyy')
   }, [startDate])
 
   const formattedEndDate = useMemo(() => {
-    if (!endDate) return null
+    if (!endDate) return undefined
 
     return format(new Date(endDate), 'dd MMM yyyy')
   }, [endDate])
@@ -60,7 +61,7 @@ function FullscreenCalendar(props: Props) {
     if (whichPress === WhichPress.Start) {
       console.log('start date', day)
       setStartDate(day.dateString)
-      setEndDate(null)
+      setEndDate(undefined)
       setWhichPress(WhichPress.End)
       return
     }
@@ -83,6 +84,13 @@ function FullscreenCalendar(props: Props) {
     onAddDates(startDate, endDate)
   }
 
+  useEffect(() => {
+    console.log('useEffect', selectedDates)
+
+    setStartDate(selectedDates?.startDate)
+    setEndDate(selectedDates?.endDate)
+  }, [selectedDates])
+
   return (
     <View className='bg-[#242423] w-full h-full relative'>
       <View className='h-16' />
@@ -103,7 +111,7 @@ function FullscreenCalendar(props: Props) {
       </View>
 
       <View style={{ height: Dimensions.get('window').height - 280 }}>
-        <ScrollingCalendar onDayPress={handleDayPress} minDate={minDate} selectedDates={selectedDateRange} initialDate={props.initialDate} />
+        <ScrollingCalendar onDayPress={handleDayPress} minDate={minDate} selectedDates={selectedDateRange} />
       </View>
 
       <View className='bg-[#7E5BFF] h-24 flex flex-row justify-around items-center pb-3'>

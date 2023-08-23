@@ -6,7 +6,6 @@ interface Props {
   selectedDates?: string[]
   onDayPress?: (day: DateData) => void
   minDate?: string
-  initialDate?: string
 }
 
 const DAY_OPTIONS: MarkingProps = {
@@ -66,7 +65,6 @@ function ScrollingCalendar(props: Props) {
       minDate={props.minDate}
       hideDayNames
       firstDay={1}
-      initialDate={props.initialDate}
       theme={{
         backgroundColor: '#242423',
         calendarBackground: '#242423',

@@ -48,7 +48,7 @@ function CalendarInput() {
       {showCalendar && (
         <Portal>
           <FullWindowOverlay>
-            <FullscreenCalendar onCancel={handleCancel} onAddDates={handleAddDates} initialDate={dates?.startDate} />
+            <FullscreenCalendar onCancel={handleCancel} onAddDates={handleAddDates} selectedDates={dates} />
           </FullWindowOverlay>
         </Portal>
       )}
