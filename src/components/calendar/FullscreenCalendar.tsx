@@ -5,6 +5,7 @@ import { format, eachDayOfInterval } from 'date-fns'
 import ScrollingCalendar from '@/components/calendar/ScrollingCalendar'
 import Button from '@/components/pressables/Button'
 import { StartEndDates } from '@/types/dates'
+import { ButtonType, ButtonVariant } from '@/types/button'
 
 enum WhichPress {
   Start = 'start',
@@ -59,7 +60,6 @@ function FullscreenCalendar(props: Props) {
 
   function handleDayPress(day: DateData) {
     if (whichPress === WhichPress.Start) {
-      console.log('start date', day)
       setStartDate(day.dateString)
       setEndDate(undefined)
       setWhichPress(WhichPress.End)
@@ -67,7 +67,6 @@ function FullscreenCalendar(props: Props) {
     }
     
     if (whichPress === WhichPress.End) {
-      console.log('end date', day)
       setEndDate(day.dateString)
       setWhichPress(WhichPress.Start)
     }
@@ -85,8 +84,6 @@ function FullscreenCalendar(props: Props) {
   }
 
   useEffect(() => {
-    console.log('useEffect', selectedDates)
-
     setStartDate(selectedDates?.startDate)
     setEndDate(selectedDates?.endDate)
   }, [selectedDates])
@@ -115,8 +112,8 @@ function FullscreenCalendar(props: Props) {
       </View>
 
       <View className='bg-[#7E5BFF] h-24 flex flex-row justify-around items-center pb-3'>
-        <Button label='Cancel' onPress={onCancel} type='outline' variant='secondary' />
-        <Button label='Add dates' onPress={handleAddDates} type='solid' variant='secondary' />
+        <Button label='Cancel' onPress={onCancel} type={ButtonType.Outline} variant={ButtonVariant.Secondary} />
+        <Button label='Add dates' onPress={handleAddDates} type={ButtonType.Solid} variant={ButtonVariant.Secondary} />
       </View>
     </View>
   )
