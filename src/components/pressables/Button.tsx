@@ -36,10 +36,10 @@ function Button(props: ButtonProps) {
   })
 
   const labelStyles = cn({
-    'text-12 text-white': (isPrimary && isSolid && !disabled) || (isSecondary && isOutline && !disabled) || (isTertiary && !hasNoType),
-    'text-12 text-[#F9F8FF99]': isPrimary && disabled,
-    'text-12 text-[#7E5BFF]': (isSecondary && isSolid) || (isPrimary && isOutline),
-    'text-15 text-[#F9F8FF]': (isSecondary && hasNoType),
+    'text-12 text-white font-mont': (isPrimary && isSolid && !disabled) || (isSecondary && isOutline && !disabled) || (isTertiary && !hasNoType),
+    'text-12 text-[#F9F8FF99] font-mont': isPrimary && disabled,
+    'text-12 text-[#7E5BFF] font-mont': (isSecondary && isSolid) || (isPrimary && isOutline),
+    'text-15 text-[#F9F8FF] font-mont': (isSecondary && hasNoType),
   })
 
   return  (
