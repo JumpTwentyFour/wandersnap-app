@@ -2,7 +2,7 @@ import React from 'react'
 import cn from 'classnames'
 import { Pressable } from 'react-native'
 import { IconButtonProps } from '@/types/iconButtton'
-import Icon from '../Icon/Icon'
+import Icon from '@/components/icon/Icon'
 import { IconSize } from '@/types/icon'
 
 export const IconButton = (props:IconButtonProps): JSX.Element => {
@@ -26,7 +26,7 @@ export const IconButton = (props:IconButtonProps): JSX.Element => {
 
 
   return (
-    <Pressable onPress={() => onPress} className={cn(buttonStyles, buttonBackground)} disabled={disabled}>
+    <Pressable onPress={onPress} className={cn(buttonStyles, buttonBackground)} disabled={disabled}>
       <Icon name={icon} size={size} colour={colour} />
     </Pressable>
   )
