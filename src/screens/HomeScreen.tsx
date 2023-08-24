@@ -13,7 +13,7 @@ function HomeScreen({ navigation }: Props) {
         onPress={() => navigation.navigate('ComponentLibrary')}
         className='px-4 py-2 my-3 bg-green-400 rounded-md shadow drop-shadow'
       >
-        <Text className='text-white'>Go to component library</Text>
+        <Text className='text-ghost'>Go to component library</Text>
       </Pressable>
     </View>
   )
