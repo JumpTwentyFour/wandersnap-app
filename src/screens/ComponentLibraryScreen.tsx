@@ -176,13 +176,13 @@ function ComponentLibraryScreen() {
       <Text className='w-full my-6 font-bold text-center'>Listings</Text>
       {/* develop listings here */}
 
-      <Text className='w-full my-6 font-bold text-center'>Drawers</Text>
+      <Text className='w-full my-6 font-bold text-center'>Bottom sheets</Text>
       <Backdrop>
-        <Button label='Open base drawer' variant={ButtonVariant.Primary} type={ButtonType.Solid} onPress={() => setShowBottomSheet(!showBottomSheet)}/>
+        <Button label='Open bottom sheet' variant={ButtonVariant.Primary} type={ButtonType.Solid} onPress={() => setShowBottomSheet(!showBottomSheet)}/>
       </Backdrop>
       <BottomSheet open={showBottomSheet}>
         <Text className='w-full my-6 font-bold text-center text-ghost'>Bottom sheet ⚡️</Text>
-        <Button label='Close base drawer' variant={ButtonVariant.Secondary} type={ButtonType.Outline} onPress={() => setShowBottomSheet(false)}/>
+        <Button label='Close bottom sheet' variant={ButtonVariant.Secondary} type={ButtonType.Outline} onPress={() => setShowBottomSheet(false)}/>
       </BottomSheet>
       
 
