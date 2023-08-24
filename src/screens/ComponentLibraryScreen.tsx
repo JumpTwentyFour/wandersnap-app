@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import cn from 'classnames'
-import { Pressable, Text, View } from 'react-native'
-
+import { Text, View } from 'react-native'
 import ScrollView from '@/components/views/ScrollView'
 import TextInput from '@/components/inputs/TextInput'
 import SearchInput from '@/components/inputs/SearchInput'
@@ -17,10 +16,12 @@ import TripHeader from '@/components/headers/TripHeader'
 import { ButtonType, ButtonVariant } from '@/types/button'
 import { IconSize } from '@/types/icon'
 import { ImageInputSize } from '@/types/imageInput'
-import FormHeader, { FormStep } from '@/components/headers/FormHeader'
+import FormHeader from '@/components/headers/FormHeader'
+import { useColours } from '@/hooks/useTailwind'
+import { FormStep } from '@/types/formHeader'
 
 function ComponentLibraryScreen() {
-  const [toggleValue, setToggleValue] = React.useState(false)
+  const [toggleValue, setToggleValue] = useState(false)
   const [formHeaderStep, setFormHeaderStep] = useState<FormStep>(FormStep.TripDetails)
 
   return (
@@ -172,24 +173,11 @@ function ComponentLibraryScreen() {
         <TripHeader />
       </Backdrop>
       <Title>Form Header</Title>
-      <View className='flex flex-row flex-wrap items-center pl-12'>
-        <Pressable onPress={() => setFormHeaderStep(FormStep.TripDetails)} className='px-2'>
-          <Text>Trip Details</Text>
-        </Pressable>
-        <Pressable onPress={() => setFormHeaderStep(FormStep.TripFindLocation)} className='px-2'>
-          <Text>Find Location</Text>
-        </Pressable>
-        <Pressable onPress={()=> setFormHeaderStep(FormStep.TripAddLocation)} className='px-2'>
-          <Text>Add Location</Text>
-        </Pressable>
-        <Pressable onPress={()=> setFormHeaderStep(FormStep.TripUploadImages)} className='px-2'>
-          <Text>Upload Images</Text>
-        </Pressable>
-        <Pressable onPress={()=> setFormHeaderStep(FormStep.TripAddLocationImages)} className='px-2'>
-          <Text>Add Location Images</Text>
-        </Pressable>
+      <View className='flex flex-row items-center justify-between px-12'>
+        <IconButton size={IconSize.Small} icon='ChevronLeftIcon' colour={useColours()['ghost']} bgClass='bg-tuatura' onPress={() => formHeaderStep !== 0 ? setFormHeaderStep(formHeaderStep - 1) : null}/>
+        <IconButton size={IconSize.Small} icon='ChevronRightIcon' colour={useColours()['ghost']} bgClass='bg-tuatura' onPress={() => formHeaderStep <= 4 ? setFormHeaderStep(formHeaderStep + 1) : null}/>
       </View>
-      <Backdrop bgClass='bg-slate-700/50' fullWidth>
+      <Backdrop bgClass='bg-tuatura/75' fullWidth>
         <FormHeader step={formHeaderStep} />
       </Backdrop>
 
