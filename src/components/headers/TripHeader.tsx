@@ -1,7 +1,7 @@
 import React from 'react'
 import { View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import IconButton from '../pressables/IconButton'
+import IconButton from '@/components/pressables/IconButton'
 import { IconSize } from '@/types/icon'
 
 function TripHeader() {

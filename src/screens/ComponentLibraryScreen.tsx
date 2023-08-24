@@ -26,8 +26,10 @@ function ComponentLibraryScreen() {
       <Title>Text input with password type</Title>
       <Backdrop bgClass='bg-purple-400'>
         <TextInput placeholder='Password' type='password' />
+      </Backdrop>
 
-        <Text className='mt-6 mb-2'>Calendar input</Text>
+      <Title>Calendar input</Title>
+      <Backdrop bgClass='bg-purple-400'>
         <CalendarInput />
       </Backdrop>
 
