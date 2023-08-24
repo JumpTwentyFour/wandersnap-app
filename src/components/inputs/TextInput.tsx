@@ -26,7 +26,7 @@ function TextInput(props: Props, ref: Ref<NativeInput>) {
   return  (
     <View className={cn('relative w-full', props.className)}>
       <NativeInput
-        className='w-full p-2 text-white border-b border-white rounded-md'
+        className='w-full p-2 text-ghost border-b border-ghost rounded-md'
         placeholder={props.placeholder}
         placeholderTextColor='#f4f4f5'
         keyboardType={props.type === 'password' ? 'default' : props.type}

@@ -92,19 +92,19 @@ function FullscreenCalendar(props: Props) {
       <View className='h-30'>
         <View className='flex flex-row items-center justify-center w-full mb-5'>
           <View className='w-40 px-4'>
-            <Text className='text-white'>Start date</Text>
-            <Text className='h-8 mt-2 text-xl text-white'>{formattedStartDate}</Text>
+            <Text className='text-ghost'>Start date</Text>
+            <Text className='h-8 mt-2 text-xl text-ghost'>{formattedStartDate}</Text>
           </View>
           <View className='flex items-center w-10'>
             <Icon name='ArrowRight' size={IconSize.Small} colour='#fff' />
           </View>
           <View className='w-40 px-4'>
-            <Text className='text-white'>End date</Text>
-            <Text className='h-8 mt-2 text-xl text-white'>{formattedEndDate}</Text>
+            <Text className='text-ghost'>End date</Text>
+            <Text className='h-8 mt-2 text-xl text-ghost'>{formattedEndDate}</Text>
           </View>
         </View>
         <View className='flex flex-row items-center justify-around w-full h-12 px-5 border-t border-b border-ghost/30'>
-          {DAYS_OF_WEEK.map(day => <Text className='text-xs text-white' key={day}>{day}</Text>)}
+          {DAYS_OF_WEEK.map(day => <Text className='text-xs text-ghost' key={day}>{day}</Text>)}
         </View>
       </View>
       <View style={{ height: Dimensions.get('window').height - 280 }}>

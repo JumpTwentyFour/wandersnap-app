@@ -7,7 +7,7 @@ interface DashboardHeaderProps {
 
 const DashboardHeader = (props: DashboardHeaderProps) => {
   return (
-    <Text className='text-3xl text-white font-mont'>
+    <Text className='text-3xl text-ghost font-mont'>
       {props.children}
     </Text>
   )

@@ -4,19 +4,23 @@ import { Pressable, Text, View } from 'react-native'
 
 import ScrollView from '@/components/views/ScrollView'
 import TextInput from '@/components/inputs/TextInput'
+import SearchInput from '@/components/inputs/SearchInput'
 import CalendarInput from '@/components/inputs/CalendarInput'
+import ImageInput from '@/components/inputs/ImageInput'
+import Toggle from '@/components/pressables/Toggle'
 import Button from '@/components/pressables/Button'
-import { ButtonType, ButtonVariant } from '@/types/button'
 import IconButton from '@/components/pressables/IconButton'
 import Icon from '@/components/Icon'
 import AuthHeader from '@/components/headers/AuthHeader'
-import { IconSize } from '@/types/icon'
 import DashboardHeader from '@/components/headers/DashboardHeader'
 import TripHeader from '@/components/headers/TripHeader'
+import { ButtonType, ButtonVariant } from '@/types/button'
+import { IconSize } from '@/types/icon'
+import { ImageInputSize } from '@/types/imageInput'
 import FormHeader, { FormStep } from '@/components/headers/FormHeader'
 
 function ComponentLibraryScreen() {
-
+  const [toggleValue, setToggleValue] = React.useState(false)
   const [formHeaderStep, setFormHeaderStep] = useState<FormStep>(FormStep.TripDetails)
 
   return (
@@ -35,6 +39,38 @@ function ComponentLibraryScreen() {
       <Title>Calendar input</Title>
       <Backdrop bgClass='bg-purple-400'>
         <CalendarInput />
+      </Backdrop>
+
+      <Title>Search input</Title>
+      <Backdrop bgClass='bg-slate-900'>
+        <SearchInput onChange={(value) => console.log(value)} />
+      </Backdrop>
+
+      <Title>Image input - small</Title>
+      <Backdrop bgClass='bg-slate-900'>
+        <ImageInput size={ImageInputSize.Small} onChange={(images) => console.log(images)} />
+      </Backdrop>
+      
+      <Title>Image input - medium</Title>
+      <Backdrop bgClass='bg-slate-900'>
+        <ImageInput size={ImageInputSize.Medium} onChange={(images) => console.log(images)} />
+      </Backdrop>
+      
+      <Title>Image input - large</Title>
+      <Backdrop bgClass='bg-slate-900'>
+        <ImageInput size={ImageInputSize.Large} onChange={(images) => console.log(images)} />
+      </Backdrop>
+
+      <Title>Toggle</Title>
+      <Backdrop bgClass='bg-slate-900'>
+        <Toggle
+          options={['Photos', 'Albums']}
+          value={toggleValue}
+          onChange={(value, option) => {
+            setToggleValue(value)
+            console.log(value, option)
+          }}
+        />
       </Backdrop>
 
       <Text className='w-full my-6 font-bold text-center'>Buttons and Anchors</Text>
