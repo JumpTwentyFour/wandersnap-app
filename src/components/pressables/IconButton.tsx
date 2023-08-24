@@ -26,7 +26,7 @@ export const IconButton = (props:IconButtonProps): JSX.Element => {
 
 
   return (
-    <Pressable onPress={(event) => onPress ? onPress(event) : null} className={cn(buttonStyles, buttonBackground)} disabled={disabled}>
+    <Pressable onPress={onPress} className={cn(buttonStyles, buttonBackground)} disabled={disabled}>
       <Icon name={icon} size={size} colour={colour} />
     </Pressable>
   )

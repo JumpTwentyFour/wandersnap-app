@@ -1,11 +1,10 @@
 import React from 'react'
 import { View } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 import IconButton from '../pressables/IconButton'
 import { IconSize } from '@/types/icon'
-import { useNavigation } from '@react-navigation/native'
 
-const TripHeader = () => {
-
+function TripHeader() {
   const navigation = useNavigation()
     
   return (
