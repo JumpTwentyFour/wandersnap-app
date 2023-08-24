@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import cn from 'classnames'
-import { Text, View } from 'react-native'
+import { Pressable, Text, View } from 'react-native'
 
 import ScrollView from '@/components/views/ScrollView'
 import TextInput from '@/components/inputs/TextInput'
@@ -13,8 +13,12 @@ import AuthHeader from '@/components/headers/AuthHeader'
 import { IconSize } from '@/types/icon'
 import DashboardHeader from '@/components/headers/DashboardHeader'
 import TripHeader from '@/components/headers/TripHeader'
+import FormHeader, { FormStep } from '@/components/headers/FormHeader'
 
 function ComponentLibraryScreen() {
+
+  const [formHeaderStep, setFormHeaderStep] = useState<FormStep>(FormStep.TripDetails)
+
   return (
     <ScrollView className='mt-10'>
       <Text className='w-full my-6 font-bold text-center'>Inputs</Text>
@@ -131,6 +135,27 @@ function ComponentLibraryScreen() {
       <Backdrop bgClass='bg-slate-700/50'>
         <TripHeader />
       </Backdrop>
+      <Title>Form Header</Title>
+      <View className='flex flex-row flex-wrap items-center pl-12'>
+        <Pressable onPress={() => setFormHeaderStep(FormStep.TripDetails)} className='px-2'>
+          <Text>Trip Details</Text>
+        </Pressable>
+        <Pressable onPress={() => setFormHeaderStep(FormStep.TripFindLocation)} className='px-2'>
+          <Text>Find Location</Text>
+        </Pressable>
+        <Pressable onPress={()=> setFormHeaderStep(FormStep.TripAddLocation)} className='px-2'>
+          <Text>Add Location</Text>
+        </Pressable>
+        <Pressable onPress={()=> setFormHeaderStep(FormStep.TripUploadImages)} className='px-2'>
+          <Text>Upload Images</Text>
+        </Pressable>
+        <Pressable onPress={()=> setFormHeaderStep(FormStep.TripAddLocationImages)} className='px-2'>
+          <Text>Add Location Images</Text>
+        </Pressable>
+      </View>
+      <Backdrop bgClass='bg-slate-700/50' fullWidth>
+        <FormHeader step={formHeaderStep} />
+      </Backdrop>
 
       <Text className='w-full my-6 font-bold text-center'>Listings</Text>
       {/* develop listings here */}
@@ -157,10 +182,10 @@ function ComponentLibraryScreen() {
  * This is a helper component to allow white or light coloured components
  * to be easily viewable.
  */
-function Backdrop(props: { children: React.ReactNode, bgClass?: string }) {
+function Backdrop(props: { children: React.ReactNode, bgClass?: string, fullWidth?: boolean }) {
   return (
     <View className='flex items-center w-full h-auto p-2'>
-      <View className={cn('w-4/5 p-2 rounded', props.bgClass)}>
+      <View className={cn('p-2 rounded', props.bgClass, props.fullWidth ? 'w-full' : 'w-4/5')}>
         {props.children}
       </View>
     </View>
