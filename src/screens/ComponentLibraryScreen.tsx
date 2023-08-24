@@ -4,6 +4,7 @@ import { Text, View } from 'react-native'
 
 import ScrollView from '@/components/views/ScrollView'
 import TextInput from '@/components/inputs/TextInput'
+import SearchInput from '@/components/inputs/SearchInput'
 import CalendarInput from '@/components/inputs/CalendarInput'
 import ImageInput from '@/components/inputs/ImageInput'
 import Toggle from '@/components/pressables/Toggle'
@@ -36,6 +37,11 @@ function ComponentLibraryScreen() {
       <Title>Calendar input</Title>
       <Backdrop bgClass='bg-purple-400'>
         <CalendarInput />
+      </Backdrop>
+
+      <Title>Search input</Title>
+      <Backdrop bgClass='bg-slate-900'>
+        <SearchInput onChange={(value) => console.log(value)} />
       </Backdrop>
 
       <Title>Image input - small</Title>
