@@ -12,10 +12,10 @@ import Icon from '@/components/Icon'
 import AuthHeader from '@/components/headers/AuthHeader'
 import DashboardHeader from '@/components/headers/DashboardHeader'
 import TripHeader from '@/components/headers/TripHeader'
+import SearchInput from '@/components/inputs/SearchInput'
 import { ButtonType, ButtonVariant } from '@/types/button'
 import { IconSize } from '@/types/icon'
 import { ImageInputSize } from '@/types/imageInput'
-import SearchInput from '@/components/inputs/SearchInput'
 
 function ComponentLibraryScreen() {
   return (
