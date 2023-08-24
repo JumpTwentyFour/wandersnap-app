@@ -20,7 +20,7 @@ function SearchInput(props: Props) {
         <Icon name="SearchIcon" size={IconSize.Small} colour={colours.ghost} />
       </View>
       <TextInput
-        className='w-full bg-ghost/10 rounded-xl pl-9 pr-2 py-[10px] text-ghost'
+        className='w-full h-9 bg-ghost/10 rounded-xl pl-9 pr-2 text-ghost'
         value={value}
         onChangeText={onChange}
       />
