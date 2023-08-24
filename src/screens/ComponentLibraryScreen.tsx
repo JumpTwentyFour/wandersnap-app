@@ -1,9 +1,10 @@
 import React from 'react'
-import { Text, View } from 'react-native'
 import cn from 'classnames'
+import { Text, View } from 'react-native'
 
 import ScrollView from '@/components/views/ScrollView'
 import TextInput from '@/components/inputs/TextInput'
+import CalendarInput from '@/components/inputs/CalendarInput'
 import Button from '@/components/pressables/Button'
 import { ButtonType, ButtonVariant } from '@/types/button'
 import IconButton from '@/components/pressables/IconButton'
@@ -22,15 +23,18 @@ function ComponentLibraryScreen() {
 
         <Text className='mt-6 mb-2'>Text input with password type</Text>
         <TextInput placeholder='Password' type='password' />
+
+        <Text className='mt-6 mb-2'>Calendar input</Text>
+        <CalendarInput />
       </Backdrop>
 
       <Text className='w-full my-6 font-bold text-center'>Buttons and Anchors</Text>
       {/* develop buttons and anchors here */}
       <Backdrop>
-        <Button label='Primary Button' variant={ButtonVariant.Primary} type={ButtonType.Solid} onPress={() => console.log('Primary Button pressed')}/>
+        <Button label='Primary Button' variant={ButtonVariant.Primary} type={ButtonType.Solid} />
       </Backdrop>
       <Backdrop bgClass='bg-purple-400'>
-        <Button label='Primary Button disabled' variant={ButtonVariant.Primary} type={ButtonType.Solid} disabled/>
+        <Button label='Primary Button disabled' variant={ButtonVariant.Primary} type={ButtonType.Solid} disabled />
       </Backdrop>
       <Backdrop>
         <Button label='Primary Button Outline' variant={ButtonVariant.Primary} type={ButtonType.Outline} />
