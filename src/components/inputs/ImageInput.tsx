@@ -2,9 +2,9 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import cn from 'classnames'
 import { ImageInputSize } from '@/types/imageInput'
-import Icon from '../Icon'
-import { IconSize } from '@/types/icon'
+import Icon from '@/components/Icon'
 import { useColours } from '@/hooks/useTailwind'
+import { IconSize } from '@/types/icon'
 
 interface Props {
   size: ImageInputSize
