@@ -25,21 +25,21 @@ function Button(props: ButtonProps) {
     'flex h-12 flex-col items-center justify-center px-10 py-3': hasNoType && !isTertiary,
     'flex px-4 py-1 items-center rounded-full': isTertiary && isSolid,
     'flex px-4 py-1 items-center rounded-full border border-solid': isTertiary && isOutline,
-    'bg-[#7E5BFF]': isPrimary && isSolid && !disabled,
-    'border-[#7E5BFF]': isPrimary && isOutline && !disabled,
-    'bg-[#F9F8FF33]': isPrimary && isSolid && disabled,
-    'bg-[#F9F8FF]': isSecondary && isSolid && !disabled,
-    'border-[#F9F8FF]':isSecondary && isOutline,
-    'bg-[#F9F8FF99]': isSecondary && isSolid && disabled,
-    'bg-[#9F85FF40]': isTertiary && isSolid,
-    'border-[#9F85FF40]': isTertiary && isOutline,
+    'bg-helio': isPrimary && isSolid && !disabled,
+    'border-helio': isPrimary && isOutline && !disabled,
+    'bg-ghost/20': isPrimary && isSolid && disabled,
+    'bg-ghost': isSecondary && isSolid && !disabled,
+    'border-ghost':isSecondary && isOutline,
+    'bg-ghost/60': isSecondary && isSolid && disabled,
+    'bg-tropical-indigo/40': isTertiary && isSolid,
+    'border-tropical-indigo/40': isTertiary && isOutline,
   })
 
   const labelStyles = cn({
     'text-12 text-white font-mont': (isPrimary && isSolid && !disabled) || (isSecondary && isOutline && !disabled) || (isTertiary && !hasNoType),
-    'text-12 text-[#F9F8FF99] font-mont': isPrimary && disabled,
-    'text-12 text-[#7E5BFF] font-mont': (isSecondary && isSolid) || (isPrimary && isOutline),
-    'text-15 text-[#F9F8FF] font-mont': (isSecondary && hasNoType),
+    'text-12 text-ghost/60 font-mont': isPrimary && disabled,
+    'text-12 text-helio font-mont': (isSecondary && isSolid) || (isPrimary && isOutline),
+    'text-15 text-ghost font-mont': (isSecondary && hasNoType),
   })
 
   return  (
