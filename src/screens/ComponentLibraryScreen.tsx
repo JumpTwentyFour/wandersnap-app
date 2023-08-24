@@ -37,17 +37,17 @@ function ComponentLibraryScreen() {
 
       <Title>Image input - small</Title>
       <Backdrop bgClass='bg-slate-900'>
-        <ImageInput size={ImageInputSize.Small} />
+        <ImageInput size={ImageInputSize.Small} onChange={(images) => console.log(images)} />
       </Backdrop>
       
       <Title>Image input - medium</Title>
       <Backdrop bgClass='bg-slate-900'>
-        <ImageInput size={ImageInputSize.Medium} />
+        <ImageInput size={ImageInputSize.Medium} onChange={(images) => console.log(images)} />
       </Backdrop>
       
       <Title>Image input - large</Title>
       <Backdrop bgClass='bg-slate-900'>
-        <ImageInput size={ImageInputSize.Large} />
+        <ImageInput size={ImageInputSize.Large} onChange={(images) => console.log(images)} />
       </Backdrop>
 
       <Text className='w-full my-6 font-bold text-center'>Buttons and Anchors</Text>

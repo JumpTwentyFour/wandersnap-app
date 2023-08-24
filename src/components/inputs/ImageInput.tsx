@@ -1,18 +1,21 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { Pressable, Text } from 'react-native'
+import { ImagePickerAsset, MediaTypeOptions, launchImageLibraryAsync } from 'expo-image-picker'
 import cn from 'classnames'
-import { ImageInputSize } from '@/types/imageInput'
 import Icon from '@/components/Icon'
 import { useColours } from '@/hooks/useTailwind'
+import { ImageInputSize } from '@/types/imageInput'
 import { IconSize } from '@/types/icon'
 
 interface Props {
   size: ImageInputSize
   label?: string
+  onChange: (images: ImagePickerAsset[]) => void
 }
 
 function ImageInput(props: Props) {
-  const { size, label = 'Choose snaps from your library' } = props
+  const { size, label = 'Choose snaps from your library', onChange } = props
+
   const colors = useColours()
 
   const isSmall = size === ImageInputSize.Small
@@ -25,8 +28,20 @@ function ImageInput(props: Props) {
     'h-96': isLarge,
   })
 
+  async function pickImage() {
+    const result = await launchImageLibraryAsync({
+      mediaTypes: MediaTypeOptions.All,
+      allowsMultipleSelection: true,
+    })
+
+    if (!result.canceled) {
+      onChange(result.assets)
+    }
+  }
+
   return (
-    <View
+    <Pressable
+      onPress={pickImage}
       className={cn(
         'flex items-center justify-center rounded-2xl w-full border border-ghost border-dashed',
         isSmall && 'flex-row',
@@ -43,7 +58,7 @@ function ImageInput(props: Props) {
       >
         {label}
       </Text>
-    </View>
+    </Pressable>
   )
 }
 
