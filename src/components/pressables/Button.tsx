@@ -36,7 +36,7 @@ function Button(props: ButtonProps) {
   })
 
   const labelStyles = cn({
-    'text-12 text-white font-mont': (isPrimary && isSolid && !disabled) || (isSecondary && isOutline && !disabled) || (isTertiary && !hasNoType),
+    'text-12 text-ghost font-mont': (isPrimary && isSolid && !disabled) || (isSecondary && isOutline && !disabled) || (isTertiary && !hasNoType),
     'text-12 text-ghost/60 font-mont': isPrimary && disabled,
     'text-12 text-helio font-mont': (isSecondary && isSolid) || (isPrimary && isOutline),
     'text-15 text-ghost font-mont': (isSecondary && hasNoType),

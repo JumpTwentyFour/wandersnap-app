@@ -35,9 +35,19 @@ function ComponentLibraryScreen() {
         <CalendarInput />
       </Backdrop>
 
-      <Title>Image input</Title>
-      <Backdrop bgClass='bg-purple-400'>
+      <Title>Image input - small</Title>
+      <Backdrop bgClass='bg-slate-900'>
         <ImageInput size={ImageInputSize.Small} />
+      </Backdrop>
+      
+      <Title>Image input - medium</Title>
+      <Backdrop bgClass='bg-slate-900'>
+        <ImageInput size={ImageInputSize.Medium} />
+      </Backdrop>
+      
+      <Title>Image input - large</Title>
+      <Backdrop bgClass='bg-slate-900'>
+        <ImageInput size={ImageInputSize.Large} />
       </Backdrop>
 
       <Text className='w-full my-6 font-bold text-center'>Buttons and Anchors</Text>
