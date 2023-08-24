@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import { Pressable, View, Text } from 'react-native'
 import Icon from '@/components/Icon'
+import IconButton from '@/components/pressables/IconButton'
+import Toggle from '@/components/pressables/Toggle'
 import { IconSize } from '@/types/icon'
-import IconButton from '../pressables/IconButton'
-import Toggle from '../pressables/Toggle'
 import { FormHeaderProps, FormStep } from '@/types/formHeader'
 
 function FormHeader (props: FormHeaderProps) {
