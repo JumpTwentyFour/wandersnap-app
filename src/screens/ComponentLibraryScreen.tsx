@@ -6,6 +6,7 @@ import ScrollView from '@/components/views/ScrollView'
 import TextInput from '@/components/inputs/TextInput'
 import CalendarInput from '@/components/inputs/CalendarInput'
 import ImageInput from '@/components/inputs/ImageInput'
+import Toggle from '@/components/pressables/Toggle'
 import Button from '@/components/pressables/Button'
 import IconButton from '@/components/pressables/IconButton'
 import Icon from '@/components/Icon'
@@ -17,6 +18,8 @@ import { IconSize } from '@/types/icon'
 import { ImageInputSize } from '@/types/imageInput'
 
 function ComponentLibraryScreen() {
+  const [toggleValue, setToggleValue] = React.useState(false)
+
   return (
     <ScrollView className='mt-10'>
       <Text className='w-full my-6 font-bold text-center'>Inputs</Text>
@@ -48,6 +51,18 @@ function ComponentLibraryScreen() {
       <Title>Image input - large</Title>
       <Backdrop bgClass='bg-slate-900'>
         <ImageInput size={ImageInputSize.Large} />
+      </Backdrop>
+
+      <Title>Toggle</Title>
+      <Backdrop bgClass='bg-slate-900'>
+        <Toggle
+          options={['Photos', 'Albums']}
+          value={toggleValue}
+          onChange={(value, option) => {
+            setToggleValue(value)
+            console.log(value, option)
+          }}
+        />
       </Backdrop>
 
       <Text className='w-full my-6 font-bold text-center'>Buttons and Anchors</Text>
