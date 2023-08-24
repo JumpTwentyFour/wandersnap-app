@@ -4,15 +4,11 @@ import { DateData } from 'react-native-calendars'
 import { format, eachDayOfInterval } from 'date-fns'
 import ScrollingCalendar from '@/components/calendar/ScrollingCalendar'
 import Button from '@/components/pressables/Button'
+import Icon from '@/components/Icon/Icon'
 import { StartEndDates } from '@/types/dates'
 import { ButtonType, ButtonVariant } from '@/types/button'
-import Icon from '../Icon/Icon'
 import { IconSize } from '@/types/icon'
-
-enum WhichPress {
-  Start = 'start',
-  End = 'end',
-}
+import { WhichPress } from '@/types/calendar'
 
 interface Props {
   onCancel: () => void
