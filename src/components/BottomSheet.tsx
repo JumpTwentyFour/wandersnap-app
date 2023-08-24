@@ -13,13 +13,12 @@ function BottomSheet(props: Props) {
   const { open, children } = props
 
   const sheetRef = useRef<BSheet>(null)
-
   const snapPoints = useMemo(() => ['10%', '70%'], [])
 
   useEffect(() => {
-    if (!open) {
-      sheetRef.current?.close()
-    }
+    if (open) return
+
+    sheetRef.current?.close()
   }, [open])
 
   return (
