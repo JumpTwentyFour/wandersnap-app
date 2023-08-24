@@ -27,4 +27,5 @@ export const icons: IconMap = {
   SearchIcon: require('./search.svg'),
   XMarkIcon: require('./xmark.svg'),
   XMarkCircleIcon: require('./xmark-circle.svg'),
+  ArrowRight: require('./arrow-right.svg'),
 }
