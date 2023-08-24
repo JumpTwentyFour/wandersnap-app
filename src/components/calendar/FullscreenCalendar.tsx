@@ -4,7 +4,7 @@ import { DateData } from 'react-native-calendars'
 import { format, eachDayOfInterval } from 'date-fns'
 import ScrollingCalendar from '@/components/calendar/ScrollingCalendar'
 import Button from '@/components/pressables/Button'
-import Icon from '@/components/Icon/Icon'
+import Icon from '@/components/Icon'
 import { StartEndDates } from '@/types/dates'
 import { ButtonType, ButtonVariant } from '@/types/button'
 import { IconSize } from '@/types/icon'
@@ -90,21 +90,21 @@ function FullscreenCalendar(props: Props) {
     <View className='bg-[#242423] w-full h-full relative'>
       <View className='h-16' />
       <View className='h-30'>
-        <View className='flex flex-row w-full justify-center items-center mb-5'>
+        <View className='flex flex-row items-center justify-center w-full mb-5'>
           <View className='w-40 px-4'>
             <Text className='text-white'>Start date</Text>
-            <Text className='text-white text-xl mt-2 h-8'>{formattedStartDate}</Text>
+            <Text className='h-8 mt-2 text-xl text-white'>{formattedStartDate}</Text>
           </View>
-          <View className='w-10 flex items-center'>
+          <View className='flex items-center w-10'>
             <Icon name='ArrowRight' size={IconSize.Small} colour='#fff' />
           </View>
           <View className='w-40 px-4'>
             <Text className='text-white'>End date</Text>
-            <Text className='text-white text-xl mt-2 h-8'>{formattedEndDate}</Text>
+            <Text className='h-8 mt-2 text-xl text-white'>{formattedEndDate}</Text>
           </View>
         </View>
         <View className='border-t border-b border-[#F9F8FF4D] h-12 w-full flex flex-row justify-around items-center px-5'>
-          {DAYS_OF_WEEK.map(day => <Text className='text-white text-xs' key={day}>{day}</Text>)}
+          {DAYS_OF_WEEK.map(day => <Text className='text-xs text-white' key={day}>{day}</Text>)}
         </View>
       </View>
       <View style={{ height: Dimensions.get('window').height - 280 }}>

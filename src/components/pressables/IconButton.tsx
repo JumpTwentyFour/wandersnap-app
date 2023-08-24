@@ -2,7 +2,7 @@ import React from 'react'
 import cn from 'classnames'
 import { Pressable } from 'react-native'
 import { IconButtonProps } from '@/types/iconButtton'
-import Icon from '@/components/icon/Icon'
+import Icon from '@/components/Icon'
 import { IconSize } from '@/types/icon'
 
 export const IconButton = (props:IconButtonProps): JSX.Element => {
