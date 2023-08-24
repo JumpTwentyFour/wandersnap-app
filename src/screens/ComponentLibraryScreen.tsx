@@ -12,11 +12,15 @@ import Icon from '@/components/Icon'
 import AuthHeader from '@/components/headers/AuthHeader'
 import DashboardHeader from '@/components/headers/DashboardHeader'
 import TripHeader from '@/components/headers/TripHeader'
+import BottomSheet from '@/components/BottomSheet'
+
 import { ButtonType, ButtonVariant } from '@/types/button'
 import { IconSize } from '@/types/icon'
 import { ImageInputSize } from '@/types/imageInput'
 
 function ComponentLibraryScreen() {
+  const [showBottomSheet, setShowBottomSheet] = React.useState(false)
+
   return (
     <ScrollView className='mt-10'>
       <Text className='w-full my-6 font-bold text-center'>Inputs</Text>
@@ -153,7 +157,14 @@ function ComponentLibraryScreen() {
       {/* develop listings here */}
 
       <Text className='w-full my-6 font-bold text-center'>Drawers</Text>
-      {/* develop drawers here */}
+      <Backdrop>
+        <Button label='Open base drawer' variant={ButtonVariant.Primary} type={ButtonType.Solid} onPress={() => setShowBottomSheet(!showBottomSheet)}/>
+      </Backdrop>
+      <BottomSheet open={showBottomSheet}>
+        <Text className='w-full my-6 font-bold text-center text-ghost'>Bottom sheet ⚡️</Text>
+        <Button label='Close base drawer' variant={ButtonVariant.Secondary} type={ButtonType.Outline} onPress={() => setShowBottomSheet(false)}/>
+      </BottomSheet>
+      
 
       <Text className='w-full my-6 font-bold text-center'>Tabs</Text>
       {/* develop tabs here */}
