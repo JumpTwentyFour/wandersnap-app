@@ -87,7 +87,7 @@ function FullscreenCalendar(props: Props) {
   }, [selectedDates])
 
   return (
-    <View className='bg-[#242423] w-full h-full relative'>
+    <View className='relative w-full h-full bg-tuatura'>
       <View className='h-16' />
       <View className='h-30'>
         <View className='flex flex-row items-center justify-center w-full mb-5'>
@@ -103,7 +103,7 @@ function FullscreenCalendar(props: Props) {
             <Text className='h-8 mt-2 text-xl text-white'>{formattedEndDate}</Text>
           </View>
         </View>
-        <View className='border-t border-b border-[#F9F8FF4D] h-12 w-full flex flex-row justify-around items-center px-5'>
+        <View className='flex flex-row items-center justify-around w-full h-12 px-5 border-t border-b border-ghost/30'>
           {DAYS_OF_WEEK.map(day => <Text className='text-xs text-white' key={day}>{day}</Text>)}
         </View>
       </View>
@@ -111,7 +111,7 @@ function FullscreenCalendar(props: Props) {
         <ScrollingCalendar onDayPress={handleDayPress} minDate={minDate} selectedDates={selectedDateRange} />
       </View>
 
-      <View className='bg-[#7E5BFF] h-24 flex flex-row justify-around items-center pb-3'>
+      <View className='flex flex-row items-center justify-around h-24 pb-3 bg-helio'>
         <Button label='Cancel' onPress={onCancel} type={ButtonType.Outline} variant={ButtonVariant.Secondary} />
         <Button label='Add dates' onPress={handleAddDates} type={ButtonType.Solid} variant={ButtonVariant.Secondary} />
       </View>
