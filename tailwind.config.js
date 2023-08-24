@@ -13,6 +13,13 @@ module.exports = {
         'comfortaa-bold': ['Comfortaa-Bold'],
         'comfortaa-light': ['Comfortaa-Light'],
       },
+      colors: {
+        'tropical-indigo': '#9F85FF',
+        'ghost': '#F9F8FF',
+        'tuatura': '#242423',
+        'watermelon': '#FF6978',
+        'helio': '#7E5BFF',
+      },
     },
   },
   plugins: [],
