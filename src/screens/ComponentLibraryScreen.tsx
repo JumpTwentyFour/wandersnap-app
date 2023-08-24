@@ -15,6 +15,7 @@ import TripHeader from '@/components/headers/TripHeader'
 import { ButtonType, ButtonVariant } from '@/types/button'
 import { IconSize } from '@/types/icon'
 import { ImageInputSize } from '@/types/imageInput'
+import SearchInput from '@/components/inputs/SearchInput'
 
 function ComponentLibraryScreen() {
   return (
@@ -33,6 +34,11 @@ function ComponentLibraryScreen() {
       <Title>Calendar input</Title>
       <Backdrop bgClass='bg-purple-400'>
         <CalendarInput />
+      </Backdrop>
+
+      <Title>Search input</Title>
+      <Backdrop bgClass='bg-slate-900'>
+        <SearchInput onChange={(value) => console.log(value)} />
       </Backdrop>
 
       <Title>Image input - small</Title>
