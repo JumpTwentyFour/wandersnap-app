@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import cn from 'classnames'
 import { Text, View } from 'react-native'
 import ScrollView from '@/components/views/ScrollView'
@@ -18,9 +18,9 @@ import BottomSheet from '@/components/BottomSheet'
 import { ButtonType, ButtonVariant } from '@/types/button'
 import { IconSize } from '@/types/icon'
 import { ImageInputSize } from '@/types/imageInput'
-import FormHeader from '@/components/headers/FormHeader'
-import { useColours } from '@/hooks/useTailwind'
-import { FormStep } from '@/types/formHeader'
+// import FormHeader from '@/components/headers/FormHeader'
+// import { useColours } from '@/hooks/useTailwind'
+// import { FormStep } from '@/types/formHeader'
 
 function ComponentLibraryScreen() {
   const [showBottomSheet, setShowBottomSheet] = React.useState(false)
@@ -294,13 +294,29 @@ function ComponentLibraryScreen() {
         <TripHeader />
       </Backdrop>
       <Title>Form Header</Title>
-      <View className='flex flex-row items-center justify-between px-12'>
-        <IconButton size={IconSize.Small} icon='ChevronLeftIcon' colour={useColours()['ghost']} bgClass='bg-tuatura' onPress={() => formHeaderStep !== 0 ? setFormHeaderStep(formHeaderStep - 1) : null}/>
-        <IconButton size={IconSize.Small} icon='ChevronRightIcon' colour={useColours()['ghost']} bgClass='bg-tuatura' onPress={() => formHeaderStep <= 4 ? setFormHeaderStep(formHeaderStep + 1) : null}/>
+      {/* <View className="flex flex-row items-center justify-between px-12">
+        <IconButton
+          size={IconSize.Small}
+          icon="ChevronLeftIcon"
+          colour={useColours()['ghost']}
+          bgClass="bg-tuatura"
+          onPress={() =>
+            formHeaderStep !== 0 ? setFormHeaderStep(formHeaderStep - 1) : null
+          }
+        />
+        <IconButton
+          size={IconSize.Small}
+          icon="ChevronRightIcon"
+          colour={useColours()['ghost']}
+          bgClass="bg-tuatura"
+          onPress={() =>
+            formHeaderStep <= 4 ? setFormHeaderStep(formHeaderStep + 1) : null
+          }
+        />
       </View>
-      <Backdrop bgClass='bg-tuatura/75' fullWidth>
+      <Backdrop bgClass="bg-tuatura/75" fullWidth>
         <FormHeader step={formHeaderStep} />
-      </Backdrop>
+      </Backdrop> */}
 
       <Text className="w-full my-6 font-bold text-center">Listings</Text>
       {/* develop listings here */}
