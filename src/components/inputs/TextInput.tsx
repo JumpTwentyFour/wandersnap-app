@@ -1,5 +1,10 @@
 import React, { Ref, forwardRef, useState } from 'react'
-import { TextInput as NativeInput, View, KeyboardTypeOptions, Pressable } from 'react-native'
+import {
+  TextInput as NativeInput,
+  View,
+  KeyboardTypeOptions,
+  Pressable,
+} from 'react-native'
 import cn from 'classnames'
 import EyeIcon from '@/assets/icons/eye.svg'
 import EyeSlashIcon from '@/assets/icons/eye-slash.svg'
@@ -23,12 +28,12 @@ function TextInput(props: Props, ref: Ref<NativeInput>) {
     setShowPassword(!showPassword)
   }
 
-  return  (
+  return (
     <View className={cn('relative w-full', props.className)}>
       <NativeInput
-        className='w-full p-2 text-ghost border-b border-ghost rounded-md'
+        className="w-full p-2 text-ghost border-b border-ghost rounded-md"
         placeholder={props.placeholder}
-        placeholderTextColor='#f4f4f5'
+        placeholderTextColor="#f4f4f5"
         keyboardType={props.type === 'password' ? 'default' : props.type}
         secureTextEntry={props.type === 'password' && showPassword}
         onFocus={props.onFocus}
@@ -40,9 +45,13 @@ function TextInput(props: Props, ref: Ref<NativeInput>) {
       {props.type === 'password' && (
         <Pressable
           onPress={handleShowPassword}
-          className='absolute right-2 bottom-2'
+          className="absolute right-2 bottom-2"
         >
-          {showPassword ? <EyeSlashIcon fill="#fff"/> : <EyeIcon fill='#fff'/>}
+          {showPassword ? (
+            <EyeSlashIcon fill="#fff" />
+          ) : (
+            <EyeIcon fill="#fff" />
+          )}
         </Pressable>
       )}
     </View>

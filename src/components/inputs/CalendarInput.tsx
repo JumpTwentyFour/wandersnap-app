@@ -37,23 +37,36 @@ function CalendarInput() {
     })
   }
 
-
   return (
     <>
-      <View className='w-full'>
-        <Pressable className='w-full flex flex-row justify-center'>
-          <View className='w-1/2'>
-            <TextInput ref={startRef} placeholder='Start date' onFocus={() => setShowCalendar(true)} value={dates?.startDate || ''} />
+      <View className="w-full">
+        <Pressable className="w-full flex flex-row justify-center">
+          <View className="w-1/2">
+            <TextInput
+              ref={startRef}
+              placeholder="Start date"
+              onFocus={() => setShowCalendar(true)}
+              value={dates?.startDate || ''}
+            />
           </View>
-          <View className='w-1/2'>
-            <TextInput ref={endRef} placeholder='End date' onFocus={() => setShowCalendar(true)} value={dates?.endDate || ''} />
+          <View className="w-1/2">
+            <TextInput
+              ref={endRef}
+              placeholder="End date"
+              onFocus={() => setShowCalendar(true)}
+              value={dates?.endDate || ''}
+            />
           </View>
         </Pressable>
       </View>
       {showCalendar && (
         <Portal>
           <FullWindowOverlay>
-            <FullscreenCalendar onCancel={handleCancel} onAddDates={handleAddDates} selectedDates={dates || FALLBACK_SELECTED} />
+            <FullscreenCalendar
+              onCancel={handleCancel}
+              onAddDates={handleAddDates}
+              selectedDates={dates || FALLBACK_SELECTED}
+            />
           </FullWindowOverlay>
         </Portal>
       )}

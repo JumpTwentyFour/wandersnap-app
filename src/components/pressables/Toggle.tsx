@@ -25,7 +25,7 @@ function Toggle(props: Props) {
 
   return (
     <Pressable
-      className='h-9 bg-tropical-indigo/25 rounded-lg flex flex-row space-around p-1'
+      className="h-9 bg-tropical-indigo/25 rounded-lg flex flex-row space-around p-1"
       onPress={handleChange}
     >
       {options.map((option) => (
@@ -36,7 +36,7 @@ function Toggle(props: Props) {
             selected === option && 'bg-helio',
           )}
         >
-          <Text className='text-ghost font-mont'>{option}</Text>
+          <Text className="text-ghost font-mont">{option}</Text>
         </View>
       ))}
     </Pressable>

@@ -1,5 +1,5 @@
 import { IconMap } from '@/types/icon'
-  
+
 export const icons: IconMap = {
   EyeIcon: require('./eye.svg'),
   EyeSlashIcon: require('./eye-slash.svg'),
