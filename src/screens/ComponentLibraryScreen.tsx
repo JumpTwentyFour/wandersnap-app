@@ -15,6 +15,7 @@ import AuthHeader from '@/components/headers/AuthHeader'
 import DashboardHeader from '@/components/headers/DashboardHeader'
 import TripHeader from '@/components/headers/TripHeader'
 import BottomSheet from '@/components/BottomSheet'
+import Alert from '@/components/overlay/Alert'
 
 import { ButtonType, ButtonVariant } from '@/types/button'
 import { IconSize } from '@/types/icon'
@@ -23,6 +24,7 @@ import { ImageInputSize } from '@/types/imageInput'
 function ComponentLibraryScreen() {
   const [showBottomSheet, setShowBottomSheet] = React.useState(false)
   const [toggleValue, setToggleValue] = React.useState(false)
+  const [showAlert, setShowAlert] = React.useState(false)
 
   return (
     <ScrollView className="mt-10">
@@ -320,7 +322,29 @@ function ComponentLibraryScreen() {
       {/* develop tabs here */}
 
       <Text className="w-full my-6 font-bold text-center">Overlay</Text>
-      {/* develop overlay here */}
+      <Backdrop>
+        <Button
+          label="Open alert"
+          variant={ButtonVariant.Primary}
+          type={ButtonType.Solid}
+          onPress={() => setShowAlert(!showAlert)}
+        />
+      </Backdrop>
+      <Alert
+        show={showAlert}
+        title="Incorrect email address"
+        message="The password you entered does not match our records. Please try again or reset your password."
+        actions={[
+          {
+            text: 'Try again',
+            onPress: () => setShowAlert(false),
+          },
+          {
+            text: 'Reset password',
+            onPress: () => setShowAlert(false),
+          },
+        ]}
+      />
 
       <Text className="w-full my-6 font-bold text-center">Map</Text>
       {/* develop map here */}

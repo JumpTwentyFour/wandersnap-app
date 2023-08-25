@@ -15,6 +15,7 @@ export default function App() {
   const [loaded] = useFonts({
     'Montserrat-Regular': require('./assets/fonts/Montserrat-Regular.ttf'),
     'Montserrat-Light': require('./assets/fonts/Montserrat-Light.ttf'),
+    'Montserrat-Medium': require('./assets/fonts/Montserrat-Medium.ttf'),
     'Montserrat-Bold': require('./assets/fonts/Montserrat-Bold.ttf'),
     'Comfortaa-Regular': require('./assets/fonts/Comfortaa-Regular.ttf'),
     'Comfortaa-Light': require('./assets/fonts/Comfortaa-Light.ttf'),

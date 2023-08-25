@@ -8,6 +8,7 @@ module.exports = {
       fontFamily: {
         mont: ['Montserrat-Regular'],
         'mont-bold': ['Montserrat-Bold'],
+        'mont-medium': ['Montserrat-Medium'],
         'mont-light': ['Montserrat-Light'],
         comfortaa: ['Comfortaa-Regular'],
         'comfortaa-bold': ['Comfortaa-Bold'],
