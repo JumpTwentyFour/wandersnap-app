@@ -87,29 +87,29 @@ function FullscreenCalendar(props: Props) {
   }, [selectedDates])
 
   return (
-    <View className="bg-tuatura w-full h-full relative">
+    <View className="relative w-full h-full bg-tuatura">
       <View className="h-16" />
       <View className="h-30">
-        <View className="flex flex-row w-full justify-center items-center mb-5">
+        <View className="flex flex-row items-center justify-center w-full mb-5">
           <View className="w-40 px-4">
             <Text className="text-ghost">Start date</Text>
-            <Text className="text-ghost text-xl mt-2 h-8">
+            <Text className="h-8 mt-2 text-xl text-ghost">
               {formattedStartDate}
             </Text>
           </View>
-          <View className="w-10 flex items-center">
+          <View className="flex items-center w-10">
             <Icon name="ArrowRight" size={IconSize.Small} colour="#fff" />
           </View>
           <View className="w-40 px-4">
             <Text className="text-ghost">End date</Text>
-            <Text className="text-ghost text-xl mt-2 h-8">
+            <Text className="h-8 mt-2 text-xl text-ghost">
               {formattedEndDate}
             </Text>
           </View>
         </View>
-        <View className="border-t border-b border-ghost/30 h-12 w-full flex flex-row justify-around items-center px-5">
+        <View className="flex flex-row items-center justify-around w-full h-12 px-5 border-t border-b border-ghost/30">
           {DAYS_OF_WEEK.map((day) => (
-            <Text className="text-ghost text-xs" key={day}>
+            <Text className="text-xs text-ghost" key={day}>
               {day}
             </Text>
           ))}
@@ -123,7 +123,7 @@ function FullscreenCalendar(props: Props) {
         />
       </View>
 
-      <View className="bg-helio h-24 flex flex-row justify-around items-center pb-3">
+      <View className="flex flex-row items-center justify-around h-24 pb-3 bg-helio">
         <Button
           label="Cancel"
           onPress={onCancel}

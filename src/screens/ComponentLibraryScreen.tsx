@@ -1,7 +1,6 @@
 import React from 'react'
 import cn from 'classnames'
 import { Text, View } from 'react-native'
-
 import ScrollView from '@/components/views/ScrollView'
 import TextInput from '@/components/inputs/TextInput'
 import SearchInput from '@/components/inputs/SearchInput'
@@ -16,15 +15,20 @@ import DashboardHeader from '@/components/headers/DashboardHeader'
 import TripHeader from '@/components/headers/TripHeader'
 import BottomSheet from '@/components/BottomSheet'
 import Alert from '@/components/overlay/Alert'
-
 import { ButtonType, ButtonVariant } from '@/types/button'
-import { IconSize } from '@/types/icon'
+import FormHeader from '@/components/headers/formHeader/FormHeader'
+import FormHeaderTitle from '@/components/headers/formHeader/FormHeaderTitle'
+import FormHeaderButton from '@/components/headers/formHeader/FormHeaderButton'
+import { useColours } from '@/hooks/useTailwind'
 import { ImageInputSize } from '@/types/imageInput'
+import { IconSize } from '@/types/icon'
 
 function ComponentLibraryScreen() {
   const [showBottomSheet, setShowBottomSheet] = React.useState(false)
   const [toggleValue, setToggleValue] = React.useState(false)
   const [showAlert, setShowAlert] = React.useState(false)
+
+  const colours = useColours()
 
   return (
     <ScrollView className="mt-10">
@@ -293,6 +297,106 @@ function ComponentLibraryScreen() {
       <Backdrop bgClass="bg-slate-700/50">
         <TripHeader />
       </Backdrop>
+      <Title>Form Header</Title>
+      <Backdrop bgClass="bg-tuatura/75" fullWidth>
+        <FormHeader
+          leftComponent={
+            <FormHeaderButton
+              onPress={() => console.log('left button pressed')}
+              label="Cancel"
+            />
+          }
+          centerComponent={<FormHeaderTitle title="Create trip" />}
+          rightComponent={
+            <FormHeaderButton
+              onPress={() => console.log('right button pressed')}
+              label="Next"
+              iconRight={
+                <Icon
+                  name="ChevronRightIcon"
+                  size={IconSize.Small}
+                  colour={colours.ghost}
+                />
+              }
+            />
+          }
+        />
+        <FormHeader
+          leftComponent={
+            <FormHeaderButton
+              onPress={() => console.log('left button pressed')}
+              iconLeft={
+                <Icon
+                  size={IconSize.Small}
+                  name="ChevronLeftIcon"
+                  colour={colours.ghost}
+                ></Icon>
+              }
+            />
+          }
+          centerComponent={<FormHeaderTitle title="Find Location" />}
+        />
+        <FormHeader
+          leftComponent={
+            <FormHeaderButton
+              onPress={() => console.log('left button pressed')}
+              iconLeft={
+                <Icon
+                  size={IconSize.Small}
+                  name="ChevronLeftIcon"
+                  colour={colours.ghost}
+                ></Icon>
+              }
+            />
+          }
+          centerComponent={<FormHeaderTitle title="Add Location" />}
+          rightComponent={
+            <FormHeaderButton
+              onPress={() => console.log('right button pressed')}
+              label="Save"
+            />
+          }
+        />
+        <FormHeader
+          leftComponent={
+            <FormHeaderButton
+              onPress={() => console.log('left button pressed')}
+              iconLeft={
+                <Icon
+                  size={IconSize.Small}
+                  name="XMarkIcon"
+                  colour={colours.ghost}
+                ></Icon>
+              }
+            />
+          }
+          centerComponent={
+            <Toggle
+              options={['Photos', 'Albums']}
+              value={toggleValue}
+              onChange={(value, option) => {
+                setToggleValue(value)
+                console.log(value, option)
+              }}
+            />
+          }
+          rightComponent={
+            <FormHeaderButton
+              onPress={() => console.log('right button pressed')}
+              label="Add"
+            />
+          }
+        />
+        <FormHeader
+          centerComponent={<FormHeaderTitle title="Find Location" />}
+          rightComponent={
+            <FormHeaderButton
+              onPress={() => console.log('right button pressed')}
+              label="Done"
+            />
+          }
+        />
+      </Backdrop>
 
       <Text className="w-full my-6 font-bold text-center">Listings</Text>
       {/* develop listings here */}
@@ -359,10 +463,20 @@ function ComponentLibraryScreen() {
  * This is a helper component to allow white or light coloured components
  * to be easily viewable.
  */
-function Backdrop(props: { children: React.ReactNode; bgClass?: string }) {
+function Backdrop(props: {
+  children: React.ReactNode
+  bgClass?: string
+  fullWidth?: boolean
+}) {
   return (
     <View className="flex items-center w-full h-auto p-2">
-      <View className={cn('w-4/5 p-2 rounded', props.bgClass)}>
+      <View
+        className={cn(
+          'p-2 rounded',
+          props.bgClass,
+          props.fullWidth ? 'w-full' : 'w-4/5',
+        )}
+      >
         {props.children}
       </View>
     </View>
