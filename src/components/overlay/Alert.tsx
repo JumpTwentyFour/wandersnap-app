@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, Pressable } from 'react-native'
+import { View, Text, Pressable, Platform } from 'react-native'
 import { Portal } from '@gorhom/portal'
 import { FullWindowOverlay } from 'react-native-screens'
 import Animated, { useSharedValue, withSpring } from 'react-native-reanimated'
 import cn from 'classnames'
+import { BlurView } from 'expo-blur'
 
 interface AlertAction {
   text: string
@@ -27,6 +28,8 @@ function Alert(props: Props) {
   const [visible, setVisible] = useState(false)
   const opacity = useSharedValue(0)
 
+  const Overlay = Platform.OS === 'ios' ? FullWindowOverlay : BlurView
+
   useEffect(() => {
     if (show) {
       setVisible(true)
@@ -46,9 +49,9 @@ function Alert(props: Props) {
 
   return (
     <Portal>
-      <FullWindowOverlay>
+      <Overlay className="bg-tuatura/40">
         <Animated.View
-          className="w-full h-full bg-tuatura/40 flex items-center justify-center"
+          className="w-full h-full flex items-center justify-center"
           style={{ opacity }}
         >
           <View className="bg-tuatura/95 w-72 rounded-xl">
@@ -76,7 +79,7 @@ function Alert(props: Props) {
             ))}
           </View>
         </Animated.View>
-      </FullWindowOverlay>
+      </Overlay>
     </Portal>
   )
 }

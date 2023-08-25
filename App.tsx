@@ -1,4 +1,5 @@
 import React from 'react'
+import { StatusBar } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { useFonts } from 'expo-font'
@@ -9,9 +10,13 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import HomeScreen from './src/screens/HomeScreen'
 import ComponentLibraryScreen from './src/screens/ComponentLibraryScreen'
 
+import useOverlayStore from './src/stores/overlay'
+
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
 export default function App() {
+  const overlay = useOverlayStore()
+
   const [loaded] = useFonts({
     'Montserrat-Regular': require('./assets/fonts/Montserrat-Regular.ttf'),
     'Montserrat-Light': require('./assets/fonts/Montserrat-Light.ttf'),
@@ -24,6 +29,7 @@ export default function App() {
 
   return (
     <GestureHandlerRootView className="flex-1">
+      <StatusBar hidden={!overlay.showStatusBar} animated />
       <PortalProvider>
         <NavigationContainer>
           {loaded && (

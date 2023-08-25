@@ -6,6 +6,7 @@ import { format } from 'date-fns'
 import TextInput from '@/components/inputs/TextInput'
 import FullscreenCalendar from '@/components/calendar/FullscreenCalendar'
 import { StartEndDates } from '@/types/dates'
+import useOverlayStore from '@/stores/overlay'
 
 const FALLBACK_SELECTED = {
   startDate: format(new Date(), 'yyyy-MM-dd'),
@@ -14,9 +15,12 @@ const FALLBACK_SELECTED = {
 
 function CalendarInput() {
   const [showCalendar, setShowCalendar] = useState(false)
+  const [dates, setDates] = useState<StartEndDates>()
+
   const startRef = useRef<NativeInput>(null)
   const endRef = useRef<NativeInput>(null)
-  const [dates, setDates] = useState<StartEndDates>()
+
+  const overlay = useOverlayStore()
 
   function blurInputs() {
     startRef.current?.blur()
@@ -25,16 +29,21 @@ function CalendarInput() {
 
   function handleCancel() {
     blurInputs()
-    setShowCalendar(false)
+    setVisibility(false)
   }
 
   function handleAddDates(startDate: string, endDate: string) {
     blurInputs()
-    setShowCalendar(false)
+    setVisibility(false)
     setDates({
       startDate,
       endDate,
     })
+  }
+
+  function setVisibility(show: boolean) {
+    setShowCalendar(show)
+    overlay.setShowStatusBar(!show)
   }
 
   return (
@@ -45,7 +54,7 @@ function CalendarInput() {
             <TextInput
               ref={startRef}
               placeholder="Start date"
-              onFocus={() => setShowCalendar(true)}
+              onFocus={() => setVisibility(true)}
               value={dates?.startDate || ''}
             />
           </View>
@@ -53,7 +62,7 @@ function CalendarInput() {
             <TextInput
               ref={endRef}
               placeholder="End date"
-              onFocus={() => setShowCalendar(true)}
+              onFocus={() => setVisibility(true)}
               value={dates?.endDate || ''}
             />
           </View>
