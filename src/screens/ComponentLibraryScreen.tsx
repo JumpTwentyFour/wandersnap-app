@@ -14,11 +14,14 @@ import Icon from '@/components/Icon'
 import AuthHeader from '@/components/headers/AuthHeader'
 import DashboardHeader from '@/components/headers/DashboardHeader'
 import TripHeader from '@/components/headers/TripHeader'
+import BottomSheet from '@/components/BottomSheet'
+
 import { ButtonType, ButtonVariant } from '@/types/button'
 import { IconSize } from '@/types/icon'
 import { ImageInputSize } from '@/types/imageInput'
 
 function ComponentLibraryScreen() {
+  const [showBottomSheet, setShowBottomSheet] = React.useState(false)
   const [toggleValue, setToggleValue] = React.useState(false)
 
   return (
@@ -173,8 +176,15 @@ function ComponentLibraryScreen() {
       <Text className='w-full my-6 font-bold text-center'>Listings</Text>
       {/* develop listings here */}
 
-      <Text className='w-full my-6 font-bold text-center'>Drawers</Text>
-      {/* develop drawers here */}
+      <Text className='w-full my-6 font-bold text-center'>Bottom sheets</Text>
+      <Backdrop>
+        <Button label='Open bottom sheet' variant={ButtonVariant.Primary} type={ButtonType.Solid} onPress={() => setShowBottomSheet(!showBottomSheet)}/>
+      </Backdrop>
+      <BottomSheet open={showBottomSheet}>
+        <Text className='w-full my-6 font-bold text-center text-ghost'>Bottom sheet ⚡️</Text>
+        <Button label='Close bottom sheet' variant={ButtonVariant.Secondary} type={ButtonType.Outline} onPress={() => setShowBottomSheet(false)}/>
+      </BottomSheet>
+      
 
       <Text className='w-full my-6 font-bold text-center'>Tabs</Text>
       {/* develop tabs here */}
