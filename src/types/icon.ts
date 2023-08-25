@@ -5,7 +5,7 @@ export type IconType = FC<SVGProps<SVGSVGElement>>
 export interface IconMap {
   [key: string]: {
     default: IconType
-  };
+  }
 }
 
 export enum IconSize {
@@ -15,7 +15,7 @@ export enum IconSize {
 }
 
 export interface IconProps {
-  size: IconSize;
-  name: string;
-  colour: string;
+  size: IconSize
+  name: string
+  colour: string
 }

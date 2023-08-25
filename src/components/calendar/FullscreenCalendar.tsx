@@ -24,7 +24,7 @@ function FullscreenCalendar(props: Props) {
   const [whichPress, setWhichPress] = useState<WhichPress>(WhichPress.Start)
   const [startDate, setStartDate] = useState<string | undefined>()
   const [endDate, setEndDate] = useState<string | undefined>()
-  
+
   const formattedStartDate = useMemo(() => {
     if (!startDate) return undefined
 
@@ -53,7 +53,7 @@ function FullscreenCalendar(props: Props) {
       end: new Date(endDate),
     })
 
-    return dates.map(date => format(date, 'yyyy-MM-dd'))
+    return dates.map((date) => format(date, 'yyyy-MM-dd'))
   }, [startDate, endDate])
 
   function handleDayPress(day: DateData) {
@@ -63,7 +63,7 @@ function FullscreenCalendar(props: Props) {
       setWhichPress(WhichPress.End)
       return
     }
-    
+
     if (whichPress === WhichPress.End) {
       setEndDate(day.dateString)
       setWhichPress(WhichPress.Start)
@@ -87,33 +87,55 @@ function FullscreenCalendar(props: Props) {
   }, [selectedDates])
 
   return (
-    <View className='bg-tuatura w-full h-full relative'>
-      <View className='h-16' />
-      <View className='h-30'>
-        <View className='flex flex-row w-full justify-center items-center mb-5'>
-          <View className='w-40 px-4'>
-            <Text className='text-ghost'>Start date</Text>
-            <Text className='text-ghost text-xl mt-2 h-8'>{formattedStartDate}</Text>
+    <View className="bg-tuatura w-full h-full relative">
+      <View className="h-16" />
+      <View className="h-30">
+        <View className="flex flex-row w-full justify-center items-center mb-5">
+          <View className="w-40 px-4">
+            <Text className="text-ghost">Start date</Text>
+            <Text className="text-ghost text-xl mt-2 h-8">
+              {formattedStartDate}
+            </Text>
           </View>
-          <View className='w-10 flex items-center'>
-            <Icon name='ArrowRight' size={IconSize.Small} colour='#fff' />
+          <View className="w-10 flex items-center">
+            <Icon name="ArrowRight" size={IconSize.Small} colour="#fff" />
           </View>
-          <View className='w-40 px-4'>
-            <Text className='text-ghost'>End date</Text>
-            <Text className='text-ghost text-xl mt-2 h-8'>{formattedEndDate}</Text>
+          <View className="w-40 px-4">
+            <Text className="text-ghost">End date</Text>
+            <Text className="text-ghost text-xl mt-2 h-8">
+              {formattedEndDate}
+            </Text>
           </View>
         </View>
-        <View className='border-t border-b border-ghost/30 h-12 w-full flex flex-row justify-around items-center px-5'>
-          {DAYS_OF_WEEK.map(day => <Text className='text-ghost text-xs' key={day}>{day}</Text>)}
+        <View className="border-t border-b border-ghost/30 h-12 w-full flex flex-row justify-around items-center px-5">
+          {DAYS_OF_WEEK.map((day) => (
+            <Text className="text-ghost text-xs" key={day}>
+              {day}
+            </Text>
+          ))}
         </View>
       </View>
       <View style={{ height: Dimensions.get('window').height - 280 }}>
-        <ScrollingCalendar onDayPress={handleDayPress} minDate={minDate} selectedDates={selectedDateRange} />
+        <ScrollingCalendar
+          onDayPress={handleDayPress}
+          minDate={minDate}
+          selectedDates={selectedDateRange}
+        />
       </View>
 
-      <View className='bg-helio h-24 flex flex-row justify-around items-center pb-3'>
-        <Button label='Cancel' onPress={onCancel} type={ButtonType.Outline} variant={ButtonVariant.Secondary} />
-        <Button label='Add dates' onPress={handleAddDates} type={ButtonType.Solid} variant={ButtonVariant.Secondary} />
+      <View className="bg-helio h-24 flex flex-row justify-around items-center pb-3">
+        <Button
+          label="Cancel"
+          onPress={onCancel}
+          type={ButtonType.Outline}
+          variant={ButtonVariant.Secondary}
+        />
+        <Button
+          label="Add dates"
+          onPress={handleAddDates}
+          type={ButtonType.Solid}
+          variant={ButtonVariant.Secondary}
+        />
       </View>
     </View>
   )

@@ -22,13 +22,21 @@ export default function App() {
   })
 
   return (
-    <GestureHandlerRootView className='flex-1'>
+    <GestureHandlerRootView className="flex-1">
       <PortalProvider>
         <NavigationContainer>
           {loaded && (
             <Stack.Navigator>
-              <Stack.Screen name="Home" component={HomeScreen} options={{ title: HomeScreen.title }} />
-              <Stack.Screen name="ComponentLibrary" component={ComponentLibraryScreen} options={{ title: ComponentLibraryScreen.title }} />
+              <Stack.Screen
+                name="Home"
+                component={HomeScreen}
+                options={{ title: HomeScreen.title }}
+              />
+              <Stack.Screen
+                name="ComponentLibrary"
+                component={ComponentLibraryScreen}
+                options={{ title: ComponentLibraryScreen.title }}
+              />
             </Stack.Navigator>
           )}
         </NavigationContainer>
