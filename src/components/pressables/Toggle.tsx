@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react'
-import { View, Text, Pressable } from 'react-native'
+import { View, Text, Pressable, LayoutChangeEvent } from 'react-native'
 import Animated, { useSharedValue, withSpring } from 'react-native-reanimated'
-import { LayoutChangeEvent } from 'react-native'
 
 interface Props {
   onChange: (value: boolean, option: string) => void
@@ -19,8 +18,6 @@ function Toggle(props: Props) {
 
   function handleLayout(event: LayoutChangeEvent) {
     if (movementValue.current) return
-
-    console.log('change')
 
     movementValue.current = event.nativeEvent.layout.width
   }
@@ -52,7 +49,11 @@ function Toggle(props: Props) {
           <Text className='text-ghost font-mont'>{option}</Text>
         </View>
       ))}
-      <Animated.View onLayout={handleLayout} className='w-1/2 h-full bg-helio left-1 top-1 absolute rounded shadow' style={{ left: x }} />
+      <Animated.View
+        onLayout={handleLayout}
+        className='w-1/2 h-full bg-helio left-1 top-1 absolute rounded shadow'
+        style={{ left: x }}
+      />
     </Pressable>
   )
 }
