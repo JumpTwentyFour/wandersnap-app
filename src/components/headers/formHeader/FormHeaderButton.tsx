@@ -2,7 +2,7 @@ import React from 'react'
 import { GestureResponderEvent, Pressable, Text } from 'react-native'
 
 interface FormHeaderButtonProps {
-  onPress?: ((event: GestureResponderEvent) => void) | null | undefined
+  onPress?: (event: GestureResponderEvent) => void
   label?: string
   iconLeft?: React.ReactNode
   iconRight?: React.ReactNode
@@ -16,9 +16,9 @@ function FormHeaderButton(props: FormHeaderButtonProps) {
       onPress={props.onPress}
       className="flex flex-row justify-center"
     >
-      {props.iconLeft && <>{props.iconLeft}</>}
+      {props.iconLeft}
       <Text className="text-[15px] font-mont text-ghost">{props.label}</Text>
-      {props.iconRight && <>{props.iconRight}</>}
+      {props.iconRight}
     </Pressable>
   )
 }

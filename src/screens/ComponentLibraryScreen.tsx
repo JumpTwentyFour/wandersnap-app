@@ -15,20 +15,18 @@ import DashboardHeader from '@/components/headers/DashboardHeader'
 import TripHeader from '@/components/headers/TripHeader'
 import BottomSheet from '@/components/BottomSheet'
 import { ButtonType, ButtonVariant } from '@/types/button'
-import { IconSize } from '@/types/icon'
-import { ImageInputSize } from '@/types/imageInput'
 import FormHeader from '@/components/headers/formHeader/FormHeader'
-import { useColours } from '@/hooks/useTailwind'
-import { FormStep } from '@/types/formHeader'
 import FormHeaderTitle from '@/components/headers/formHeader/FormHeaderTitle'
 import FormHeaderButton from '@/components/headers/formHeader/FormHeaderButton'
+import { useColours } from '@/hooks/useTailwind'
+import { ImageInputSize } from '@/types/imageInput'
+import { IconSize } from '@/types/icon'
 
 function ComponentLibraryScreen() {
   const [showBottomSheet, setShowBottomSheet] = React.useState(false)
   const [toggleValue, setToggleValue] = React.useState(false)
-  const [formHeaderStep, setFormHeaderStep] = React.useState<FormStep>(
-    FormStep.TripDetails,
-  )
+
+  const colours = useColours()
 
   return (
     <ScrollView className="mt-10">
@@ -298,122 +296,102 @@ function ComponentLibraryScreen() {
         <TripHeader />
       </Backdrop>
       <Title>Form Header</Title>
-      <View className="flex flex-row items-center justify-between px-12">
-        <IconButton
-          size={IconSize.Small}
-          icon="ChevronLeftIcon"
-          colour={useColours()['ghost']}
-          bgClass="bg-tuatura"
-          onPress={() =>
-            formHeaderStep !== 0 ? setFormHeaderStep(formHeaderStep - 1) : null
-          }
-        />
-        <IconButton
-          size={IconSize.Small}
-          icon="ChevronRightIcon"
-          colour={useColours()['ghost']}
-          bgClass="bg-tuatura"
-          onPress={() =>
-            formHeaderStep <= 4 ? setFormHeaderStep(formHeaderStep + 1) : null
-          }
-        />
-      </View>
       <Backdrop bgClass="bg-tuatura/75" fullWidth>
         <FormHeader
           leftComponent={
-            formHeaderStep === FormStep.TripDetails ? (
-              <FormHeaderButton
-                onPress={() => console.log('left button pressed')}
-                label="Cancel"
-              />
-            ) : formHeaderStep === FormStep.TripFindLocation ? (
-              <FormHeaderButton
-                onPress={() => console.log('left button pressed')}
-                iconLeft={
-                  <Icon
-                    size={IconSize.Small}
-                    name="ChevronLeftIcon"
-                    colour={useColours().ghost}
-                  ></Icon>
-                }
-              />
-            ) : formHeaderStep === FormStep.TripAddLocation ? (
-              <FormHeaderButton
-                onPress={() => console.log('left button pressed')}
-                iconLeft={
-                  <Icon
-                    size={IconSize.Small}
-                    name="ChevronLeftIcon"
-                    colour={useColours().ghost}
-                  ></Icon>
-                }
-              />
-            ) : formHeaderStep === FormStep.TripUploadImages ? (
-              <FormHeaderButton
-                onPress={() => console.log('left button pressed')}
-                iconLeft={
-                  <Icon
-                    size={IconSize.Small}
-                    name="XMarkIcon"
-                    colour={useColours().ghost}
-                  ></Icon>
-                }
-              />
-            ) : (
-              <></>
-            )
+            <FormHeaderButton
+              onPress={() => console.log('left button pressed')}
+              label="Cancel"
+            />
+          }
+          centerComponent={<FormHeaderTitle title="Create trip" />}
+          rightComponent={
+            <FormHeaderButton
+              onPress={() => console.log('right button pressed')}
+              label="Next"
+              iconRight={
+                <Icon
+                  name="ChevronRightIcon"
+                  size={IconSize.Small}
+                  colour={colours.ghost}
+                />
+              }
+            />
+          }
+        />
+        <FormHeader
+          leftComponent={
+            <FormHeaderButton
+              onPress={() => console.log('left button pressed')}
+              iconLeft={
+                <Icon
+                  size={IconSize.Small}
+                  name="ChevronLeftIcon"
+                  colour={colours.ghost}
+                ></Icon>
+              }
+            />
+          }
+          centerComponent={<FormHeaderTitle title="Find Location" />}
+        />
+        <FormHeader
+          leftComponent={
+            <FormHeaderButton
+              onPress={() => console.log('left button pressed')}
+              iconLeft={
+                <Icon
+                  size={IconSize.Small}
+                  name="ChevronLeftIcon"
+                  colour={colours.ghost}
+                ></Icon>
+              }
+            />
+          }
+          centerComponent={<FormHeaderTitle title="Add Location" />}
+          rightComponent={
+            <FormHeaderButton
+              onPress={() => console.log('right button pressed')}
+              label="Save"
+            />
+          }
+        />
+        <FormHeader
+          leftComponent={
+            <FormHeaderButton
+              onPress={() => console.log('left button pressed')}
+              iconLeft={
+                <Icon
+                  size={IconSize.Small}
+                  name="XMarkIcon"
+                  colour={colours.ghost}
+                ></Icon>
+              }
+            />
           }
           centerComponent={
-            formHeaderStep === FormStep.TripDetails ? (
-              <FormHeaderTitle title="Create trip" />
-            ) : formHeaderStep === FormStep.TripFindLocation ? (
-              <FormHeaderTitle title="Find Location" />
-            ) : formHeaderStep === FormStep.TripAddLocation ? (
-              <FormHeaderTitle title="Add Location" />
-            ) : formHeaderStep === FormStep.TripUploadImages ? (
-              <Toggle
-                options={['Photos', 'Albums']}
-                value={toggleValue}
-                onChange={(value, option) => {
-                  setToggleValue(value)
-                  console.log(value, option)
-                }}
-              />
-            ) : (
-              <FormHeaderTitle title="Find Location" />
-            )
+            <Toggle
+              options={['Photos', 'Albums']}
+              value={toggleValue}
+              onChange={(value, option) => {
+                setToggleValue(value)
+                console.log(value, option)
+              }}
+            />
           }
           rightComponent={
-            formHeaderStep === FormStep.TripDetails ? (
-              <FormHeaderButton
-                onPress={() => console.log('right button pressed')}
-                label="Next"
-                iconRight={
-                  <Icon
-                    name="ChevronRightIcon"
-                    size={IconSize.Small}
-                    colour={useColours().ghost}
-                  />
-                }
-              />
-            ) : formHeaderStep === FormStep.TripFindLocation ? (
-              <></>
-            ) : formHeaderStep === FormStep.TripAddLocation ? (
-              <FormHeaderButton
-                onPress={() => console.log('right button pressed')}
-                label="Save"
-              />
-            ) : formHeaderStep === FormStep.TripUploadImages ? (
-              <FormHeaderButton
-                onPress={() => console.log('right button pressed')}
-                label="Add"
-              />
-            ) : (
-              <FormHeaderButton
-                onPress={() => console.log('right button pressed')}
-                label="Done"
-              />
-            )
+            <FormHeaderButton
+              onPress={() => console.log('right button pressed')}
+              label="Add"
+            />
+          }
+        />
+        <FormHeader
+          centerComponent={<FormHeaderTitle title="Find Location" />}
+          rightComponent={
+            <FormHeaderButton
+              onPress={() => console.log('right button pressed')}
+              label="Done"
+            />
           }
         />
       </Backdrop>
