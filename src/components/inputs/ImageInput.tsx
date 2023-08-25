@@ -1,6 +1,10 @@
 import React from 'react'
 import { Pressable, Text } from 'react-native'
-import { ImagePickerAsset, MediaTypeOptions, launchImageLibraryAsync } from 'expo-image-picker'
+import {
+  ImagePickerAsset,
+  MediaTypeOptions,
+  launchImageLibraryAsync,
+} from 'expo-image-picker'
 import cn from 'classnames'
 import Icon from '@/components/Icon'
 import { useColours } from '@/hooks/useTailwind'
@@ -48,14 +52,12 @@ function ImageInput(props: Props) {
         sizeStyles,
       )}
     >
-      <Icon name='PhotoIcon' size={IconSize.Medium} colour={colors['tropical-indigo']} />
-      <Text
-        className={cn(
-          'text-ghost',
-          isSmall && 'ml-2',
-          !isSmall && 'mt-2',
-        )}
-      >
+      <Icon
+        name="PhotoIcon"
+        size={IconSize.Medium}
+        colour={colors['tropical-indigo']}
+      />
+      <Text className={cn('text-ghost', isSmall && 'ml-2', !isSmall && 'mt-2')}>
         {label}
       </Text>
     </Pressable>

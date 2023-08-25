@@ -7,13 +7,15 @@ type Props = SetupProps<'Home'>
 function HomeScreen({ navigation }: Props) {
   return (
     <View className="flex items-center justify-center h-screen">
-      <Text className='w-1/2 mb-6 text-center'>Hello, I am an example screen using a component!</Text>
+      <Text className="w-1/2 mb-6 text-center">
+        Hello, I am an example screen using a component!
+      </Text>
 
       <Pressable
         onPress={() => navigation.navigate('ComponentLibrary')}
-        className='px-4 py-2 my-3 bg-green-400 rounded-md shadow drop-shadow'
+        className="px-4 py-2 my-3 bg-green-400 rounded-md shadow drop-shadow"
       >
-        <Text className='text-ghost'>Go to component library</Text>
+        <Text className="text-ghost">Go to component library</Text>
       </Pressable>
     </View>
   )

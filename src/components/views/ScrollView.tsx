@@ -16,11 +16,7 @@ const StyledScrollView = styled(NativeScrollView, {
 function ScrollView(props: Props) {
   const { children, className } = props
 
-  return (
-    <StyledScrollView className={className}>
-      {children}
-    </StyledScrollView>
-  )
+  return <StyledScrollView className={className}>{children}</StyledScrollView>
 }
 
 export default ScrollView

@@ -27,7 +27,9 @@ function BottomSheet(props: Props) {
         index={open ? 0 : -1}
         ref={sheetRef}
         snapPoints={snapPoints}
-        backgroundComponent={({pointerEvents, style}) => <Background pointerEvents={pointerEvents} style={style} />}
+        backgroundComponent={({ pointerEvents, style }) => (
+          <Background pointerEvents={pointerEvents} style={style} />
+        )}
         style={{ paddingHorizontal: 20, paddingVertical: 10 }}
       >
         {children}
@@ -36,16 +38,20 @@ function BottomSheet(props: Props) {
   )
 }
 
-function Background(props: { pointerEvents: ViewProps['pointerEvents'], style: ViewProps['style'] }) {
+function Background(props: {
+  pointerEvents: ViewProps['pointerEvents']
+  style: ViewProps['style']
+}) {
   return (
-    <View className='rounded-3xl overflow-hidden relative' pointerEvents={props.pointerEvents}
+    <View
+      className="rounded-3xl overflow-hidden relative"
+      pointerEvents={props.pointerEvents}
       accessible={true}
       accessibilityRole="adjustable"
       accessibilityLabel="Bottom Sheet"
       style={[props.style]}
-
     >
-      <BlurView className='bg-tuatura/90 w-full h-full blur'/>
+      <BlurView className="bg-tuatura/90 w-full h-full blur" />
     </View>
   )
 }

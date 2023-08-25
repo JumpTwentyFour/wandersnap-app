@@ -15,12 +15,12 @@ function SearchInput(props: Props) {
   const colours = useColours()
 
   return (
-    <View className='relative'>
-      <View className='absolute top-2 left-2'>
+    <View className="relative">
+      <View className="absolute top-2 left-2">
         <Icon name="SearchIcon" size={IconSize.Small} colour={colours.ghost} />
       </View>
       <TextInput
-        className='w-full h-9 bg-ghost/10 rounded-xl pl-9 pr-2 text-ghost'
+        className="w-full h-9 bg-ghost/10 rounded-xl pl-9 pr-2 text-ghost"
         value={value}
         onChangeText={onChange}
       />

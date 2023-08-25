@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { icons } from '@/assets/icons'
-import {  IconType, IconProps, IconSize } from '@/types/icon'
+import { IconType, IconProps, IconSize } from '@/types/icon'
 
 const ICON_SIZES = {
   [IconSize.Small]: {
@@ -23,7 +23,7 @@ function Icon(props: IconProps) {
 
   useEffect(() => {
     setLoading(true)
-    async function importIcon()  {
+    async function importIcon() {
       try {
         const { default: Icon } = await icons[props.name]
         importedIconRef.current = Icon
@@ -41,10 +41,10 @@ function Icon(props: IconProps) {
   const ImportedIcon = importedIconRef.current
 
   return (
-    <ImportedIcon 
-      width={ICON_SIZES[props.size].width} 
-      height={ICON_SIZES[props.size].height} 
-      fill={props.colour}  
+    <ImportedIcon
+      width={ICON_SIZES[props.size].width}
+      height={ICON_SIZES[props.size].height}
+      fill={props.colour}
     />
   )
 }
