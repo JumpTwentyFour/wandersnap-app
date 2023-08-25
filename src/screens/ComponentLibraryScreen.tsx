@@ -14,17 +14,21 @@ import AuthHeader from '@/components/headers/AuthHeader'
 import DashboardHeader from '@/components/headers/DashboardHeader'
 import TripHeader from '@/components/headers/TripHeader'
 import BottomSheet from '@/components/BottomSheet'
-
 import { ButtonType, ButtonVariant } from '@/types/button'
 import { IconSize } from '@/types/icon'
 import { ImageInputSize } from '@/types/imageInput'
-// import FormHeader from '@/components/headers/FormHeader'
-// import { useColours } from '@/hooks/useTailwind'
-// import { FormStep } from '@/types/formHeader'
+import FormHeader from '@/components/headers/formHeader/FormHeader'
+import { useColours } from '@/hooks/useTailwind'
+import { FormStep } from '@/types/formHeader'
+import FormHeaderTitle from '@/components/headers/formHeader/FormHeaderTitle'
+import FormHeaderButton from '@/components/headers/formHeader/FormHeaderButton'
 
 function ComponentLibraryScreen() {
   const [showBottomSheet, setShowBottomSheet] = React.useState(false)
   const [toggleValue, setToggleValue] = React.useState(false)
+  const [formHeaderStep, setFormHeaderStep] = React.useState<FormStep>(
+    FormStep.TripDetails,
+  )
 
   return (
     <ScrollView className="mt-10">
@@ -294,7 +298,7 @@ function ComponentLibraryScreen() {
         <TripHeader />
       </Backdrop>
       <Title>Form Header</Title>
-      {/* <View className="flex flex-row items-center justify-between px-12">
+      <View className="flex flex-row items-center justify-between px-12">
         <IconButton
           size={IconSize.Small}
           icon="ChevronLeftIcon"
@@ -315,8 +319,104 @@ function ComponentLibraryScreen() {
         />
       </View>
       <Backdrop bgClass="bg-tuatura/75" fullWidth>
-        <FormHeader step={formHeaderStep} />
-      </Backdrop> */}
+        <FormHeader
+          leftComponent={
+            formHeaderStep === FormStep.TripDetails ? (
+              <FormHeaderButton
+                onPress={() => console.log('left button pressed')}
+                label="Cancel"
+              />
+            ) : formHeaderStep === FormStep.TripFindLocation ? (
+              <FormHeaderButton
+                onPress={() => console.log('left button pressed')}
+                iconLeft={
+                  <Icon
+                    size={IconSize.Small}
+                    name="ChevronLeftIcon"
+                    colour={useColours().ghost}
+                  ></Icon>
+                }
+              />
+            ) : formHeaderStep === FormStep.TripAddLocation ? (
+              <FormHeaderButton
+                onPress={() => console.log('left button pressed')}
+                iconLeft={
+                  <Icon
+                    size={IconSize.Small}
+                    name="ChevronLeftIcon"
+                    colour={useColours().ghost}
+                  ></Icon>
+                }
+              />
+            ) : formHeaderStep === FormStep.TripUploadImages ? (
+              <FormHeaderButton
+                onPress={() => console.log('left button pressed')}
+                iconLeft={
+                  <Icon
+                    size={IconSize.Small}
+                    name="XMarkIcon"
+                    colour={useColours().ghost}
+                  ></Icon>
+                }
+              />
+            ) : (
+              <></>
+            )
+          }
+          centerComponent={
+            formHeaderStep === FormStep.TripDetails ? (
+              <FormHeaderTitle title="Create trip" />
+            ) : formHeaderStep === FormStep.TripFindLocation ? (
+              <FormHeaderTitle title="Find Location" />
+            ) : formHeaderStep === FormStep.TripAddLocation ? (
+              <FormHeaderTitle title="Add Location" />
+            ) : formHeaderStep === FormStep.TripUploadImages ? (
+              <Toggle
+                options={['Photos', 'Albums']}
+                value={toggleValue}
+                onChange={(value, option) => {
+                  setToggleValue(value)
+                  console.log(value, option)
+                }}
+              />
+            ) : (
+              <FormHeaderTitle title="Find Location" />
+            )
+          }
+          rightComponent={
+            formHeaderStep === FormStep.TripDetails ? (
+              <FormHeaderButton
+                onPress={() => console.log('right button pressed')}
+                label="Next"
+                iconRight={
+                  <Icon
+                    name="ChevronRightIcon"
+                    size={IconSize.Small}
+                    colour={useColours().ghost}
+                  />
+                }
+              />
+            ) : formHeaderStep === FormStep.TripFindLocation ? (
+              <></>
+            ) : formHeaderStep === FormStep.TripAddLocation ? (
+              <FormHeaderButton
+                onPress={() => console.log('right button pressed')}
+                label="Save"
+              />
+            ) : formHeaderStep === FormStep.TripUploadImages ? (
+              <FormHeaderButton
+                onPress={() => console.log('right button pressed')}
+                label="Add"
+              />
+            ) : (
+              <FormHeaderButton
+                onPress={() => console.log('right button pressed')}
+                label="Done"
+              />
+            )
+          }
+        />
+      </Backdrop>
 
       <Text className="w-full my-6 font-bold text-center">Listings</Text>
       {/* develop listings here */}
@@ -361,10 +461,20 @@ function ComponentLibraryScreen() {
  * This is a helper component to allow white or light coloured components
  * to be easily viewable.
  */
-function Backdrop(props: { children: React.ReactNode; bgClass?: string }) {
+function Backdrop(props: {
+  children: React.ReactNode
+  bgClass?: string
+  fullWidth?: boolean
+}) {
   return (
     <View className="flex items-center w-full h-auto p-2">
-      <View className={cn('w-4/5 p-2 rounded', props.bgClass)}>
+      <View
+        className={cn(
+          'p-2 rounded',
+          props.bgClass,
+          props.fullWidth ? 'w-full' : 'w-4/5',
+        )}
+      >
         {props.children}
       </View>
     </View>

@@ -1,5 +1,7 @@
 export interface FormHeaderProps {
-  step: FormStep
+  leftComponent: React.ReactNode
+  centerComponent: React.ReactNode
+  rightComponent: React.ReactNode
 }
 
 export enum FormStep {
