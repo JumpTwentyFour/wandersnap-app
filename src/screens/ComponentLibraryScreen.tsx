@@ -21,6 +21,7 @@ import FormHeaderButton from '@/components/headers/formHeader/FormHeaderButton'
 import { useColours } from '@/hooks/useTailwind'
 import { ImageInputSize } from '@/types/imageInput'
 import { IconSize } from '@/types/icon'
+import AlbumListing from '@/components/listings/AlbumListing'
 
 function ComponentLibraryScreen() {
   const [showBottomSheet, setShowBottomSheet] = React.useState(false)
@@ -397,7 +398,13 @@ function ComponentLibraryScreen() {
       </Backdrop>
 
       <Text className="w-full my-6 font-bold text-center">Listings</Text>
-      {/* develop listings here */}
+      <Backdrop bgClass="bg-slate-900/80" fullWidth>
+        <AlbumListing
+          title="South East Asia"
+          dateFrom={new Date('2020-02-23T00:00:00+0000')}
+          dateTo={new Date('2020-04-09T00:00:00+0000')}
+        />
+      </Backdrop>
 
       <Text className="w-full my-6 font-bold text-center">Bottom sheets</Text>
       <Backdrop>

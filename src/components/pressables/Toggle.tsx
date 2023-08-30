@@ -12,7 +12,7 @@ const BASE_X = 6
 
 function Toggle(props: Props) {
   const { onChange, value = false, options } = props
-  
+
   const movementValue = useRef<number>(0)
   const x = useSharedValue(BASE_X)
 
@@ -44,14 +44,14 @@ function Toggle(props: Props) {
       {options.map((option) => (
         <View
           key={option}
-          className='flex items-center justify-center rounded-lg h-full w-1/2 z-10'
+          className="flex items-center justify-center rounded-lg h-full w-1/2 z-10"
         >
           <Text className="text-ghost font-mont">{option}</Text>
         </View>
       ))}
       <Animated.View
         onLayout={handleLayout}
-        className='w-1/2 h-full bg-helio left-1 top-1 absolute rounded shadow'
+        className="w-1/2 h-full bg-helio left-1 top-1 absolute rounded shadow"
         style={{ left: x }}
       />
     </Pressable>
