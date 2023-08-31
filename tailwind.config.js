@@ -23,6 +23,9 @@ module.exports = {
         candy: '#FFC2E2',
         mauve: '#D4ABEF',
       },
+      // boxShadow: {
+      //   deep: '0px 0px 10px 0px rgba(29, 29, 29, 0.75)',
+      // },
     },
   },
   plugins: [],
