@@ -1,6 +1,6 @@
 import React from 'react'
 import cn from 'classnames'
-import { Text, View } from 'react-native'
+import { ImageSourcePropType, Text, View } from 'react-native'
 import ScrollView from '@/components/views/ScrollView'
 import TextInput from '@/components/inputs/TextInput'
 import SearchInput from '@/components/inputs/SearchInput'
@@ -23,29 +23,57 @@ import { ImageInputSize } from '@/types/imageInput'
 import { IconSize } from '@/types/icon'
 import AlbumListing from '@/components/listings/AlbumListing'
 import LocationListing from '@/components/listings/LocationListing'
+import ImageGrid from '@/components/listings/ImageGrid'
 
 const LOCATION_LISTINGS = [
   {
     name: 'Batu Caves',
-    image_url: require('~/public/images/batu-caves.png'),
+    image_url: require('@/assets/images/batu-caves.png'),
     image_count: 121,
   },
   {
     name: 'Hạ Long Bay',
-    image_url: require('~/public/images/ha-long-bay.png'),
+    image_url: require('@/assets/images/ha-long-bay.png'),
     image_count: 121,
   },
   {
     name: 'Golden Bridge',
-    image_url: require('~/public/images/golden-bridge.png'),
+    image_url: require('@/assets/images/golden-bridge.png'),
     image_count: 43,
   },
   {
     name: 'Angkor Wat',
-    image_url: require('~/public/images/angkor-wat.png'),
+    image_url: require('@/assets/images/angkor-wat.png'),
     image_count: 43,
   },
 ]
+
+const IMAGE_GRID_LISTING = [
+  {
+    title: 'Batu Caves',
+    url: require('@/assets/images/talybont-res.jpeg'),
+    id: 1,
+  },
+  {
+    title: 'Hạ Long Bay',
+    url: require('@/assets/images/fossil.jpeg'),
+    id: 2,
+  },
+  {
+    title: 'Golden Bridge',
+    url: require('@/assets/images/mushroom.jpeg'),
+    id: 3,
+  },
+  {
+    title: 'Angkor Wat',
+    url: require('@/assets/images/robin.jpeg'),
+    id: 4,
+  },
+] as Array<{
+  title: string
+  id: number | string
+  url: ImageSourcePropType
+}>
 
 function ComponentLibraryScreen() {
   const [showBottomSheet, setShowBottomSheet] = React.useState(false)
@@ -432,6 +460,10 @@ function ComponentLibraryScreen() {
 
       <Backdrop bgClass="bg-slate-900/80" fullWidth>
         <LocationListing locations={LOCATION_LISTINGS} />
+      </Backdrop>
+
+      <Backdrop bgClass="bg-slate-900/80" fullWidth>
+        <ImageGrid images={IMAGE_GRID_LISTING} />
       </Backdrop>
 
       <Text className="w-full my-6 font-bold text-center">Bottom sheets</Text>
