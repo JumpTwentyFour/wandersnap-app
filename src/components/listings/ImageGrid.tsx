@@ -1,22 +1,25 @@
-import React from 'react'
-import { ImageSourcePropType, View } from 'react-native'
-import ImageGridItem from './ImageGridItem'
-
-interface ImageGridProps {
-  images: Array<{
-    title: string
-    id: number | string
-    url: ImageSourcePropType
-  }>
-}
+import { ImageGridProps } from '@/types/imageGrid'
+import React, { useEffect, useState } from 'react'
+import { View } from 'react-native'
+import ImageGridItem from '@/components/listings/ImageGridItem'
 
 function ImageGrid(props: ImageGridProps) {
   const { images } = props
 
+  const [selectedImages, setSelectedImages] = useState<Array<number>>([])
+
+  useEffect(() => {
+    console.log(selectedImages)
+  }, [selectedImages])
+
   return (
     <View className="flex flex-row flex-wrap items-start justify-start">
       {images.map((image) => (
-        <ImageGridItem key={image.id} image={image} />
+        <ImageGridItem
+          key={image.id}
+          image={image}
+          setSelectedImages={setSelectedImages}
+        />
       ))}
     </View>
   )

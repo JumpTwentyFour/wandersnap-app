@@ -1,6 +1,6 @@
 import React from 'react'
 import cn from 'classnames'
-import { ImageSourcePropType, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import ScrollView from '@/components/views/ScrollView'
 import TextInput from '@/components/inputs/TextInput'
 import SearchInput from '@/components/inputs/SearchInput'
@@ -24,6 +24,7 @@ import { IconSize } from '@/types/icon'
 import AlbumListing from '@/components/listings/AlbumListing'
 import LocationListing from '@/components/listings/LocationListing'
 import ImageGrid from '@/components/listings/ImageGrid'
+import { ImageGridImage } from '@/types/imageGrid'
 
 const LOCATION_LISTINGS = [
   {
@@ -69,11 +70,7 @@ const IMAGE_GRID_LISTING = [
     url: require('@/assets/images/robin.jpeg'),
     id: 4,
   },
-] as Array<{
-  title: string
-  id: number | string
-  url: ImageSourcePropType
-}>
+] as Array<ImageGridImage>
 
 function ComponentLibraryScreen() {
   const [showBottomSheet, setShowBottomSheet] = React.useState(false)

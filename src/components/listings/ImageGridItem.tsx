@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ImageBackground, ImageSourcePropType, Pressable } from 'react-native'
+import { ImageBackground, Pressable } from 'react-native'
 import Animated, {
   useSharedValue,
   withDelay,
@@ -8,14 +8,7 @@ import Animated, {
 import Icon from '../Icon'
 import { IconSize } from '@/types/icon'
 import { useColours } from '@/hooks/useTailwind'
-
-interface ImageGridItemProps {
-  image: {
-    title: string
-    id: number | string
-    url: ImageSourcePropType
-  }
-}
+import { ImageGridItemProps } from '@/types/imageGrid'
 
 const DURATION = 200
 const DELAY = 50
@@ -32,8 +25,10 @@ function ImageGridItem(props: ImageGridItemProps) {
   function handleSetSelected() {
     if (selected) {
       opacity.value = withDelay(DELAY, withTiming(0, { duration: DURATION }))
+      props.setSelectedImages((prev) => prev.filter((id) => id !== image.id))
     } else {
       opacity.value = withDelay(DELAY, withTiming(1, { duration: DURATION }))
+      props.setSelectedImages((prev) => [...prev, image.id])
     }
 
     setSelected(!selected)
