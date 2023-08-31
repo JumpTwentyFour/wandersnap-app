@@ -7,8 +7,9 @@ import FullscreenOverlay from '@/components/overlay/FullscreenOverlay'
 import { AlertAction, AlertActionType } from '@/types/alert'
 
 interface Props {
-  title: string
-  message: string
+  title?: string
+  message?: string
+  footnote?: string
   actions: AlertAction[]
   floatingActions?: AlertAction[]
   show: boolean
@@ -19,7 +20,7 @@ const ANIM_OPTIONS = {
 }
 
 function Alert(props: Props) {
-  const { title, message, actions, floatingActions, show } = props
+  const { title, message, footnote, actions, floatingActions, show } = props
 
   const [visible, setVisible] = useState(false)
   const opacity = useSharedValue(0)
@@ -51,12 +52,28 @@ function Alert(props: Props) {
           <View className="w-72">
             <View className="bg-tuatura/95 w-full rounded-xl">
               <View className="p-4">
-                <Text className="font-mont-medium text-ghost w-full text-center mb-1 text-lg">
-                  {title}
-                </Text>
-                <Text className="font-mont text-ghost w-full text-center">
-                  {message}
-                </Text>
+                {title && (
+                  <Text className="font-mont-medium text-ghost w-full text-center mb-1 text-lg">
+                    {title}
+                  </Text>
+                )}
+
+                {message && (
+                  <Text className="font-mont text-ghost w-full text-center">
+                    {message}
+                  </Text>
+                )}
+
+                {footnote && (
+                  <Text
+                    className={cn(
+                      'font-mont text-ghost/60 text-xs text-center -mb-2',
+                      message && 'mt-3',
+                    )}
+                  >
+                    {footnote}
+                  </Text>
+                )}
               </View>
               {actions.map((action, index) => (
                 <Pressable
@@ -65,10 +82,15 @@ function Alert(props: Props) {
                   className={cn(
                     'mt-2 border-t border-ghost/20 w-full pt-3 pb-1',
                     index === actions.length - 1 && 'py-3',
-                    action.type === AlertActionType.DANGER && 'text-red-400',
                   )}
                 >
-                  <Text className="font-mont-medium text-helio w-full text-center text-lg">
+                  <Text
+                    className={cn(
+                      'font-mont-medium text-helio w-full text-center text-lg',
+                      action.type === AlertActionType.DANGER &&
+                        'text-watermelon',
+                    )}
+                  >
                     {action.text}
                   </Text>
                 </Pressable>

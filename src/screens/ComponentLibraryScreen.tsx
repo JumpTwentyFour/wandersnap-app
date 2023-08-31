@@ -28,6 +28,7 @@ function ComponentLibraryScreen() {
   const [showBottomSheet, setShowBottomSheet] = React.useState(false)
   const [toggleValue, setToggleValue] = React.useState(false)
   const [showAlert, setShowAlert] = React.useState(false)
+  const [showAlertTwo, setShowAlertTwo] = React.useState(false)
 
   const colours = useColours()
 
@@ -439,6 +440,7 @@ function ComponentLibraryScreen() {
         show={showAlert}
         title="Incorrect email address"
         message="The password you entered does not match our records. Please try again or reset your password."
+        footnote="These photos will be deleted from this location."
         actions={[
           {
             text: 'Try again',
@@ -458,6 +460,31 @@ function ComponentLibraryScreen() {
           {
             text: 'Another thing',
             onPress: () => setShowAlert(false),
+          },
+        ]}
+      />
+      <Backdrop>
+        <Button
+          label="Open another alert"
+          variant={ButtonVariant.Primary}
+          type={ButtonType.Solid}
+          onPress={() => setShowAlertTwo(!showAlertTwo)}
+        />
+      </Backdrop>
+      <Alert
+        show={showAlertTwo}
+        footnote="These photos will be deleted from this location."
+        actions={[
+          {
+            text: 'Delete 2 Photos',
+            type: AlertActionType.DANGER,
+            onPress: () => setShowAlertTwo(false),
+          },
+        ]}
+        floatingActions={[
+          {
+            text: 'Cancel',
+            onPress: () => setShowAlertTwo(false),
           },
         ]}
       />
