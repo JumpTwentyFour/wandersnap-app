@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, Pressable, Platform } from 'react-native'
+import { View, Text, Pressable } from 'react-native'
 import { Portal } from '@gorhom/portal'
-import { FullWindowOverlay } from 'react-native-screens'
 import Animated, { useSharedValue, withSpring } from 'react-native-reanimated'
 import cn from 'classnames'
-import { BlurView } from 'expo-blur'
-
-interface AlertAction {
-  text: string
-  onPress: () => void
-}
+import FullscreenOverlay from '@/components/overlay/FullscreenOverlay'
+import { AlertAction, AlertActionType } from '@/types/alert'
 
 interface Props {
   title: string
   message: string
   actions: AlertAction[]
+  floatingActions?: AlertAction[]
   show: boolean
 }
 
@@ -23,12 +19,10 @@ const ANIM_OPTIONS = {
 }
 
 function Alert(props: Props) {
-  const { title, message, actions, show } = props
+  const { title, message, actions, floatingActions, show } = props
 
   const [visible, setVisible] = useState(false)
   const opacity = useSharedValue(0)
-
-  const Overlay = Platform.OS === 'ios' ? FullWindowOverlay : BlurView
 
   useEffect(() => {
     if (show) {
@@ -49,37 +43,62 @@ function Alert(props: Props) {
 
   return (
     <Portal>
-      <Overlay className="bg-tuatura/40">
+      <FullscreenOverlay>
         <Animated.View
-          className="w-full h-full flex items-center justify-center"
+          className="w-full h-full flex items-center justify-center bg-tuatura/70"
           style={{ opacity }}
         >
-          <View className="bg-tuatura/95 w-72 rounded-xl">
-            <View className="p-4">
-              <Text className="font-mont-medium text-ghost w-full text-center mb-1 text-lg">
-                {title}
-              </Text>
-              <Text className="font-mont text-ghost w-full text-center">
-                {message}
-              </Text>
+          <View className="w-72">
+            <View className="bg-tuatura/95 w-full rounded-xl">
+              <View className="p-4">
+                <Text className="font-mont-medium text-ghost w-full text-center mb-1 text-lg">
+                  {title}
+                </Text>
+                <Text className="font-mont text-ghost w-full text-center">
+                  {message}
+                </Text>
+              </View>
+              {actions.map((action, index) => (
+                <Pressable
+                  key={index}
+                  onPress={action.onPress}
+                  className={cn(
+                    'mt-2 border-t border-ghost/20 w-full pt-3 pb-1',
+                    index === actions.length - 1 && 'py-3',
+                    action.type === AlertActionType.DANGER && 'text-red-400',
+                  )}
+                >
+                  <Text className="font-mont-medium text-helio w-full text-center text-lg">
+                    {action.text}
+                  </Text>
+                </Pressable>
+              ))}
             </View>
-            {actions.map((action, index) => (
+            {floatingActions?.map((action, index) => (
               <Pressable
                 key={index}
-                className={cn(
-                  'mt-2 border-t border-ghost/20 w-full pt-3 pb-1',
-                  index === actions.length - 1 && 'py-3',
-                )}
                 onPress={action.onPress}
+                className={cn(
+                  'bg-tuatura/95 border-t border-ghost/20 w-full pt-3 pb-1',
+                  floatingActions.length === 1 && 'rounded-xl pb-3',
+                  floatingActions.length !== 1 && 'py-3',
+                  index === 0 && 'mt-2 rounded-t-xl',
+                  index === floatingActions.length - 1 && 'rounded-b-xl',
+                )}
               >
-                <Text className="font-mont-medium text-helio w-full text-center text-lg">
+                <Text
+                  className={cn(
+                    'font-mont-medium text-helio w-full text-center text-lg',
+                    action.type === AlertActionType.DANGER && 'text-watermelon',
+                  )}
+                >
                   {action.text}
                 </Text>
               </Pressable>
             ))}
           </View>
         </Animated.View>
-      </Overlay>
+      </FullscreenOverlay>
     </Portal>
   )
 }

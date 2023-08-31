@@ -22,6 +22,7 @@ import FormHeaderButton from '@/components/headers/formHeader/FormHeaderButton'
 import { useColours } from '@/hooks/useTailwind'
 import { ImageInputSize } from '@/types/imageInput'
 import { IconSize } from '@/types/icon'
+import { AlertActionType } from '@/types/alert'
 
 function ComponentLibraryScreen() {
   const [showBottomSheet, setShowBottomSheet] = React.useState(false)
@@ -445,6 +446,17 @@ function ComponentLibraryScreen() {
           },
           {
             text: 'Reset password',
+            onPress: () => setShowAlert(false),
+          },
+        ]}
+        floatingActions={[
+          {
+            text: 'Cancel',
+            onPress: () => setShowAlert(false),
+            type: AlertActionType.DANGER,
+          },
+          {
+            text: 'Another thing',
             onPress: () => setShowAlert(false),
           },
         ]}
