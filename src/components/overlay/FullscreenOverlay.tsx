@@ -9,7 +9,7 @@ interface Props {
 function FullscreenOverlay(props: Props) {
   const Element = Platform.OS === 'ios' ? FullWindowOverlay : View
 
-  return <Element>{props.children}</Element>
+  return <Element className="bg-tuatura/90">{props.children}</Element>
 }
 
 export default FullscreenOverlay

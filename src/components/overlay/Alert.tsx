@@ -79,10 +79,11 @@ function Alert(props: Props) {
                 key={index}
                 onPress={action.onPress}
                 className={cn(
-                  'bg-tuatura/95 border-t border-ghost/20 w-full pt-3 pb-1',
+                  'bg-tuatura/95 w-full pt-3 pb-1',
                   floatingActions.length === 1 && 'rounded-xl pb-3',
                   floatingActions.length !== 1 && 'py-3',
                   index === 0 && 'mt-2 rounded-t-xl',
+                  index !== 0 && 'border-t border-ghost/20',
                   index === floatingActions.length - 1 && 'rounded-b-xl',
                 )}
               >
