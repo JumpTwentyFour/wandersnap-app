@@ -8,6 +8,7 @@
     "start:clear": "expo start --tunnel --clear",
     "android": "expo start --android --tunnel",
     "ios": "expo start --ios --tunnel",
+    "ios:clear": "expo start --ios --tunnel --clear",
     "web": "expo start --web --tunnel",
     "tsc": "tsc",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
