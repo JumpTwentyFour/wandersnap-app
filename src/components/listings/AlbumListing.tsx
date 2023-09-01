@@ -15,7 +15,7 @@ interface AlbumListingProps {
   images: ImageSourcePropType[]
 }
 
-const FORMAT_STR = 'yyyy MM dd'
+const FORMAT_STR = 'yyyy LLL dd'
 
 function AlbumListing(props: AlbumListingProps) {
   const { title, images, dateFrom, dateTo } = props
@@ -26,7 +26,7 @@ function AlbumListing(props: AlbumListingProps) {
         <Text className="font-comfortaa text-[22px] text-white w-full">
           {title}
         </Text>
-        <Text className="w-full mt-1 text-xs text-white font-mons">
+        <Text className="w-full mt-1 text-xs text-white font-mons uppercase">
           {format(dateFrom, FORMAT_STR)} - {format(dateTo, FORMAT_STR)}
         </Text>
       </View>
