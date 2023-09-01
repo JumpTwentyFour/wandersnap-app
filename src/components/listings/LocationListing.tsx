@@ -1,15 +1,15 @@
 import React from 'react'
 import { View, Image, Text, Pressable, ImageSourcePropType } from 'react-native'
-import Icon from '../Icon'
+import Icon from '@/components/Icon'
 import { IconSize } from '@/types/icon'
 import { useColours } from '@/hooks/useTailwind'
 
 interface LocationListingProps {
-  locations?: Array<{
+  locations?: {
     name: string
-    image_url: ImageSourcePropType
-    image_count: number
-  }>
+    imageUrl: ImageSourcePropType
+    imageCount: number
+  }[]
 }
 
 function LocationListing(props: LocationListingProps) {
@@ -27,9 +27,9 @@ function LocationListing(props: LocationListingProps) {
               className="flex flex-col items-start justify-center w-1/2 px-[10px] mt-2"
             >
               <Image
-                source={location.image_url}
+                source={location.imageUrl}
                 className="w-40 h-40 rounded-xl"
-              ></Image>
+              />
               <View className="flex flex-row self-stretch justify-center my-2">
                 <Text className="flex-[1_0_0] font-mont text-sm text-white">
                   {location.name}
@@ -49,7 +49,7 @@ function LocationListing(props: LocationListingProps) {
                   colour={colours.ghost}
                 />
                 <Text className="flex-[1_0_0] ml-2 font-mons text-sm text-white">
-                  {location.image_count} Photos
+                  {location.imageCount} Photos
                 </Text>
               </View>
             </View>
