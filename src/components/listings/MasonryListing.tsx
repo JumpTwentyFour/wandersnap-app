@@ -11,7 +11,6 @@ function MasonryListing(props: MasonryListingProps) {
   const { width } = Dimensions.get('window')
   const { images } = props
 
-  console.log(width)
   return (
     <View className="flex flex-row w-full">
       <View className="flex flex-col w-1/2 pr-1">
