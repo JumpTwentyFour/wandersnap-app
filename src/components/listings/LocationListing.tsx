@@ -3,7 +3,11 @@ import { View, Image, Text, Pressable } from 'react-native'
 import Icon from '@/components/Icon'
 import { IconSize } from '@/types/icon'
 import { useColours } from '@/hooks/useTailwind'
-import { LocationListingProps } from '@/types/location'
+import { LocationListItem } from '@/types/location'
+
+export interface LocationListingProps {
+  locations?: LocationListItem[]
+}
 
 function LocationListing(props: LocationListingProps) {
   const { locations } = props

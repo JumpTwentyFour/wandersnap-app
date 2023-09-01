@@ -1,9 +1,7 @@
 import { ImageSourcePropType } from 'react-native'
 
-export interface LocationListingProps {
-  locations?: {
-    name: string
-    imageUrl: ImageSourcePropType
-    imageCount: number
-  }[]
+export interface LocationListItem {
+  name: string
+  imageUrl: ImageSourcePropType
+  imageCount: number
 }
