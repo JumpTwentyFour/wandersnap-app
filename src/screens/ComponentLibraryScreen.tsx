@@ -36,23 +36,23 @@ import LocationImage4 from '@/assets/images/angkor-wat.png'
 const LOCATION_LISTINGS = [
   {
     name: 'Batu Caves',
-    image_url: LocationImage1,
-    image_count: 121,
+    imageUrl: LocationImage1,
+    imageCount: 121,
   },
   {
     name: 'Hạ Long Bay',
-    image_url: LocationImage2,
-    image_count: 121,
+    imageUrl: LocationImage2,
+    imageCount: 121,
   },
   {
     name: 'Golden Bridge',
-    image_url: LocationImage3,
-    image_count: 43,
+    imageUrl: LocationImage3,
+    imageCount: 43,
   },
   {
     name: 'Angkor Wat',
-    image_url: LocationImage4,
-    image_count: 43,
+    imageUrl: LocationImage4,
+    imageCount: 43,
   },
 ]
 
