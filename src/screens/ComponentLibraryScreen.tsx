@@ -38,6 +38,7 @@ import ImageGridImage1 from '@/assets/images/talybont-res.jpeg'
 import ImageGridImage2 from '@/assets/images/fossil.jpeg'
 import ImageGridImage3 from '@/assets/images/mushroom.jpeg'
 import ImageGridImage4 from '@/assets/images/robin.jpeg'
+import MasonryListing from '@/components/listings/MasonryListing'
 
 const LOCATION_LISTINGS = [
   {
@@ -479,6 +480,10 @@ function ComponentLibraryScreen() {
 
       <Backdrop bgClass="bg-slate-900/80" fullWidth>
         <ImageGrid images={IMAGE_GRID_LISTING} />
+      </Backdrop>
+
+      <Backdrop bgClass="bg-slate-900/80" fullWidth>
+        <MasonryListing />
       </Backdrop>
 
       <Text className="w-full my-6 font-bold text-center">Bottom sheets</Text>
