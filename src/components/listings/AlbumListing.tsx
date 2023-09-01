@@ -1,20 +1,24 @@
-import { format } from 'date-fns'
 import React from 'react'
-import { View, Text, Image, ImageBackground } from 'react-native'
+import {
+  View,
+  Text,
+  Image,
+  ImageBackground,
+  ImageSourcePropType,
+} from 'react-native'
+import { format } from 'date-fns'
 
 interface AlbumListingProps {
   title: string
   dateFrom: Date
   dateTo: Date
-  images?: Array<typeof Image>
+  images: ImageSourcePropType[]
 }
 
+const FORMAT_STR = 'yyyy MM dd'
+
 function AlbumListing(props: AlbumListingProps) {
-  const {
-    title,
-    dateFrom = new Date('2020-02-23T00:00:00+0000'),
-    dateTo = new Date('2020-04-09T00:00:00+0100'),
-  } = props
+  const { title, images, dateFrom, dateTo } = props
 
   return (
     <View className="flex flex-col items-start self-stretch p-2">
@@ -23,25 +27,25 @@ function AlbumListing(props: AlbumListingProps) {
           {title}
         </Text>
         <Text className="w-full mt-1 text-xs text-white font-mons">
-          {format(dateFrom, 'yyyy MM dd')} - {format(dateTo, 'yyyy MM dd')}
+          {format(dateFrom, FORMAT_STR)} - {format(dateTo, FORMAT_STR)}
         </Text>
       </View>
       <View className="flex flex-row mt-4">
         <View className="flex flex-row items-start justify-start w-3/5 pr-2 ">
           <Image
-            source={require('@/assets/images/20230707_194027.jpg')}
+            source={images[0]}
             className="w-full h-[248px] rounded-xl bg-white shadow"
             resizeMode="cover"
           />
         </View>
         <View className="flex flex-col w-2/5 pl-2">
           <Image
-            source={require('@/assets/images/20230707_210635.jpg')}
+            source={images[1]}
             className="w-full h-[114px] mb-5 bg-white shadow rounded-xl"
             resizeMode="cover"
           />
           <ImageBackground
-            source={require('@/assets/images/20230707_184730.jpg')}
+            source={images[2]}
             className="w-full h-[114px] flex bg-white shadow items-center justify-center overflow-hidden rounded-xl"
             resizeMode="cover"
           >
