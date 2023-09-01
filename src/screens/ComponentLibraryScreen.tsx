@@ -19,10 +19,14 @@ import { ButtonType, ButtonVariant } from '@/types/button'
 import FormHeader from '@/components/headers/formHeader/FormHeader'
 import FormHeaderTitle from '@/components/headers/formHeader/FormHeaderTitle'
 import FormHeaderButton from '@/components/headers/formHeader/FormHeaderButton'
+import AlbumListing from '@/components/listings/AlbumListing'
 import { useColours } from '@/hooks/useTailwind'
 import { ImageInputSize } from '@/types/imageInput'
 import { IconSize } from '@/types/icon'
 import { AlertActionType } from '@/types/alert'
+import AlbumImage1 from '@/assets/images/20230707_194027.jpg'
+import AlbumImage2 from '@/assets/images/20230707_210635.jpg'
+import AlbumImage3 from '@/assets/images/20230707_184730.jpg'
 
 function ComponentLibraryScreen() {
   const [showBottomSheet, setShowBottomSheet] = React.useState(false)
@@ -31,6 +35,8 @@ function ComponentLibraryScreen() {
   const [showAlertTwo, setShowAlertTwo] = React.useState(false)
 
   const colours = useColours()
+
+  const albumImages = [AlbumImage1, AlbumImage2, AlbumImage3]
 
   return (
     <ScrollView className="mt-10">
@@ -401,7 +407,14 @@ function ComponentLibraryScreen() {
       </Backdrop>
 
       <Text className="w-full my-6 font-bold text-center">Listings</Text>
-      {/* develop listings here */}
+      <Backdrop bgClass="bg-slate-900/80" fullWidth>
+        <AlbumListing
+          title="South East Asia"
+          images={albumImages}
+          dateFrom={new Date('2020-02-23T00:00:00+0000')}
+          dateTo={new Date('2020-04-09T00:00:00+0000')}
+        />
+      </Backdrop>
 
       <Text className="w-full my-6 font-bold text-center">Bottom sheets</Text>
       <Backdrop>
