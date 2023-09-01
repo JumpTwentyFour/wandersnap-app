@@ -86,6 +86,16 @@ const IMAGE_GRID_LISTING = [
   },
 ] as ImageGridImage[]
 
+const MASONRY_LISTING_ITEMS = [
+  ImageGridImage1,
+  ImageGridImage2,
+  ImageGridImage3,
+  ImageGridImage4,
+  AlbumImage1,
+  AlbumImage2,
+  AlbumImage3,
+]
+
 function ComponentLibraryScreen() {
   const [showBottomSheet, setShowBottomSheet] = React.useState(false)
   const [toggleValue, setToggleValue] = React.useState(false)
@@ -483,7 +493,7 @@ function ComponentLibraryScreen() {
       </Backdrop>
 
       <Backdrop bgClass="bg-slate-900/80" fullWidth>
-        <MasonryListing />
+        <MasonryListing images={MASONRY_LISTING_ITEMS} />
       </Backdrop>
 
       <Text className="w-full my-6 font-bold text-center">Bottom sheets</Text>
