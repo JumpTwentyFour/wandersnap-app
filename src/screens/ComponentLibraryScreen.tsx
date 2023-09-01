@@ -23,10 +23,38 @@ import AlbumListing from '@/components/listings/AlbumListing'
 import { useColours } from '@/hooks/useTailwind'
 import { ImageInputSize } from '@/types/imageInput'
 import { IconSize } from '@/types/icon'
+import LocationListing from '@/components/listings/LocationListing'
 import { AlertActionType } from '@/types/alert'
 import AlbumImage1 from '@/assets/images/20230707_194027.jpg'
 import AlbumImage2 from '@/assets/images/20230707_210635.jpg'
 import AlbumImage3 from '@/assets/images/20230707_184730.jpg'
+import LocationImage1 from '@/assets/images/batu-caves.png'
+import LocationImage2 from '@/assets/images/ha-long-bay.png'
+import LocationImage3 from '@/assets/images/golden-bridge.png'
+import LocationImage4 from '@/assets/images/angkor-wat.png'
+
+const LOCATION_LISTINGS = [
+  {
+    name: 'Batu Caves',
+    imageUrl: LocationImage1,
+    imageCount: 121,
+  },
+  {
+    name: 'Hạ Long Bay',
+    imageUrl: LocationImage2,
+    imageCount: 121,
+  },
+  {
+    name: 'Golden Bridge',
+    imageUrl: LocationImage3,
+    imageCount: 43,
+  },
+  {
+    name: 'Angkor Wat',
+    imageUrl: LocationImage4,
+    imageCount: 43,
+  },
+]
 
 function ComponentLibraryScreen() {
   const [showBottomSheet, setShowBottomSheet] = React.useState(false)
@@ -414,6 +442,10 @@ function ComponentLibraryScreen() {
           dateFrom={new Date('2020-02-23T00:00:00+0000')}
           dateTo={new Date('2020-04-09T00:00:00+0000')}
         />
+      </Backdrop>
+
+      <Backdrop bgClass="bg-slate-900/80" fullWidth>
+        <LocationListing locations={LOCATION_LISTINGS} />
       </Backdrop>
 
       <Text className="w-full my-6 font-bold text-center">Bottom sheets</Text>
