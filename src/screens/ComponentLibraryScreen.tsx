@@ -14,6 +14,7 @@ import AuthHeader from '@/components/headers/AuthHeader'
 import DashboardHeader from '@/components/headers/DashboardHeader'
 import TripHeader from '@/components/headers/TripHeader'
 import BottomSheet from '@/components/BottomSheet'
+import Alert from '@/components/overlay/Alert'
 import { ButtonType, ButtonVariant } from '@/types/button'
 import FormHeader from '@/components/headers/formHeader/FormHeader'
 import FormHeaderTitle from '@/components/headers/formHeader/FormHeaderTitle'
@@ -22,6 +23,7 @@ import AlbumListing from '@/components/listings/AlbumListing'
 import { useColours } from '@/hooks/useTailwind'
 import { ImageInputSize } from '@/types/imageInput'
 import { IconSize } from '@/types/icon'
+import { AlertActionType } from '@/types/alert'
 import AlbumImage1 from '@/assets/images/20230707_194027.jpg'
 import AlbumImage2 from '@/assets/images/20230707_210635.jpg'
 import AlbumImage3 from '@/assets/images/20230707_184730.jpg'
@@ -29,6 +31,8 @@ import AlbumImage3 from '@/assets/images/20230707_184730.jpg'
 function ComponentLibraryScreen() {
   const [showBottomSheet, setShowBottomSheet] = React.useState(false)
   const [toggleValue, setToggleValue] = React.useState(false)
+  const [showAlert, setShowAlert] = React.useState(false)
+  const [showAlertTwo, setShowAlertTwo] = React.useState(false)
 
   const colours = useColours()
 
@@ -437,7 +441,66 @@ function ComponentLibraryScreen() {
       {/* develop tabs here */}
 
       <Text className="w-full my-6 font-bold text-center">Overlay</Text>
-      {/* develop overlay here */}
+      <Backdrop>
+        <Button
+          label="Open alert"
+          variant={ButtonVariant.Primary}
+          type={ButtonType.Solid}
+          onPress={() => setShowAlert(!showAlert)}
+        />
+      </Backdrop>
+      <Alert
+        show={showAlert}
+        title="Incorrect email address"
+        message="The password you entered does not match our records. Please try again or reset your password."
+        footnote="These photos will be deleted from this location."
+        actions={[
+          {
+            text: 'Try again',
+            onPress: () => setShowAlert(false),
+          },
+          {
+            text: 'Reset password',
+            onPress: () => setShowAlert(false),
+          },
+        ]}
+        floatingActions={[
+          {
+            text: 'Cancel',
+            onPress: () => setShowAlert(false),
+            type: AlertActionType.DANGER,
+          },
+          {
+            text: 'Another thing',
+            onPress: () => setShowAlert(false),
+          },
+        ]}
+      />
+      <Backdrop>
+        <Button
+          label="Open another alert"
+          variant={ButtonVariant.Primary}
+          type={ButtonType.Solid}
+          onPress={() => setShowAlertTwo(!showAlertTwo)}
+        />
+      </Backdrop>
+      <Alert
+        show={showAlertTwo}
+        footnote="These photos will be deleted from this location."
+        actions={[
+          {
+            text: 'Delete 2 Photos',
+            type: AlertActionType.DANGER,
+            onPress: () => setShowAlertTwo(false),
+          },
+        ]}
+        floatingActions={[
+          {
+            text: 'Cancel',
+            onPress: () => setShowAlertTwo(false),
+          },
+        ]}
+      />
 
       <Text className="w-full my-6 font-bold text-center">Map</Text>
       {/* develop map here */}
