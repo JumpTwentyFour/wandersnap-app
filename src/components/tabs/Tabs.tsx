@@ -14,20 +14,20 @@ function Tabs(props: Props) {
   return (
     <View className="flex flex-row justify-center gap-5 p-2">
       {React.Children.map(children, (child, index) => {
-        if (React.isValidElement(child)) {
-          return (
-            <Pressable
-              onPress={() => onChange(index)}
-              className={cn(
-                index === value && 'border-tropical-indigo border-b-2',
-              )}
-            >
-              <Text className="font-mont-medium text-ghost">
-                {child.props.title}
-              </Text>
-            </Pressable>
-          )
-        }
+        if (!React.isValidElement(child)) return null
+
+        return (
+          <Pressable
+            onPress={() => onChange(index)}
+            className={cn(
+              index === value && 'border-tropical-indigo border-b-2',
+            )}
+          >
+            <Text className="font-mont-medium text-ghost">
+              {child.props.title}
+            </Text>
+          </Pressable>
+        )
       })}
     </View>
   )
