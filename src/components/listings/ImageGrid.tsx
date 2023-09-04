@@ -1,12 +1,14 @@
-import { ImageGridProps } from '@/types/imageGrid'
 import React, { useEffect, useState } from 'react'
 import { View } from 'react-native'
 import ImageGridItem from '@/components/listings/ImageGridItem'
+import { ImageGridProps } from '@/types/imageGrid'
 
 function ImageGrid(props: ImageGridProps) {
   const { images } = props
 
-  const [selectedImages, setSelectedImages] = useState<Array<number>>([])
+  const [selectedImages, setSelectedImages] = useState<Array<number>>(
+    props.selectedImages || [],
+  )
 
   useEffect(() => {
     console.log(selectedImages)
@@ -18,6 +20,7 @@ function ImageGrid(props: ImageGridProps) {
         <ImageGridItem
           key={image.id}
           image={image}
+          selectedImages={selectedImages}
           setSelectedImages={setSelectedImages}
         />
       ))}

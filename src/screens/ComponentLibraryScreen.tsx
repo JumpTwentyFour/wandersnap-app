@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import cn from 'classnames'
 import { Text, View } from 'react-native'
 import ScrollView from '@/components/views/ScrollView'
@@ -86,11 +86,12 @@ const IMAGE_GRID_LISTING = [
 ] as ImageGridImage[]
 
 function ComponentLibraryScreen() {
-  const [showBottomSheet, setShowBottomSheet] = React.useState(false)
-  const [toggleValue, setToggleValue] = React.useState(false)
-  const [showAlert, setShowAlert] = React.useState(false)
-  const [showAlertTwo, setShowAlertTwo] = React.useState(false)
+  const [showBottomSheet, setShowBottomSheet] = useState(false)
+  const [toggleValue, setToggleValue] = useState(false)
+  const [showAlert, setShowAlert] = useState(false)
+  const [showAlertTwo, setShowAlertTwo] = useState(false)
 
+  const [selectedImages, onSelectedImagesChange] = useState<number[]>([])
   const colours = useColours()
 
   const albumImages = [AlbumImage1, AlbumImage2, AlbumImage3]
@@ -478,7 +479,11 @@ function ComponentLibraryScreen() {
       </Backdrop>
 
       <Backdrop bgClass="bg-slate-900/80" fullWidth>
-        <ImageGrid images={IMAGE_GRID_LISTING} />
+        <ImageGrid
+          images={IMAGE_GRID_LISTING}
+          selectedImages={selectedImages}
+          onSelectedImagesChange={onSelectedImagesChange}
+        />
       </Backdrop>
 
       <Text className="w-full my-6 font-bold text-center">Bottom sheets</Text>

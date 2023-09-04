@@ -5,30 +5,32 @@ import Animated, {
   withDelay,
   withTiming,
 } from 'react-native-reanimated'
-import Icon from '../Icon'
-import { IconSize } from '@/types/icon'
+import Icon from '@/components/Icon'
 import { useColours } from '@/hooks/useTailwind'
+import { IconSize } from '@/types/icon'
 import { ImageGridItemProps } from '@/types/imageGrid'
 
 const DURATION = 200
 const DELAY = 50
 
 function ImageGridItem(props: ImageGridItemProps) {
-  const image = props.image
+  const { image, setSelectedImages, selectedImages } = props
 
   const colours = useColours()
 
-  const [selected, setSelected] = useState(false)
+  const [selected, setSelected] = useState(
+    selectedImages.includes(image.id) || false,
+  )
 
   const opacity = useSharedValue(0)
 
-  function handleSetSelected() {
+  function handleSelected() {
     if (selected) {
       opacity.value = withDelay(DELAY, withTiming(0, { duration: DURATION }))
-      props.setSelectedImages((prev) => prev.filter((id) => id !== image.id))
+      setSelectedImages((prev) => prev.filter((id) => id !== image.id))
     } else {
       opacity.value = withDelay(DELAY, withTiming(1, { duration: DURATION }))
-      props.setSelectedImages((prev) => [...prev, image.id])
+      setSelectedImages((prev) => [...prev, image.id])
     }
 
     setSelected(!selected)
@@ -37,7 +39,7 @@ function ImageGridItem(props: ImageGridItemProps) {
   return (
     <Pressable
       key={image.id}
-      onPress={() => handleSetSelected()}
+      onPress={() => handleSelected()}
       className="flex items-center justify-center w-1/3 p-1 h-[111px] overflow-hidden shadow rounded-xl"
     >
       <ImageBackground
