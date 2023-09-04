@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { ImageBackground, Pressable } from 'react-native'
 import Animated, {
   useSharedValue,
@@ -18,20 +18,16 @@ function ImageGridItem(props: ImageGridItemProps) {
 
   const colours = useColours()
 
-  const [selected, setSelected] = useState(isSelected)
-
   const opacity = useSharedValue(0)
 
   function handleSelected(imageId: number) {
     handleSelectedImages(imageId)
 
-    if (selected) {
+    if (isSelected) {
       opacity.value = withDelay(DELAY, withTiming(0, { duration: DURATION }))
     } else {
       opacity.value = withDelay(DELAY, withTiming(1, { duration: DURATION }))
     }
-
-    setSelected(!selected)
   }
 
   return (
@@ -45,7 +41,7 @@ function ImageGridItem(props: ImageGridItemProps) {
         className="flex flex-row items-end justify-end w-full h-full overflow-hidden bg-white shadow rounded-xl"
         resizeMode="cover"
       >
-        {selected && (
+        {isSelected && (
           <Animated.View
             style={{ opacity: opacity }}
             className="flex flex-row items-center justify-center w-6 h-6 mb-2 mr-2 border border-white rounded-full bg-helio"

@@ -1,26 +1,28 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View } from 'react-native'
 import ImageGridItem from '@/components/listings/ImageGridItem'
 import { ImageGridProps } from '@/types/imageGrid'
 
 function ImageGrid(props: ImageGridProps) {
-  const { images, onSelectedImagesChange } = props
+  const { images, onSelectedImagesChange, selectedItems } = props
 
   const [selectedImages, setSelectedImages] = useState<Array<number>>(
-    props.selectedImages || [],
+    selectedItems || [],
   )
 
   function handleSelectedImages(imageId: number) {
-    const images = selectedImages
-    if (images.includes(imageId)) {
-      images.splice(images.indexOf(imageId), 1)
-    } else {
-      images.push(imageId)
-    }
+    setSelectedImages((prevImages) => {
+      if (prevImages.includes(imageId)) {
+        return prevImages.filter((id) => id !== imageId)
+      }
 
-    setSelectedImages(images)
-    onSelectedImagesChange(images)
+      return [...prevImages, imageId]
+    })
   }
+
+  useEffect(() => {
+    onSelectedImagesChange(selectedImages)
+  }, [selectedImages])
 
   return (
     <View className="flex flex-row flex-wrap items-start justify-start">

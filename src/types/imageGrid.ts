@@ -8,7 +8,7 @@ export interface ImageGridImage {
 
 export interface ImageGridProps {
   images: Array<ImageGridImage>
-  selectedImages: number[]
+  selectedItems: number[]
   onSelectedImagesChange: React.Dispatch<React.SetStateAction<number[]>>
 }
 

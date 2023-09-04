@@ -487,7 +487,7 @@ function ComponentLibraryScreen() {
       <Backdrop bgClass="bg-slate-900/80" fullWidth>
         <ImageGrid
           images={IMAGE_GRID_LISTING}
-          selectedImages={selectedImages}
+          selectedItems={selectedImages}
           onSelectedImagesChange={onSelectedImagesChange}
         />
       </Backdrop>
@@ -525,16 +525,16 @@ function ComponentLibraryScreen() {
       <Backdrop bgClass="bg-tuatura" fullWidth>
         <TabsView value={tabIndex} onChange={setTabIndex}>
           <TabsView.Item>
-            <Text className="text-white font-mont">Tab one</Text>
+            <Text className="text-ghost font-mont">Tab one</Text>
           </TabsView.Item>
           <TabsView.Item>
-            <Text className="text-white font-mont">Tab two</Text>
-            <Text className="text-white font-mont">Tab two</Text>
+            <Text className="text-ghost font-mont">Tab two</Text>
+            <Text className="text-ghost font-mont">Tab two</Text>
           </TabsView.Item>
           <TabsView.Item>
-            <Text className="text-white font-mont">Tab three</Text>
-            <Text className="text-white font-mont">Tab three</Text>
-            <Text className="text-white font-mont">Tab three</Text>
+            <Text className="text-ghost font-mont">Tab three</Text>
+            <Text className="text-ghost font-mont">Tab three</Text>
+            <Text className="text-ghost font-mont">Tab three</Text>
           </TabsView.Item>
         </TabsView>
       </Backdrop>
