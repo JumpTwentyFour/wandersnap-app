@@ -9,6 +9,7 @@ export interface IconMap {
 }
 
 export enum IconSize {
+  XSmall = 'xs',
   Small = 'sm',
   Medium = 'md',
   Large = 'lg',

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import cn from 'classnames'
 import { Text, View } from 'react-native'
 import ScrollView from '@/components/views/ScrollView'
@@ -19,13 +19,17 @@ import FormHeader from '@/components/headers/formHeader/FormHeader'
 import FormHeaderTitle from '@/components/headers/formHeader/FormHeaderTitle'
 import FormHeaderButton from '@/components/headers/formHeader/FormHeaderButton'
 import AlbumListing from '@/components/listings/AlbumListing'
+import Tabs from '@/components/tabs/Tabs'
+import TabsView from '@/components/tabs/TabsView'
 import LocationListing from '@/components/listings/LocationListing'
 import MapLocationListing from '@/components/listings/MapLocationListing'
+import ImageGrid from '@/components/listings/ImageGrid'
 import Map from '@/components/Map'
 import { useColours } from '@/hooks/useTailwind'
 import { ButtonType, ButtonVariant } from '@/types/button'
 import { ImageInputSize } from '@/types/imageInput'
 import { IconSize } from '@/types/icon'
+import { ImageGridImage } from '@/types/imageGrid'
 import { AlertActionType } from '@/types/alert'
 import { MarkerSize } from '@/types/map'
 import AlbumImage1 from '@/assets/images/20230707_194027.jpg'
@@ -35,6 +39,10 @@ import LocationImage1 from '@/assets/images/batu-caves.png'
 import LocationImage2 from '@/assets/images/ha-long-bay.png'
 import LocationImage3 from '@/assets/images/golden-bridge.png'
 import LocationImage4 from '@/assets/images/angkor-wat.png'
+import ImageGridImage1 from '@/assets/images/talybont-res.jpeg'
+import ImageGridImage2 from '@/assets/images/fossil.jpeg'
+import ImageGridImage3 from '@/assets/images/mushroom.jpeg'
+import ImageGridImage4 from '@/assets/images/robin.jpeg'
 
 const LOCATION_LISTINGS = [
   {
@@ -78,15 +86,40 @@ const MAP_LOCATIONS_LISTINGS = [
   },
 ]
 
+const IMAGE_GRID_LISTING = [
+  {
+    title: 'Batu Caves',
+    url: ImageGridImage1,
+    id: 1,
+  },
+  {
+    title: 'Hạ Long Bay',
+    url: ImageGridImage2,
+    id: 2,
+  },
+  {
+    title: 'Golden Bridge',
+    url: ImageGridImage3,
+    id: 3,
+  },
+  {
+    title: 'Angkor Wat',
+    url: ImageGridImage4,
+    id: 4,
+  },
+] as ImageGridImage[]
+
+const ALBUM_IMAGES = [AlbumImage1, AlbumImage2, AlbumImage3]
+
 function ComponentLibraryScreen() {
-  const [showBottomSheet, setShowBottomSheet] = React.useState(false)
-  const [toggleValue, setToggleValue] = React.useState(false)
-  const [showAlert, setShowAlert] = React.useState(false)
-  const [showAlertTwo, setShowAlertTwo] = React.useState(false)
+  const [showBottomSheet, setShowBottomSheet] = useState(false)
+  const [toggleValue, setToggleValue] = useState(false)
+  const [showAlert, setShowAlert] = useState(false)
+  const [showAlertTwo, setShowAlertTwo] = useState(false)
+  const [tabIndex, setTabIndex] = useState(0)
+  const [selectedImages, onSelectedImagesChange] = useState<number[]>([])
 
   const colours = useColours()
-
-  const albumImages = [AlbumImage1, AlbumImage2, AlbumImage3]
 
   return (
     <ScrollView className="mt-10">
@@ -460,7 +493,7 @@ function ComponentLibraryScreen() {
       <Backdrop bgClass="bg-slate-900/80" fullWidth>
         <AlbumListing
           title="South East Asia"
-          images={albumImages}
+          images={ALBUM_IMAGES}
           dateFrom={new Date('2020-02-23T00:00:00+0000')}
           dateTo={new Date('2020-04-09T00:00:00+0000')}
         />
@@ -474,6 +507,13 @@ function ComponentLibraryScreen() {
         <MapLocationListing
           locations={MAP_LOCATIONS_LISTINGS}
           onPress={() => console.log('location pressed')}
+        />
+      </Backdrop>
+      <Backdrop bgClass="bg-slate-900/80" fullWidth>
+        <ImageGrid
+          images={IMAGE_GRID_LISTING}
+          selectedItems={selectedImages}
+          onSelectedImagesChange={onSelectedImagesChange}
         />
       </Backdrop>
 
@@ -499,7 +539,30 @@ function ComponentLibraryScreen() {
       </BottomSheet>
 
       <Text className="w-full my-6 font-bold text-center">Tabs</Text>
-      {/* develop tabs here */}
+      <Backdrop bgClass="bg-tuatura" fullWidth>
+        <Tabs value={tabIndex} onChange={setTabIndex}>
+          <Tabs.Item title="Tab one" />
+          <Tabs.Item title="Tab two" />
+          <Tabs.Item title="Tab three" />
+        </Tabs>
+      </Backdrop>
+
+      <Backdrop bgClass="bg-tuatura" fullWidth>
+        <TabsView value={tabIndex} onChange={setTabIndex}>
+          <TabsView.Item>
+            <Text className="text-ghost font-mont">Tab one</Text>
+          </TabsView.Item>
+          <TabsView.Item>
+            <Text className="text-ghost font-mont">Tab two</Text>
+            <Text className="text-ghost font-mont">Tab two</Text>
+          </TabsView.Item>
+          <TabsView.Item>
+            <Text className="text-ghost font-mont">Tab three</Text>
+            <Text className="text-ghost font-mont">Tab three</Text>
+            <Text className="text-ghost font-mont">Tab three</Text>
+          </TabsView.Item>
+        </TabsView>
+      </Backdrop>
 
       <Text className="w-full my-6 font-bold text-center">Overlay</Text>
       <Backdrop>
