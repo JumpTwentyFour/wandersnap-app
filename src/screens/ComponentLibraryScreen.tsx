@@ -98,12 +98,6 @@ function ComponentLibraryScreen() {
   const [showAlertTwo, setShowAlertTwo] = React.useState(false)
   const [tabIndex, setTabIndex] = React.useState(0)
 
-function ComponentLibraryScreen() {
-  const [showBottomSheet, setShowBottomSheet] = useState(false)
-  const [toggleValue, setToggleValue] = useState(false)
-  const [showAlert, setShowAlert] = useState(false)
-  const [showAlertTwo, setShowAlertTwo] = useState(false)
-
   const [selectedImages, onSelectedImagesChange] = useState<number[]>([])
   const colours = useColours()
 
