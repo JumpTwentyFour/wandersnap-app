@@ -471,7 +471,10 @@ function ComponentLibraryScreen() {
       </Backdrop>
 
       <Backdrop bgClass="bg-slate-900/80" fullWidth>
-        <MapLocationListing locations={MAP_LOCATIONS_LISTINGS} />
+        <MapLocationListing
+          locations={MAP_LOCATIONS_LISTINGS}
+          onPress={() => console.log('location pressed')}
+        />
       </Backdrop>
 
       <Text className="w-full my-6 font-bold text-center">Bottom sheets</Text>

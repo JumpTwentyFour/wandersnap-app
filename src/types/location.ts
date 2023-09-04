@@ -5,3 +5,8 @@ export interface LocationListItem {
   imageUrl: ImageSourcePropType
   imageCount: number
 }
+
+export interface MapLocationListingItem {
+  imageUrl: ImageSourcePropType
+  name: string
+}

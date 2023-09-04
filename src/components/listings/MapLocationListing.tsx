@@ -1,28 +1,27 @@
 import React from 'react'
 import {
   ImageBackground,
-  ImageSourcePropType,
   View,
   Text,
   Pressable,
+  GestureResponderEvent,
 } from 'react-native'
+import { MapLocationListingItem } from '@/types/location'
 
 interface MapLocationListingProps {
-  locations: Array<{
-    imageUrl: ImageSourcePropType
-    name: string
-  }>
+  locations: MapLocationListingItem[]
+  onPress: (event: GestureResponderEvent) => void
 }
 
 function MapLocationListing(props: MapLocationListingProps) {
-  const { locations } = props
+  const { locations, onPress } = props
 
   return (
     <View className="flex flex-col items-center gap-2">
       {locations.map((location) => (
         <Pressable
           key={location.name}
-          onPress={() => console.log('location pressed')}
+          onPress={onPress}
           className="flex flex-row items-center w-full px-5 py-2 bg-helio/10 rounded-xl"
         >
           <ImageBackground
