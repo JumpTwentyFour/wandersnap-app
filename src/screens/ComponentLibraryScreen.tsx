@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import cn from 'classnames'
 import { Text, View } from 'react-native'
 import ScrollView from '@/components/views/ScrollView'
@@ -15,18 +15,20 @@ import DashboardHeader from '@/components/headers/DashboardHeader'
 import TripHeader from '@/components/headers/TripHeader'
 import BottomSheet from '@/components/BottomSheet'
 import Alert from '@/components/overlay/Alert'
-import { ButtonType, ButtonVariant } from '@/types/button'
 import FormHeader from '@/components/headers/formHeader/FormHeader'
 import FormHeaderTitle from '@/components/headers/formHeader/FormHeaderTitle'
 import FormHeaderButton from '@/components/headers/formHeader/FormHeaderButton'
 import AlbumListing from '@/components/listings/AlbumListing'
-import { useColours } from '@/hooks/useTailwind'
-import { ImageInputSize } from '@/types/imageInput'
-import { IconSize } from '@/types/icon'
 import LocationListing from '@/components/listings/LocationListing'
 import ImageGrid from '@/components/listings/ImageGrid'
+import Map from '@/components/Map'
+import { useColours } from '@/hooks/useTailwind'
+import { ButtonType, ButtonVariant } from '@/types/button'
+import { ImageInputSize } from '@/types/imageInput'
+import { IconSize } from '@/types/icon'
 import { ImageGridImage } from '@/types/imageGrid'
 import { AlertActionType } from '@/types/alert'
+import { MarkerSize } from '@/types/map'
 import AlbumImage1 from '@/assets/images/20230707_194027.jpg'
 import AlbumImage2 from '@/assets/images/20230707_210635.jpg'
 import AlbumImage3 from '@/assets/images/20230707_184730.jpg'
@@ -97,11 +99,12 @@ const MASONRY_LISTING_ITEMS = [
 ]
 
 function ComponentLibraryScreen() {
-  const [showBottomSheet, setShowBottomSheet] = React.useState(false)
-  const [toggleValue, setToggleValue] = React.useState(false)
-  const [showAlert, setShowAlert] = React.useState(false)
-  const [showAlertTwo, setShowAlertTwo] = React.useState(false)
+  const [showBottomSheet, setShowBottomSheet] = useState(false)
+  const [toggleValue, setToggleValue] = useState(false)
+  const [showAlert, setShowAlert] = useState(false)
+  const [showAlertTwo, setShowAlertTwo] = useState(false)
 
+  const [selectedImages, onSelectedImagesChange] = useState<number[]>([])
   const colours = useColours()
 
   const albumImages = [AlbumImage1, AlbumImage2, AlbumImage3]
@@ -489,7 +492,11 @@ function ComponentLibraryScreen() {
       </Backdrop>
 
       <Backdrop bgClass="bg-slate-900/80" fullWidth>
-        <ImageGrid images={IMAGE_GRID_LISTING} />
+        <ImageGrid
+          images={IMAGE_GRID_LISTING}
+          selectedImages={selectedImages}
+          onSelectedImagesChange={onSelectedImagesChange}
+        />
       </Backdrop>
 
       <Backdrop bgClass="bg-slate-900/80" fullWidth>
@@ -583,7 +590,29 @@ function ComponentLibraryScreen() {
       />
 
       <Text className="w-full my-6 font-bold text-center">Map</Text>
-      {/* develop map here */}
+      <Backdrop bgClass="h-96">
+        <Map
+          initialRegion={{
+            latitude: 52.470432487287184,
+            latitudeDelta: 0.3085811511499088,
+            longitude: -1.8935513857597124,
+            longitudeDelta: 0.3895548350484148,
+          }}
+          markers={[
+            {
+              key: 'j24',
+              size: MarkerSize.LARGE,
+              title: 'Jump24',
+              description:
+                '174 Great Hampton Row, Birmingham, West Midlands, B19 3JP',
+              coordinate: {
+                latitude: 52.489946,
+                longitude: -1.906173,
+              },
+            },
+          ]}
+        />
+      </Backdrop>
 
       <Text className="w-full my-6 font-bold text-center">Wizard</Text>
       {/* develop wizard here */}

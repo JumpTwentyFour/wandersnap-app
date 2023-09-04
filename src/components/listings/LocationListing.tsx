@@ -1,15 +1,12 @@
 import React from 'react'
-import { View, Image, Text, Pressable, ImageSourcePropType } from 'react-native'
+import { View, Image, Text, Pressable } from 'react-native'
 import Icon from '@/components/Icon'
 import { IconSize } from '@/types/icon'
 import { useColours } from '@/hooks/useTailwind'
+import { LocationListItem } from '@/types/location'
 
-interface LocationListingProps {
-  locations?: {
-    name: string
-    imageUrl: ImageSourcePropType
-    imageCount: number
-  }[]
+export interface LocationListingProps {
+  locations?: LocationListItem[]
 }
 
 function LocationListing(props: LocationListingProps) {
