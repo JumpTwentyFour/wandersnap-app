@@ -92,12 +92,11 @@ const IMAGE_GRID_LISTING = [
 const ALBUM_IMAGES = [AlbumImage1, AlbumImage2, AlbumImage3]
 
 function ComponentLibraryScreen() {
-  const [showBottomSheet, setShowBottomSheet] = React.useState(false)
-  const [toggleValue, setToggleValue] = React.useState(false)
-  const [showAlert, setShowAlert] = React.useState(false)
-  const [showAlertTwo, setShowAlertTwo] = React.useState(false)
-  const [tabIndex, setTabIndex] = React.useState(0)
-
+  const [showBottomSheet, setShowBottomSheet] = useState(false)
+  const [toggleValue, setToggleValue] = useState(false)
+  const [showAlert, setShowAlert] = useState(false)
+  const [showAlertTwo, setShowAlertTwo] = useState(false)
+  const [tabIndex, setTabIndex] = useState(0)
   const [selectedImages, onSelectedImagesChange] = useState<number[]>([])
 
   const colours = useColours()
