@@ -10,9 +10,16 @@ function ImageGrid(props: ImageGridProps) {
     props.selectedImages || [],
   )
 
-  function handleSelectedImages(images: Array<number>) {
+  function handleSelectedImages(imageId: number) {
+    const images = selectedImages
+    if (images.includes(imageId)) {
+      images.splice(images.indexOf(imageId), 1)
+    } else {
+      images.push(imageId)
+    }
+
     setSelectedImages(images)
-    onSelectedImagesChange(selectedImages)
+    onSelectedImagesChange(images)
   }
 
   return (

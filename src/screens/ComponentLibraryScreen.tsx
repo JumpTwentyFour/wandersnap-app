@@ -99,6 +99,7 @@ function ComponentLibraryScreen() {
   const [tabIndex, setTabIndex] = React.useState(0)
 
   const [selectedImages, onSelectedImagesChange] = useState<number[]>([])
+
   const colours = useColours()
 
   return (
