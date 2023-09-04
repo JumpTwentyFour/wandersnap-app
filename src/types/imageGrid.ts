@@ -14,6 +14,7 @@ export interface ImageGridProps {
 
 export interface ImageGridItemProps {
   image: ImageGridImage
-  setSelectedImages: React.Dispatch<React.SetStateAction<number[]>>
+  isSelected: boolean
+  handleSelectedImages(images: Array<number>): void
   selectedImages: number[]
 }

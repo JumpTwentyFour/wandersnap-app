@@ -14,23 +14,21 @@ const DURATION = 200
 const DELAY = 50
 
 function ImageGridItem(props: ImageGridItemProps) {
-  const { image, setSelectedImages, selectedImages } = props
+  const { image, handleSelectedImages, isSelected, selectedImages } = props
 
   const colours = useColours()
 
-  const [selected, setSelected] = useState(
-    selectedImages.includes(image.id) || false,
-  )
+  const [selected, setSelected] = useState(isSelected)
 
   const opacity = useSharedValue(0)
 
   function handleSelected() {
     if (selected) {
       opacity.value = withDelay(DELAY, withTiming(0, { duration: DURATION }))
-      setSelectedImages((prev) => prev.filter((id) => id !== image.id))
+      handleSelectedImages(selectedImages.filter((id) => id !== image.id))
     } else {
       opacity.value = withDelay(DELAY, withTiming(1, { duration: DURATION }))
-      setSelectedImages((prev) => [...prev, image.id])
+      handleSelectedImages([...selectedImages, image.id])
     }
 
     setSelected(!selected)
