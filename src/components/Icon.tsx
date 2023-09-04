@@ -3,6 +3,10 @@ import { icons } from '@/assets/icons'
 import { IconType, IconProps, IconSize } from '@/types/icon'
 
 const ICON_SIZES = {
+  [IconSize.XSmall]: {
+    height: 15,
+    width: 15,
+  },
   [IconSize.Small]: {
     height: 20,
     width: 20,

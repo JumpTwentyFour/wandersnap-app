@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import cn from 'classnames'
 import { Text, View } from 'react-native'
 import ScrollView from '@/components/views/ScrollView'
@@ -22,11 +22,13 @@ import AlbumListing from '@/components/listings/AlbumListing'
 import Tabs from '@/components/tabs/Tabs'
 import TabsView from '@/components/tabs/TabsView'
 import LocationListing from '@/components/listings/LocationListing'
+import ImageGrid from '@/components/listings/ImageGrid'
 import Map from '@/components/Map'
 import { useColours } from '@/hooks/useTailwind'
 import { ButtonType, ButtonVariant } from '@/types/button'
 import { ImageInputSize } from '@/types/imageInput'
 import { IconSize } from '@/types/icon'
+import { ImageGridImage } from '@/types/imageGrid'
 import { AlertActionType } from '@/types/alert'
 import { MarkerSize } from '@/types/map'
 import AlbumImage1 from '@/assets/images/20230707_194027.jpg'
@@ -36,6 +38,10 @@ import LocationImage1 from '@/assets/images/batu-caves.png'
 import LocationImage2 from '@/assets/images/ha-long-bay.png'
 import LocationImage3 from '@/assets/images/golden-bridge.png'
 import LocationImage4 from '@/assets/images/angkor-wat.png'
+import ImageGridImage1 from '@/assets/images/talybont-res.jpeg'
+import ImageGridImage2 from '@/assets/images/fossil.jpeg'
+import ImageGridImage3 from '@/assets/images/mushroom.jpeg'
+import ImageGridImage4 from '@/assets/images/robin.jpeg'
 
 const LOCATION_LISTINGS = [
   {
@@ -60,14 +66,38 @@ const LOCATION_LISTINGS = [
   },
 ]
 
+const IMAGE_GRID_LISTING = [
+  {
+    title: 'Batu Caves',
+    url: ImageGridImage1,
+    id: 1,
+  },
+  {
+    title: 'Hạ Long Bay',
+    url: ImageGridImage2,
+    id: 2,
+  },
+  {
+    title: 'Golden Bridge',
+    url: ImageGridImage3,
+    id: 3,
+  },
+  {
+    title: 'Angkor Wat',
+    url: ImageGridImage4,
+    id: 4,
+  },
+] as ImageGridImage[]
+
 const ALBUM_IMAGES = [AlbumImage1, AlbumImage2, AlbumImage3]
 
 function ComponentLibraryScreen() {
-  const [showBottomSheet, setShowBottomSheet] = React.useState(false)
-  const [toggleValue, setToggleValue] = React.useState(false)
-  const [showAlert, setShowAlert] = React.useState(false)
-  const [showAlertTwo, setShowAlertTwo] = React.useState(false)
-  const [tabIndex, setTabIndex] = React.useState(0)
+  const [showBottomSheet, setShowBottomSheet] = useState(false)
+  const [toggleValue, setToggleValue] = useState(false)
+  const [showAlert, setShowAlert] = useState(false)
+  const [showAlertTwo, setShowAlertTwo] = useState(false)
+  const [tabIndex, setTabIndex] = useState(0)
+  const [selectedImages, onSelectedImagesChange] = useState<number[]>([])
 
   const colours = useColours()
 
@@ -453,6 +483,14 @@ function ComponentLibraryScreen() {
         <LocationListing locations={LOCATION_LISTINGS} />
       </Backdrop>
 
+      <Backdrop bgClass="bg-slate-900/80" fullWidth>
+        <ImageGrid
+          images={IMAGE_GRID_LISTING}
+          selectedItems={selectedImages}
+          onSelectedImagesChange={onSelectedImagesChange}
+        />
+      </Backdrop>
+
       <Text className="w-full my-6 font-bold text-center">Bottom sheets</Text>
       <Backdrop>
         <Button
@@ -486,16 +524,16 @@ function ComponentLibraryScreen() {
       <Backdrop bgClass="bg-tuatura" fullWidth>
         <TabsView value={tabIndex} onChange={setTabIndex}>
           <TabsView.Item>
-            <Text className="font-mont text-white">Tab one</Text>
+            <Text className="text-ghost font-mont">Tab one</Text>
           </TabsView.Item>
           <TabsView.Item>
-            <Text className="font-mont text-white">Tab two</Text>
-            <Text className="font-mont text-white">Tab two</Text>
+            <Text className="text-ghost font-mont">Tab two</Text>
+            <Text className="text-ghost font-mont">Tab two</Text>
           </TabsView.Item>
           <TabsView.Item>
-            <Text className="font-mont text-white">Tab three</Text>
-            <Text className="font-mont text-white">Tab three</Text>
-            <Text className="font-mont text-white">Tab three</Text>
+            <Text className="text-ghost font-mont">Tab three</Text>
+            <Text className="text-ghost font-mont">Tab three</Text>
+            <Text className="text-ghost font-mont">Tab three</Text>
           </TabsView.Item>
         </TabsView>
       </Backdrop>
