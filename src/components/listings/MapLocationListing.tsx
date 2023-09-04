@@ -4,7 +4,7 @@ import { MapLocationListingItem } from '@/types/location'
 
 interface MapLocationListingProps {
   locations: MapLocationListingItem[]
-  onPress: (event: MapLocationListingItem) => void
+  onPress: (location: MapLocationListingItem) => void
 }
 
 function MapLocationListing(props: MapLocationListingProps) {
