@@ -16,6 +16,7 @@ interface MapLocationListingProps {
 
 function MapLocationListing(props: MapLocationListingProps) {
   const { locations } = props
+
   return (
     <View className="flex flex-col items-center gap-2">
       {locations.map((location) => (

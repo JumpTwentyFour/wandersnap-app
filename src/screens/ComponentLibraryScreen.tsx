@@ -20,6 +20,7 @@ import FormHeaderTitle from '@/components/headers/formHeader/FormHeaderTitle'
 import FormHeaderButton from '@/components/headers/formHeader/FormHeaderButton'
 import AlbumListing from '@/components/listings/AlbumListing'
 import LocationListing from '@/components/listings/LocationListing'
+import MapLocationListing from '@/components/listings/MapLocationListing'
 import Map from '@/components/Map'
 import { useColours } from '@/hooks/useTailwind'
 import { ButtonType, ButtonVariant } from '@/types/button'
@@ -34,7 +35,6 @@ import LocationImage1 from '@/assets/images/batu-caves.png'
 import LocationImage2 from '@/assets/images/ha-long-bay.png'
 import LocationImage3 from '@/assets/images/golden-bridge.png'
 import LocationImage4 from '@/assets/images/angkor-wat.png'
-import MapLocationListing from '@/components/listings/MapLocationListing'
 
 const LOCATION_LISTINGS = [
   {
