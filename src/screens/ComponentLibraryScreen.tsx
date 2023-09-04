@@ -34,6 +34,7 @@ import LocationImage1 from '@/assets/images/batu-caves.png'
 import LocationImage2 from '@/assets/images/ha-long-bay.png'
 import LocationImage3 from '@/assets/images/golden-bridge.png'
 import LocationImage4 from '@/assets/images/angkor-wat.png'
+import MapLocationListing from '@/components/listings/MapLocationListing'
 
 const LOCATION_LISTINGS = [
   {
@@ -55,6 +56,25 @@ const LOCATION_LISTINGS = [
     name: 'Angkor Wat',
     imageUrl: LocationImage4,
     imageCount: 43,
+  },
+]
+
+const MAP_LOCATIONS_LISTINGS = [
+  {
+    name: 'Batu Caves',
+    imageUrl: LocationImage1,
+  },
+  {
+    name: 'Hạ Long Bay',
+    imageUrl: LocationImage2,
+  },
+  {
+    name: 'Golden Bridge',
+    imageUrl: LocationImage3,
+  },
+  {
+    name: 'Angkor Wat',
+    imageUrl: LocationImage4,
   },
 ]
 
@@ -448,6 +468,10 @@ function ComponentLibraryScreen() {
 
       <Backdrop bgClass="bg-slate-900/80" fullWidth>
         <LocationListing locations={LOCATION_LISTINGS} />
+      </Backdrop>
+
+      <Backdrop bgClass="bg-slate-900/80" fullWidth>
+        <MapLocationListing locations={MAP_LOCATIONS_LISTINGS} />
       </Backdrop>
 
       <Text className="w-full my-6 font-bold text-center">Bottom sheets</Text>
