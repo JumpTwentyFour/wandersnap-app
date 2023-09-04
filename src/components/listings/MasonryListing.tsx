@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { View, Dimensions, ImageSourcePropType } from 'react-native'
 import MasonryListItem from '@/components/listings/MasonryListItem'
 
@@ -7,10 +7,11 @@ interface MasonryListingProps {
 }
 
 function MasonryListing(props: MasonryListingProps) {
-  const [gridWidth, setGridWidth] = React.useState<number>(
+  const { images } = props
+
+  const [gridWidth, setGridWidth] = useState<number>(
     Dimensions.get('window').width,
   )
-  const { images } = props
 
   const [leftImages, rightImages] = useMemo(() => {
     return [
