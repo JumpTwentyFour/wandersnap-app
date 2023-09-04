@@ -1,3 +1,4 @@
+import React from 'react'
 import { ImageSourcePropType } from 'react-native'
 
 export interface ImageGridImage {
@@ -7,14 +8,13 @@ export interface ImageGridImage {
 }
 
 export interface ImageGridProps {
-  images: Array<ImageGridImage>
-  selectedImages: number[]
+  images: ImageGridImage[]
+  selectedItems: number[]
   onSelectedImagesChange: React.Dispatch<React.SetStateAction<number[]>>
 }
 
 export interface ImageGridItemProps {
   image: ImageGridImage
   isSelected: boolean
-  handleSelectedImages(images: Array<number>): void
-  selectedImages: number[]
+  handleSelectedImages: (imageId: number) => void
 }

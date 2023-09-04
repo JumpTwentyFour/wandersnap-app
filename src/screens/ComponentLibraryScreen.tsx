@@ -19,6 +19,8 @@ import FormHeader from '@/components/headers/formHeader/FormHeader'
 import FormHeaderTitle from '@/components/headers/formHeader/FormHeaderTitle'
 import FormHeaderButton from '@/components/headers/formHeader/FormHeaderButton'
 import AlbumListing from '@/components/listings/AlbumListing'
+import Tabs from '@/components/tabs/Tabs'
+import TabsView from '@/components/tabs/TabsView'
 import LocationListing from '@/components/listings/LocationListing'
 import ImageGrid from '@/components/listings/ImageGrid'
 import Map from '@/components/Map'
@@ -98,16 +100,17 @@ const MASONRY_LISTING_ITEMS = [
   AlbumImage3,
 ]
 
+const ALBUM_IMAGES = [AlbumImage1, AlbumImage2, AlbumImage3]
+
 function ComponentLibraryScreen() {
   const [showBottomSheet, setShowBottomSheet] = useState(false)
   const [toggleValue, setToggleValue] = useState(false)
   const [showAlert, setShowAlert] = useState(false)
   const [showAlertTwo, setShowAlertTwo] = useState(false)
-
+  const [tabIndex, setTabIndex] = useState(0)
   const [selectedImages, onSelectedImagesChange] = useState<number[]>([])
-  const colours = useColours()
 
-  const albumImages = [AlbumImage1, AlbumImage2, AlbumImage3]
+  const colours = useColours()
 
   return (
     <ScrollView className="mt-10">
@@ -481,7 +484,7 @@ function ComponentLibraryScreen() {
       <Backdrop bgClass="bg-slate-900/80" fullWidth>
         <AlbumListing
           title="South East Asia"
-          images={albumImages}
+          images={ALBUM_IMAGES}
           dateFrom={new Date('2020-02-23T00:00:00+0000')}
           dateTo={new Date('2020-04-09T00:00:00+0000')}
         />
@@ -494,7 +497,7 @@ function ComponentLibraryScreen() {
       <Backdrop bgClass="bg-slate-900/80" fullWidth>
         <ImageGrid
           images={IMAGE_GRID_LISTING}
-          selectedImages={selectedImages}
+          selectedItems={selectedImages}
           onSelectedImagesChange={onSelectedImagesChange}
         />
       </Backdrop>
@@ -525,7 +528,30 @@ function ComponentLibraryScreen() {
       </BottomSheet>
 
       <Text className="w-full my-6 font-bold text-center">Tabs</Text>
-      {/* develop tabs here */}
+      <Backdrop bgClass="bg-tuatura" fullWidth>
+        <Tabs value={tabIndex} onChange={setTabIndex}>
+          <Tabs.Item title="Tab one" />
+          <Tabs.Item title="Tab two" />
+          <Tabs.Item title="Tab three" />
+        </Tabs>
+      </Backdrop>
+
+      <Backdrop bgClass="bg-tuatura" fullWidth>
+        <TabsView value={tabIndex} onChange={setTabIndex}>
+          <TabsView.Item>
+            <Text className="text-ghost font-mont">Tab one</Text>
+          </TabsView.Item>
+          <TabsView.Item>
+            <Text className="text-ghost font-mont">Tab two</Text>
+            <Text className="text-ghost font-mont">Tab two</Text>
+          </TabsView.Item>
+          <TabsView.Item>
+            <Text className="text-ghost font-mont">Tab three</Text>
+            <Text className="text-ghost font-mont">Tab three</Text>
+            <Text className="text-ghost font-mont">Tab three</Text>
+          </TabsView.Item>
+        </TabsView>
+      </Backdrop>
 
       <Text className="w-full my-6 font-bold text-center">Overlay</Text>
       <Backdrop>
