@@ -1,5 +1,5 @@
 import React from 'react'
-import { View } from 'react-native'
+import { ImageURISource, View } from 'react-native'
 import MapView, { Marker, UrlTile, PROVIDER_GOOGLE } from 'react-native-maps'
 import { MapRegion, MapMarker } from '@/types/map'
 import MarkerImages from '@/assets/map'
@@ -17,7 +17,6 @@ function Map(props: Props) {
       <MapView
         provider={PROVIDER_GOOGLE}
         className="w-full h-full"
-        onRegionChange={(event) => console.log(event)}
         initialRegion={initialRegion}
       >
         {markers?.map((marker) => (
@@ -26,7 +25,7 @@ function Map(props: Props) {
             title={marker.title}
             description={marker.description}
             coordinate={marker.coordinate}
-            image={MarkerImages[marker.size]}
+            image={MarkerImages[marker.size] as ImageURISource}
           />
         ))}
         <UrlTile urlTemplate="http://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" />

@@ -14,21 +14,59 @@ import AuthHeader from '@/components/headers/AuthHeader'
 import DashboardHeader from '@/components/headers/DashboardHeader'
 import TripHeader from '@/components/headers/TripHeader'
 import BottomSheet from '@/components/BottomSheet'
-import { ButtonType, ButtonVariant } from '@/types/button'
+import Alert from '@/components/overlay/Alert'
 import FormHeader from '@/components/headers/formHeader/FormHeader'
 import FormHeaderTitle from '@/components/headers/formHeader/FormHeaderTitle'
 import FormHeaderButton from '@/components/headers/formHeader/FormHeaderButton'
+import AlbumListing from '@/components/listings/AlbumListing'
+import LocationListing from '@/components/listings/LocationListing'
 import Map from '@/components/Map'
 import { useColours } from '@/hooks/useTailwind'
+import { ButtonType, ButtonVariant } from '@/types/button'
 import { ImageInputSize } from '@/types/imageInput'
 import { IconSize } from '@/types/icon'
+import { AlertActionType } from '@/types/alert'
 import { MarkerSize } from '@/types/map'
+import AlbumImage1 from '@/assets/images/20230707_194027.jpg'
+import AlbumImage2 from '@/assets/images/20230707_210635.jpg'
+import AlbumImage3 from '@/assets/images/20230707_184730.jpg'
+import LocationImage1 from '@/assets/images/batu-caves.png'
+import LocationImage2 from '@/assets/images/ha-long-bay.png'
+import LocationImage3 from '@/assets/images/golden-bridge.png'
+import LocationImage4 from '@/assets/images/angkor-wat.png'
+
+const LOCATION_LISTINGS = [
+  {
+    name: 'Batu Caves',
+    imageUrl: LocationImage1,
+    imageCount: 121,
+  },
+  {
+    name: 'Hạ Long Bay',
+    imageUrl: LocationImage2,
+    imageCount: 121,
+  },
+  {
+    name: 'Golden Bridge',
+    imageUrl: LocationImage3,
+    imageCount: 43,
+  },
+  {
+    name: 'Angkor Wat',
+    imageUrl: LocationImage4,
+    imageCount: 43,
+  },
+]
 
 function ComponentLibraryScreen() {
   const [showBottomSheet, setShowBottomSheet] = React.useState(false)
   const [toggleValue, setToggleValue] = React.useState(false)
+  const [showAlert, setShowAlert] = React.useState(false)
+  const [showAlertTwo, setShowAlertTwo] = React.useState(false)
 
   const colours = useColours()
+
+  const albumImages = [AlbumImage1, AlbumImage2, AlbumImage3]
 
   return (
     <ScrollView className="mt-10">
@@ -399,7 +437,18 @@ function ComponentLibraryScreen() {
       </Backdrop>
 
       <Text className="w-full my-6 font-bold text-center">Listings</Text>
-      {/* develop listings here */}
+      <Backdrop bgClass="bg-slate-900/80" fullWidth>
+        <AlbumListing
+          title="South East Asia"
+          images={albumImages}
+          dateFrom={new Date('2020-02-23T00:00:00+0000')}
+          dateTo={new Date('2020-04-09T00:00:00+0000')}
+        />
+      </Backdrop>
+
+      <Backdrop bgClass="bg-slate-900/80" fullWidth>
+        <LocationListing locations={LOCATION_LISTINGS} />
+      </Backdrop>
 
       <Text className="w-full my-6 font-bold text-center">Bottom sheets</Text>
       <Backdrop>
@@ -426,7 +475,66 @@ function ComponentLibraryScreen() {
       {/* develop tabs here */}
 
       <Text className="w-full my-6 font-bold text-center">Overlay</Text>
-      {/* develop overlay here */}
+      <Backdrop>
+        <Button
+          label="Open alert"
+          variant={ButtonVariant.Primary}
+          type={ButtonType.Solid}
+          onPress={() => setShowAlert(!showAlert)}
+        />
+      </Backdrop>
+      <Alert
+        show={showAlert}
+        title="Incorrect email address"
+        message="The password you entered does not match our records. Please try again or reset your password."
+        footnote="These photos will be deleted from this location."
+        actions={[
+          {
+            text: 'Try again',
+            onPress: () => setShowAlert(false),
+          },
+          {
+            text: 'Reset password',
+            onPress: () => setShowAlert(false),
+          },
+        ]}
+        floatingActions={[
+          {
+            text: 'Cancel',
+            onPress: () => setShowAlert(false),
+            type: AlertActionType.DANGER,
+          },
+          {
+            text: 'Another thing',
+            onPress: () => setShowAlert(false),
+          },
+        ]}
+      />
+      <Backdrop>
+        <Button
+          label="Open another alert"
+          variant={ButtonVariant.Primary}
+          type={ButtonType.Solid}
+          onPress={() => setShowAlertTwo(!showAlertTwo)}
+        />
+      </Backdrop>
+      <Alert
+        show={showAlertTwo}
+        footnote="These photos will be deleted from this location."
+        actions={[
+          {
+            text: 'Delete 2 Photos',
+            type: AlertActionType.DANGER,
+            onPress: () => setShowAlertTwo(false),
+          },
+        ]}
+        floatingActions={[
+          {
+            text: 'Cancel',
+            onPress: () => setShowAlertTwo(false),
+          },
+        ]}
+      />
 
       <Text className="w-full my-6 font-bold text-center">Map</Text>
       <Backdrop bgClass="h-96">
