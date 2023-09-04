@@ -7,20 +7,17 @@ interface MasonryListItemProps {
   containerWidth: number
 }
 
+const BLUR_FALLBACK_HASH =
+  '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj['
+
+const IMG_HEIGHT_DEFAULT = 190
+
 function MasonryListItem(props: MasonryListItemProps) {
   const { image, containerWidth } = props
 
-  const blurhash =
-    '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj['
+  const [imgHeight, setImageHeight] = useState<number>(IMG_HEIGHT_DEFAULT)
 
-  const [imgHeight, setImageHeight] = useState<number>(190)
-
-  function handleImageHeight(source: {
-    url: string
-    width: number
-    height: number
-    mediaType: string | null
-  }) {
+  function handleImageHeight(source: { width: number; height: number }) {
     const aspectRatio = source.width / source.height
     const imgHeight = aspectRatio * containerWidth
     setImageHeight(imgHeight)
@@ -31,7 +28,7 @@ function MasonryListItem(props: MasonryListItemProps) {
       source={image}
       style={{ height: imgHeight }}
       className="flex w-full mb-2 bg-white rounded-xl"
-      placeholder={blurhash}
+      placeholder={BLUR_FALLBACK_HASH}
       contentFit="cover"
       onLoad={(e) => handleImageHeight(e.source)}
       contentPosition="center"

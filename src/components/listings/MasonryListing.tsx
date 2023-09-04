@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { View, Dimensions, ImageSourcePropType } from 'react-native'
-
 import MasonryListItem from '@/components/listings/MasonryListItem'
 
 interface MasonryListingProps {
@@ -8,36 +7,40 @@ interface MasonryListingProps {
 }
 
 function MasonryListing(props: MasonryListingProps) {
-  const { width } = Dimensions.get('window')
+  const [gridWidth, setGridWidth] = React.useState<number>(
+    Dimensions.get('window').width,
+  )
   const { images } = props
 
+  const [leftImages, rightImages] = useMemo(() => {
+    return [
+      images.filter((_, i) => i % 2 === 0),
+      images.filter((_, i) => i % 2 === 1),
+    ]
+  }, [images])
+
   return (
-    <View className="flex flex-row w-full">
+    <View
+      className="flex flex-row w-full"
+      onLayout={({ nativeEvent }) => setGridWidth(nativeEvent.layout.width)}
+    >
       <View className="flex flex-col w-1/2 pr-1">
-        {images.map((image, ix) => {
-          if (ix % 2 === 0) {
-            return (
-              <MasonryListItem
-                key={ix}
-                image={image}
-                containerWidth={width * 0.5}
-              />
-            )
-          }
-        })}
+        {leftImages.map((image, ix) => (
+          <MasonryListItem
+            key={ix}
+            image={image}
+            containerWidth={gridWidth * 0.5}
+          />
+        ))}
       </View>
       <View className="flex flex-col w-1/2 pl-1 ">
-        {images.map((image, ix) => {
-          if (ix % 2 !== 0) {
-            return (
-              <MasonryListItem
-                key={ix}
-                image={image}
-                containerWidth={width * 0.5}
-              />
-            )
-          }
-        })}
+        {rightImages.map((image, ix) => (
+          <MasonryListItem
+            key={ix}
+            image={image}
+            containerWidth={gridWidth * 0.5}
+          />
+        ))}
       </View>
     </View>
   )
