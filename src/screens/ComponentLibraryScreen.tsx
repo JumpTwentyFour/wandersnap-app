@@ -22,6 +22,7 @@ import AlbumListing from '@/components/listings/AlbumListing'
 import Tabs from '@/components/tabs/Tabs'
 import TabsView from '@/components/tabs/TabsView'
 import LocationListing from '@/components/listings/LocationListing'
+import MapLocationListing from '@/components/listings/MapLocationListing'
 import ImageGrid from '@/components/listings/ImageGrid'
 import Map from '@/components/Map'
 import { useColours } from '@/hooks/useTailwind'
@@ -63,6 +64,25 @@ const LOCATION_LISTINGS = [
     name: 'Angkor Wat',
     imageUrl: LocationImage4,
     imageCount: 43,
+  },
+]
+
+const MAP_LOCATIONS_LISTINGS = [
+  {
+    name: 'Batu Caves',
+    imageUrl: LocationImage1,
+  },
+  {
+    name: 'Hạ Long Bay',
+    imageUrl: LocationImage2,
+  },
+  {
+    name: 'Golden Bridge',
+    imageUrl: LocationImage3,
+  },
+  {
+    name: 'Angkor Wat',
+    imageUrl: LocationImage4,
   },
 ]
 
@@ -483,6 +503,12 @@ function ComponentLibraryScreen() {
         <LocationListing locations={LOCATION_LISTINGS} />
       </Backdrop>
 
+      <Backdrop bgClass="bg-slate-900/80" fullWidth>
+        <MapLocationListing
+          locations={MAP_LOCATIONS_LISTINGS}
+          onPress={() => console.log('location pressed')}
+        />
+      </Backdrop>
       <Backdrop bgClass="bg-slate-900/80" fullWidth>
         <ImageGrid
           images={IMAGE_GRID_LISTING}
