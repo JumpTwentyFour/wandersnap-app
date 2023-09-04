@@ -17,5 +17,4 @@ export interface ImageGridItemProps {
   image: ImageGridImage
   isSelected: boolean
   handleSelectedImages: (imageId: number) => void
-  selectedImages: number[]
 }

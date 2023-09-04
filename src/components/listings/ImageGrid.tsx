@@ -30,7 +30,6 @@ function ImageGrid(props: ImageGridProps) {
         <ImageGridItem
           key={image.id}
           image={image}
-          selectedImages={selectedImages}
           isSelected={selectedImages.includes(image.id)}
           handleSelectedImages={handleSelectedImages}
         />
