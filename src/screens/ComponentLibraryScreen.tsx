@@ -43,6 +43,7 @@ import ImageGridImage1 from '@/assets/images/talybont-res.jpeg'
 import ImageGridImage2 from '@/assets/images/fossil.jpeg'
 import ImageGridImage3 from '@/assets/images/mushroom.jpeg'
 import ImageGridImage4 from '@/assets/images/robin.jpeg'
+import MasonryListing from '@/components/listings/MasonryListing'
 
 const LOCATION_LISTINGS = [
   {
@@ -108,6 +109,16 @@ const IMAGE_GRID_LISTING = [
     id: 4,
   },
 ] as ImageGridImage[]
+
+const MASONRY_LISTING_ITEMS = [
+  ImageGridImage1,
+  ImageGridImage2,
+  ImageGridImage3,
+  ImageGridImage4,
+  AlbumImage1,
+  AlbumImage2,
+  AlbumImage3,
+]
 
 const ALBUM_IMAGES = [AlbumImage1, AlbumImage2, AlbumImage3]
 
@@ -515,6 +526,10 @@ function ComponentLibraryScreen() {
           selectedItems={selectedImages}
           onSelectedImagesChange={onSelectedImagesChange}
         />
+      </Backdrop>
+
+      <Backdrop bgClass="bg-slate-900/80" fullWidth>
+        <MasonryListing images={MASONRY_LISTING_ITEMS} />
       </Backdrop>
 
       <Text className="w-full my-6 font-bold text-center">Bottom sheets</Text>
