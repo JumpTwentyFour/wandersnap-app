@@ -44,6 +44,10 @@ import ImageGridImage2 from '@/assets/images/fossil.jpeg'
 import ImageGridImage3 from '@/assets/images/mushroom.jpeg'
 import ImageGridImage4 from '@/assets/images/robin.jpeg'
 import MasonryListing from '@/components/listings/MasonryListing'
+import Carousel from '@/components/carousel/Carousel'
+import CarouselView from '@/components/carousel/CarouselView'
+import CarouselText from '@/components/carousel/CarouselText'
+import CarouselTabs from '@/components/carousel/CarouselTabs'
 
 const LOCATION_LISTINGS = [
   {
@@ -128,6 +132,7 @@ function ComponentLibraryScreen() {
   const [showAlert, setShowAlert] = useState(false)
   const [showAlertTwo, setShowAlertTwo] = useState(false)
   const [tabIndex, setTabIndex] = useState(0)
+  const [carouselTabIndex, setCarouselTabIndex] = useState(0)
   const [selectedImages, onSelectedImagesChange] = useState<number[]>([])
 
   const colours = useColours()
@@ -668,6 +673,45 @@ function ComponentLibraryScreen() {
 
       <Text className="w-full my-6 font-bold text-center">Wizard</Text>
       {/* develop wizard here */}
+      <Carousel onChange={setCarouselTabIndex}>
+        <CarouselView value={carouselTabIndex} onChange={setCarouselTabIndex}>
+          <CarouselView.Item>
+            <Text>Slide 1</Text>
+          </CarouselView.Item>
+          <CarouselView.Item>
+            <Text>Slide 2</Text>
+          </CarouselView.Item>
+          <CarouselView.Item>
+            <Text>Slide 3</Text>
+          </CarouselView.Item>
+        </CarouselView>
+        <CarouselTabs value={carouselTabIndex} onChange={setCarouselTabIndex}>
+          <CarouselTabs.Item title="Tab one"></CarouselTabs.Item>
+          <CarouselTabs.Item title="Tab two"></CarouselTabs.Item>
+          <CarouselTabs.Item title="Tab three"></CarouselTabs.Item>
+        </CarouselTabs>
+        <CarouselText value={carouselTabIndex}>
+          <CarouselText.Tab
+            title="Create a trip"
+            body="Start by adding your trip name and date"
+            actionText={'Skip'}
+            onPress={() => console.log('Skip')}
+          ></CarouselText.Tab>
+          <CarouselText.Tab
+            title="Add your destinations"
+            body="Add the locations you visited on your trip"
+            actionText={'Skip'}
+            onPress={() => console.log('Skip')}
+          ></CarouselText.Tab>
+          <CarouselText.Tab
+            title="Upload your snaps"
+            body="Add and organise your snaps for your trips"
+            actionText={'Start wandering'}
+            onPress={() => console.log('Start wandering')}
+          ></CarouselText.Tab>
+        </CarouselText>
+      </Carousel>
+      <View className="pb-4"></View>
     </ScrollView>
   )
 }
