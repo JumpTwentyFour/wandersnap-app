@@ -12,6 +12,12 @@ function HomeScreen({ navigation }: Props) {
       </Text>
 
       <Pressable
+        onPress={() => navigation.navigate('Login')}
+        className="px-4 py-2 my-3 bg-green-400 rounded-md shadow drop-shadow"
+      >
+        <Text className="text-ghost">Go to Login</Text>
+      </Pressable>
+      <Pressable
         onPress={() => navigation.navigate('ComponentLibrary')}
         className="px-4 py-2 my-3 bg-green-400 rounded-md shadow drop-shadow"
       >
