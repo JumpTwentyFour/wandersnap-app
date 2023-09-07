@@ -18,8 +18,8 @@ function LoginScreen(props: Props) {
 
   return (
     <LinearGradient
-      colors={['#FF6978', '#7E5BFF']}
-      locations={[0, 0.28]}
+      colors={['#ae60cc', '#7E5BFF']}
+      locations={[0, 0.6]}
       className="w-full h-full px-5 pt-20 pb-12"
       style={{ flex: 1 }}
     >
@@ -37,10 +37,7 @@ function LoginScreen(props: Props) {
           <View>
             <TextInput placeholder="Password" type="password" />
           </View>
-          <View
-            className="flex flex-col self-stretch justify-between pt-5"
-            style={{ height: windowHeight * 0.28 }}
-          >
+          <View className="flex flex-col self-stretch justify-between pt-5">
             <View className="w-full mb-12">
               <Button
                 variant={ButtonVariant.Secondary}

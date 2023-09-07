@@ -23,8 +23,8 @@ function ForgottenPasswordScreen(props: Props) {
 
   return (
     <LinearGradient
-      colors={['#FF6978', '#7E5BFF']}
-      locations={[0, 0.28]}
+      colors={['#ae60cc', '#7E5BFF']}
+      locations={[0, 0.6]}
       className="w-full h-full px-5 pt-20 pb-12"
       style={{ flex: 1 }}
     >
