@@ -1,0 +1,58 @@
+import React from 'react'
+import { View, Text } from 'react-native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import Button from '@/components/pressables/Button'
+import { RootStackParamList } from '@/types/navigator'
+import { ButtonType, ButtonVariant } from '@/types/button'
+
+interface Step2Props {
+  navigation: NativeStackNavigationProp<
+    RootStackParamList,
+    'ForgotPassword',
+    undefined
+  >
+  setStep: React.Dispatch<React.SetStateAction<number>>
+  windowHeight: number
+}
+
+function Step2(props: Step2Props) {
+  const { navigation, windowHeight, setStep } = props
+  return (
+    <View
+      className="flex flex-col gap-5"
+      style={{ height: windowHeight * 0.5 }}
+    >
+      <Text className="text-3xl font-comfortaa text-ghost">
+        Reset password email sent
+      </Text>
+      <View>
+        <Text className="text-base font-mont-light text-ghost">
+          Please check your email and follow the link to reset your password.
+        </Text>
+      </View>
+      <View
+        className="flex flex-col self-stretch justify-between pt-5"
+        style={{ height: windowHeight * 0.28 }}
+      >
+        <View className="w-full mb-12">
+          <Button
+            onPress={() => setStep(2)}
+            variant={ButtonVariant.Secondary}
+            type={ButtonType.Solid}
+            label="Resend reset email"
+          />
+        </View>
+        <View className="flex flex-col justify-end w-full">
+          <Button
+            onPress={() => navigation.navigate('Login')}
+            variant={ButtonVariant.Secondary}
+            type={ButtonType.Outline}
+            label="Back to login"
+          />
+        </View>
+      </View>
+    </View>
+  )
+}
+
+export default Step2

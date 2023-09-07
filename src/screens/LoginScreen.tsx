@@ -5,12 +5,14 @@ import { ButtonType, ButtonVariant } from '@/types/button'
 import { SetupProps } from '@/types/props'
 import { LinearGradient } from 'expo-linear-gradient'
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Dimensions } from 'react-native'
 
 type Props = SetupProps<'Login'>
 
 function LoginScreen(props: Props) {
   const { navigation } = props
+
+  const windowHeight = Dimensions.get('window').height
 
   console.log(navigation)
 
@@ -24,7 +26,10 @@ function LoginScreen(props: Props) {
       <View className="flex flex-col justify-between h-full items">
         <AuthHeader />
         <View className="flex flex-col items-center justify-center"></View>
-        <View className="flex flex-col gap-5 h-[400px]">
+        <View
+          className="flex flex-col gap-5"
+          style={{ height: windowHeight * 0.5 }}
+        >
           <Text className="text-3xl font-comfortaa text-ghost">Log In</Text>
           <View>
             <TextInput placeholder="Email Address" />
@@ -32,7 +37,10 @@ function LoginScreen(props: Props) {
           <View>
             <TextInput placeholder="Password" type="password" />
           </View>
-          <View className="flex flex-col self-stretch justify-between pt-5">
+          <View
+            className="flex flex-col self-stretch justify-between pt-5"
+            style={{ height: windowHeight * 0.28 }}
+          >
             <View className="w-full mb-12">
               <Button
                 variant={ButtonVariant.Secondary}
@@ -40,6 +48,7 @@ function LoginScreen(props: Props) {
                 label="Log in"
               />
               <Button
+                onPress={() => navigation.navigate('ForgotPassword')}
                 variant={ButtonVariant.Secondary}
                 label="Forgotten password?"
               />
