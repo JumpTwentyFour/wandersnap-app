@@ -52,10 +52,7 @@ function Step3(props: Step3Props) {
           placeholder="Confirm password"
         />
       </View>
-      <View
-        className="flex flex-col self-stretch justify-between pt-5"
-        style={{ height: windowHeight * 0.275 }}
-      >
+      <View className="flex flex-col self-stretch justify-between pt-5">
         <View className="w-full mb-12">
           <Button
             onPress={() => setStep(3)}

@@ -34,10 +34,7 @@ function Step1(props: Step1Props) {
           placeholder="Email Address"
         />
       </View>
-      <View
-        className="flex flex-col self-stretch justify-between pt-5"
-        style={{ height: windowHeight * 0.34 }}
-      >
+      <View className="flex flex-col self-stretch justify-between pt-5">
         <View className="w-full mb-12">
           <Button
             onPress={() => setStep(1)}

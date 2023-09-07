@@ -30,10 +30,7 @@ function Step2(props: Step2Props) {
           Please check your email and follow the link to reset your password.
         </Text>
       </View>
-      <View
-        className="flex flex-col self-stretch justify-between pt-5"
-        style={{ height: windowHeight * 0.28 }}
-      >
+      <View className="flex flex-col self-stretch justify-between pt-5">
         <View className="w-full mb-12">
           <Button
             onPress={() => setStep(2)}
