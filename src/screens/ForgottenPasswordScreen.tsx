@@ -2,11 +2,11 @@ import React from 'react'
 import { View, Dimensions } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import AuthHeader from '@/components/headers/AuthHeader'
-import { SetupProps } from '@/types/props'
 import Step1 from '@/components/forgotPassword/Step1'
 import Step2 from '@/components/forgotPassword/Step2'
 import Step3 from '@/components/forgotPassword/Step3'
 import Step4 from '@/components/forgotPassword/Step4'
+import { SetupProps } from '@/types/props'
 
 type Props = SetupProps<'ForgotPassword'>
 
@@ -18,7 +18,6 @@ function ForgottenPasswordScreen(props: Props) {
   const [emailAddress, setEmailAddress] = React.useState('')
   const [newPassword, setNewPassword] = React.useState('')
   const [confirmPassword, setConfirmPassword] = React.useState('')
-
   const [step, setStep] = React.useState(0)
 
   return (
@@ -30,6 +29,7 @@ function ForgottenPasswordScreen(props: Props) {
     >
       <View className="flex flex-col justify-between h-full items">
         <AuthHeader />
+
         <View className="flex flex-col items-center justify-center"></View>
 
         {step === 0 ? (
@@ -63,5 +63,6 @@ function ForgottenPasswordScreen(props: Props) {
     </LinearGradient>
   )
 }
+
 ForgottenPasswordScreen.title = 'Forgotten Password'
 export default ForgottenPasswordScreen

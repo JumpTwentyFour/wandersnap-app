@@ -3,24 +3,12 @@ import { View, Text } from 'react-native'
 import TextInput from '@/components/inputs/TextInput'
 import Button from '@/components/pressables/Button'
 import { ButtonType, ButtonVariant } from '@/types/button'
-import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { RootStackParamList } from '@/types/navigator'
-
-interface Step1Props {
-  navigation: NativeStackNavigationProp<
-    RootStackParamList,
-    'ForgotPassword',
-    undefined
-  >
-  setEmailAddress: React.Dispatch<React.SetStateAction<string>>
-  setStep: React.Dispatch<React.SetStateAction<number>>
-  emailAddress: string
-  windowHeight: number
-}
+import { Step1Props } from '@/types/forgotPassword'
 
 function Step1(props: Step1Props) {
   const { navigation, setEmailAddress, setStep, emailAddress, windowHeight } =
     props
+
   return (
     <View
       className="flex flex-col gap-5"

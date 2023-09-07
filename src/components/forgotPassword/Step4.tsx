@@ -2,17 +2,7 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import Button from '../pressables/Button'
 import { ButtonType, ButtonVariant } from '@/types/button'
-import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { RootStackParamList } from '@/types/navigator'
-
-interface Step4Props {
-  windowHeight: number
-  navigation: NativeStackNavigationProp<
-    RootStackParamList,
-    'ForgotPassword',
-    undefined
-  >
-}
+import { Step4Props } from '@/types/forgotPassword'
 
 function Step4(props: Step4Props) {
   const { windowHeight, navigation } = props

@@ -2,23 +2,8 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import TextInput from '@/components/inputs/TextInput'
 import Button from '@/components/pressables/Button'
-import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { RootStackParamList } from '@/types/navigator'
 import { ButtonType, ButtonVariant } from '@/types/button'
-
-interface Step3Props {
-  navigation: NativeStackNavigationProp<
-    RootStackParamList,
-    'ForgotPassword',
-    undefined
-  >
-  setNewPassword: React.Dispatch<React.SetStateAction<string>>
-  newPassword: string
-  setConfirmPassword: React.Dispatch<React.SetStateAction<string>>
-  setStep: React.Dispatch<React.SetStateAction<number>>
-  confirmPassword: string
-  windowHeight: number
-}
+import { Step3Props } from '@/types/forgotPassword'
 
 function Step3(props: Step3Props) {
   const {

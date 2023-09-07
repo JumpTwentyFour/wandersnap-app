@@ -1,11 +1,11 @@
+import React from 'react'
+import { View, Text, Dimensions } from 'react-native'
+import { LinearGradient } from 'expo-linear-gradient'
 import AuthHeader from '@/components/headers/AuthHeader'
 import TextInput from '@/components/inputs/TextInput'
 import Button from '@/components/pressables/Button'
 import { ButtonType, ButtonVariant } from '@/types/button'
 import { SetupProps } from '@/types/props'
-import { LinearGradient } from 'expo-linear-gradient'
-import React from 'react'
-import { View, Text, Dimensions } from 'react-native'
 
 type Props = SetupProps<'Login'>
 
@@ -13,8 +13,6 @@ function LoginScreen(props: Props) {
   const { navigation } = props
 
   const windowHeight = Dimensions.get('window').height
-
-  console.log(navigation)
 
   return (
     <LinearGradient
