@@ -64,14 +64,14 @@ function Step3(props: Step3Props) {
             label="Reset password"
           />
         </View>
-        <View className="flex flex-col justify-end w-full">
-          <Button
-            onPress={() => navigation.navigate('Login')}
-            variant={ButtonVariant.Secondary}
-            type={ButtonType.Outline}
-            label="Back to login"
-          />
-        </View>
+      </View>
+      <View className="absolute bottom-0 left-0 w-full pr-5">
+        <Button
+          onPress={() => navigation.navigate('Login')}
+          variant={ButtonVariant.Secondary}
+          type={ButtonType.Outline}
+          label="Back to login"
+        />
       </View>
     </View>
   )

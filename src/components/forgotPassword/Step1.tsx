@@ -46,14 +46,14 @@ function Step1(props: Step1Props) {
             label="Send reset email"
           />
         </View>
-        <View className="flex flex-col justify-end w-full">
-          <Button
-            onPress={() => navigation.navigate('Login')}
-            variant={ButtonVariant.Secondary}
-            type={ButtonType.Outline}
-            label="Back to login"
-          />
-        </View>
+      </View>
+      <View className="absolute bottom-0 left-0 w-full pr-5">
+        <Button
+          onPress={() => navigation.navigate('Login')}
+          variant={ButtonVariant.Secondary}
+          type={ButtonType.Outline}
+          label="Back to login"
+        />
       </View>
     </View>
   )

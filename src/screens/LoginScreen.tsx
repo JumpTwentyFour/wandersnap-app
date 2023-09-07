@@ -53,13 +53,13 @@ function LoginScreen(props: Props) {
                 label="Forgotten password?"
               />
             </View>
-            <View className="flex flex-col justify-end w-full">
-              <Button
-                variant={ButtonVariant.Secondary}
-                type={ButtonType.Outline}
-                label="Create new account"
-              />
-            </View>
+          </View>
+          <View className="absolute bottom-0 left-0 w-full pr-5">
+            <Button
+              variant={ButtonVariant.Secondary}
+              type={ButtonType.Outline}
+              label="Create new account"
+            />
           </View>
         </View>
       </View>
