@@ -1,34 +1,31 @@
 import React from 'react'
 import { View, Text } from 'react-native'
-import TextInput from '@/components/inputs/TextInput'
 import Button from '@/components/pressables/Button'
 import { ButtonType, ButtonVariant } from '@/types/button'
-import { Step1Props } from '@/types/forgotPassword'
+import { ForgotPasswordSteps, StepSentEmailProps } from '@/types/forgotPassword'
 
-function Step1(props: Step1Props) {
-  const { navigation, setEmailAddress, setStep, emailAddress, windowHeight } =
-    props
-
+function StepSentEmail(props: StepSentEmailProps) {
+  const { navigation, windowHeight, setStep } = props
   return (
     <View
       className="flex flex-col gap-5"
       style={{ height: windowHeight * 0.5 }}
     >
-      <Text className="text-3xl font-comfortaa text-ghost">Reset Password</Text>
+      <Text className="text-3xl font-comfortaa text-ghost">
+        Reset password email sent
+      </Text>
       <View>
-        <TextInput
-          onChangeText={(text) => setEmailAddress(text)}
-          value={emailAddress}
-          placeholder="Email Address"
-        />
+        <Text className="text-base font-mont-light text-ghost">
+          Please check your email and follow the link to reset your password.
+        </Text>
       </View>
       <View className="flex flex-col self-stretch justify-between pt-5">
         <View className="w-full mb-12">
           <Button
-            onPress={() => setStep(1)}
+            onPress={() => setStep(ForgotPasswordSteps.UPDATE_PASSWORD)}
             variant={ButtonVariant.Secondary}
             type={ButtonType.Solid}
-            label="Send reset email"
+            label="Resend reset email"
           />
         </View>
       </View>
@@ -44,4 +41,4 @@ function Step1(props: Step1Props) {
   )
 }
 
-export default Step1
+export default StepSentEmail

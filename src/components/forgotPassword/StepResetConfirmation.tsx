@@ -2,9 +2,9 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import Button from '../pressables/Button'
 import { ButtonType, ButtonVariant } from '@/types/button'
-import { Step4Props } from '@/types/forgotPassword'
+import { StepResetConfirmationProps } from '@/types/forgotPassword'
 
-function Step4(props: Step4Props) {
+function StepResetConfirmation(props: StepResetConfirmationProps) {
   const { windowHeight, navigation } = props
   return (
     <View
@@ -32,4 +32,4 @@ function Step4(props: Step4Props) {
   )
 }
 
-export default Step4
+export default StepResetConfirmation

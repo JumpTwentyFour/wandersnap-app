@@ -3,9 +3,12 @@ import { View, Text } from 'react-native'
 import TextInput from '@/components/inputs/TextInput'
 import Button from '@/components/pressables/Button'
 import { ButtonType, ButtonVariant } from '@/types/button'
-import { Step3Props } from '@/types/forgotPassword'
+import {
+  ForgotPasswordSteps,
+  StepUpdatePasswordProps,
+} from '@/types/forgotPassword'
 
-function Step3(props: Step3Props) {
+function StepUpdatePassword(props: StepUpdatePasswordProps) {
   const {
     navigation,
     setNewPassword,
@@ -40,7 +43,7 @@ function Step3(props: Step3Props) {
       <View className="flex flex-col self-stretch justify-between pt-5">
         <View className="w-full mb-12">
           <Button
-            onPress={() => setStep(3)}
+            onPress={() => setStep(ForgotPasswordSteps.RESET_CONFIRMATION)}
             variant={ButtonVariant.Secondary}
             type={ButtonType.Solid}
             label="Reset password"
@@ -59,4 +62,4 @@ function Step3(props: Step3Props) {
   )
 }
 
-export default Step3
+export default StepUpdatePassword
