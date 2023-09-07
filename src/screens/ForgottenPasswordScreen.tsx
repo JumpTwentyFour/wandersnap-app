@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import { View, Dimensions } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import AuthHeader from '@/components/headers/AuthHeader'
@@ -9,6 +9,7 @@ import StepUpdatePassword from '@/components/forgotPassword/StepUpdatePassword'
 import StepResetConfirmation from '@/components/forgotPassword/StepResetConfirmation'
 import { SetupProps } from '@/types/props'
 import { ForgotPasswordSteps } from '@/types/forgotPassword'
+import { useColours } from '@/hooks/useTailwind'
 
 type Props = SetupProps<'ForgotPassword'>
 
@@ -16,11 +17,12 @@ function ForgottenPasswordScreen(props: Props) {
   const { navigation } = props
 
   const windowHeight = Dimensions.get('window').height
+  const colours = useColours()
 
-  const [emailAddress, setEmailAddress] = React.useState('')
-  const [newPassword, setNewPassword] = React.useState('')
-  const [confirmPassword, setConfirmPassword] = React.useState('')
-  const [step, setStep] = React.useState(0)
+  const [emailAddress, setEmailAddress] = useState('')
+  const [newPassword, setNewPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [step, setStep] = useState(0)
 
   const renderContent = useCallback(() => {
     switch (step) {
@@ -68,7 +70,7 @@ function ForgottenPasswordScreen(props: Props) {
 
   return (
     <LinearGradient
-      colors={['#ae60cc', '#7E5BFF']}
+      colors={[colours['helio-light'], colours.helio]}
       locations={[0, 0.6]}
       className="w-full h-full px-5 pt-20 pb-12"
       style={{ flex: 1 }}

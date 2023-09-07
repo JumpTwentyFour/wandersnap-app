@@ -6,6 +6,7 @@ import TextInput from '@/components/inputs/TextInput'
 import Button from '@/components/pressables/Button'
 import { ButtonType, ButtonVariant } from '@/types/button'
 import { SetupProps } from '@/types/props'
+import { useColours } from '@/hooks/useTailwind'
 
 type Props = SetupProps<'Login'>
 
@@ -13,10 +14,11 @@ function LoginScreen(props: Props) {
   const { navigation } = props
 
   const windowHeight = Dimensions.get('window').height
+  const colours = useColours()
 
   return (
     <LinearGradient
-      colors={['#ae60cc', '#7E5BFF']}
+      colors={[colours['helio-light'], colours.helio]}
       locations={[0, 0.6]}
       className="w-full h-full px-5 pt-20 pb-12"
       style={{ flex: 1 }}
