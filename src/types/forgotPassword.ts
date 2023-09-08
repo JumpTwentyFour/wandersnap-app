@@ -1,17 +1,4 @@
-import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { RootStackParamList } from '@/types/navigator'
-
-type Navigator = NativeStackNavigationProp<
-  RootStackParamList,
-  'ForgotPassword',
-  undefined
->
-
-export enum ButtonVariant {
-  Primary = 'primary',
-  Secondary = 'secondary',
-  Tertiary = 'tertiary',
-}
+import { Navigator } from '@/types/navigator'
 
 export enum ForgotPasswordSteps {
   SEND_EMAIL = 0,

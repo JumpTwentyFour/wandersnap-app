@@ -11,6 +11,7 @@ import HomeScreen from './src/screens/HomeScreen'
 import LoginScreen from './src/screens/LoginScreen'
 import ForgottenPassword from './src/screens/ForgottenPasswordScreen'
 import ComponentLibraryScreen from './src/screens/ComponentLibraryScreen'
+import CreateAccountScreen from './src/screens/CreateAccountScreen'
 
 import useOverlayStore from './src/stores/overlay'
 
@@ -50,6 +51,14 @@ export default function App() {
                 name="ForgotPassword"
                 component={ForgottenPassword}
                 options={{ title: ForgottenPassword.title, headerShown: false }}
+              />
+              <Stack.Screen
+                name="CreateAccount"
+                component={CreateAccountScreen}
+                options={{
+                  title: CreateAccountScreen.title,
+                  headerShown: false,
+                }}
               />
               <Stack.Screen
                 name="ComponentLibrary"
