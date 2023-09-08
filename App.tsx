@@ -8,6 +8,8 @@ import { PortalProvider } from '@gorhom/portal'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 import HomeScreen from './src/screens/HomeScreen'
+import LoginScreen from './src/screens/LoginScreen'
+import ForgottenPassword from './src/screens/ForgottenPasswordScreen'
 import ComponentLibraryScreen from './src/screens/ComponentLibraryScreen'
 
 import useOverlayStore from './src/stores/overlay'
@@ -38,6 +40,16 @@ export default function App() {
                 name="Home"
                 component={HomeScreen}
                 options={{ title: HomeScreen.title }}
+              />
+              <Stack.Screen
+                name="Login"
+                component={LoginScreen}
+                options={{ title: LoginScreen.title, headerShown: false }}
+              />
+              <Stack.Screen
+                name="ForgotPassword"
+                component={ForgottenPassword}
+                options={{ title: ForgottenPassword.title, headerShown: false }}
               />
               <Stack.Screen
                 name="ComponentLibrary"
