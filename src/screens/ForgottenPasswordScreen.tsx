@@ -70,8 +70,8 @@ function ForgottenPasswordScreen(props: Props) {
 
   return (
     <LinearGradient
-      colors={[colours['helio-light'], colours.helio]}
-      locations={[0, 0.6]}
+      colors={[colours.watermelon, colours.helio]}
+      start={{ x: 0, y: -1 }}
       className="w-full h-full px-5 pt-20 pb-12"
       style={{ flex: 1 }}
     >
