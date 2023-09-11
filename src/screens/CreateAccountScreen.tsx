@@ -6,6 +6,7 @@ import Button from '@/components/pressables/Button'
 import TextInput from '@/components/inputs/TextInput'
 import { ButtonType, ButtonVariant } from '@/types/button'
 import { SetupProps } from '@/types/props'
+import { useColours } from '@/hooks/useTailwind'
 
 type Props = SetupProps<'CreateAccount'>
 
@@ -13,11 +14,12 @@ function CreateAccountScreen(props: Props) {
   const { navigation } = props
 
   const windowHeight = Dimensions.get('window').height
+  const colours = useColours()
 
   return (
     <LinearGradient
-      colors={['#AE60CC', '#7E5BFF']}
-      locations={[0, 0.6]}
+      colors={[colours.watermelon, colours.helio]}
+      start={{ x: 0, y: -1 }}
       className="w-full h-full px-5 pt-20 pb-12"
       style={{ flex: 1 }}
     >

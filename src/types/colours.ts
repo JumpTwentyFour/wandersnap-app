@@ -6,7 +6,6 @@ export interface AppColours extends DefaultColors {
   tuatura: '#242423'
   watermelon: '#FF6978'
   helio: '#7E5BFF'
-  'helio-light': '#AE60CC'
   tickle: '#FF85AB'
   candy: '#FFC2E2'
   mauve: '#D4ABEF'

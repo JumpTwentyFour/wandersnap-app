@@ -9,6 +9,7 @@ import StepUpdatePassword from '@/components/forgotPassword/StepUpdatePassword'
 import StepResetConfirmation from '@/components/forgotPassword/StepResetConfirmation'
 import { SetupProps } from '@/types/props'
 import { ForgotPasswordSteps } from '@/types/forgotPassword'
+import { useColours } from '@/hooks/useTailwind'
 
 type Props = SetupProps<'ForgotPassword'>
 
@@ -16,6 +17,7 @@ function ForgottenPasswordScreen(props: Props) {
   const { navigation } = props
 
   const windowHeight = Dimensions.get('window').height
+  const colours = useColours()
 
   const [emailAddress, setEmailAddress] = useState('')
   const [newPassword, setNewPassword] = useState('')
@@ -68,8 +70,8 @@ function ForgottenPasswordScreen(props: Props) {
 
   return (
     <LinearGradient
-      colors={['#AE60CC', '#7E5BFF']}
-      locations={[0, 0.6]}
+      colors={[colours.watermelon, colours.helio]}
+      start={{ x: 0, y: -1 }}
       className="w-full h-full px-5 pt-20 pb-12"
       style={{ flex: 1 }}
     >
