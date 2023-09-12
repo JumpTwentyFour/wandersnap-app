@@ -7,6 +7,7 @@ import Button from '@/components/pressables/Button'
 import { ButtonType, ButtonVariant } from '@/types/button'
 import { SetupProps } from '@/types/props'
 import { useColours } from '@/hooks/useTailwind'
+import useAuthStore from '@/stores/auth'
 
 type Props = SetupProps<'Login'>
 
@@ -15,11 +16,25 @@ function LoginScreen(props: Props) {
 
   const windowHeight = Dimensions.get('window').height
   const colours = useColours()
+  const auth = useAuthStore()
+
+  const [userDetails, setUserDetails] = React.useState({
+    email: '',
+    password: '',
+  })
+
+  async function handleLogin() {
+    await auth.login({
+      email: userDetails.email,
+      password: userDetails.password,
+      deviceName: 'mobile',
+    })
+  }
 
   return (
     <LinearGradient
-      colors={[colours['helio-light'], colours.helio]}
-      locations={[0, 0.6]}
+      colors={[colours.watermelon, colours.helio]}
+      start={{ x: 0, y: -1 }}
       className="w-full h-full px-5 pt-20 pb-12"
       style={{ flex: 1 }}
     >
@@ -32,10 +47,27 @@ function LoginScreen(props: Props) {
         >
           <Text className="text-3xl font-comfortaa text-ghost">Log In</Text>
           <View>
-            <TextInput placeholder="Email Address" />
+            <TextInput
+              placeholder="Email Address"
+              onChangeText={(text) =>
+                setUserDetails({
+                  ...userDetails,
+                  email: text,
+                })
+              }
+            />
           </View>
           <View>
-            <TextInput placeholder="Password" type="password" />
+            <TextInput
+              placeholder="Password"
+              type="password"
+              onChangeText={(text) =>
+                setUserDetails({
+                  ...userDetails,
+                  password: text,
+                })
+              }
+            />
           </View>
           <View className="flex flex-col self-stretch justify-between pt-5">
             <View className="w-full mb-12">
@@ -43,6 +75,7 @@ function LoginScreen(props: Props) {
                 variant={ButtonVariant.Secondary}
                 type={ButtonType.Solid}
                 label="Log in"
+                onPress={handleLogin}
               />
               <Button
                 onPress={() => navigation.navigate('ForgotPassword')}
