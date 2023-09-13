@@ -6,6 +6,7 @@ export type RootStackParamList = {
   Home: undefined
   ComponentLibrary: undefined
   CreateAccount: undefined
+  Onboarding: undefined
 }
 
 export type Navigator = NativeStackNavigationProp<

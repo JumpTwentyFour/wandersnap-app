@@ -12,6 +12,7 @@ import LoginScreen from './src/screens/LoginScreen'
 import ForgottenPassword from './src/screens/ForgottenPasswordScreen'
 import ComponentLibraryScreen from './src/screens/ComponentLibraryScreen'
 import CreateAccountScreen from './src/screens/CreateAccountScreen'
+import OnboardingScreen from '@/screens/OnboardingScreen'
 
 import useOverlayStore from './src/stores/overlay'
 
@@ -57,6 +58,14 @@ export default function App() {
                 component={CreateAccountScreen}
                 options={{
                   title: CreateAccountScreen.title,
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name="Onboarding"
+                component={OnboardingScreen}
+                options={{
+                  title: OnboardingScreen.title,
                   headerShown: false,
                 }}
               />
