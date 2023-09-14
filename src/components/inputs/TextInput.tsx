@@ -35,7 +35,7 @@ function TextInput(props: Props, ref: Ref<NativeInput>) {
         placeholder={props.placeholder}
         placeholderTextColor="#f4f4f5"
         keyboardType={props.type === 'password' ? 'default' : props.type}
-        secureTextEntry={props.type === 'password' && showPassword}
+        secureTextEntry={props.type === 'password' && !showPassword}
         onFocus={props.onFocus}
         onBlur={props.onBlur}
         onChangeText={props.onChangeText}

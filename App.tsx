@@ -9,16 +9,18 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 import HomeScreen from './src/screens/HomeScreen'
 import LoginScreen from './src/screens/LoginScreen'
+import CreateAccountScreen from './src/screens/CreateAccountScreen'
 import ForgottenPassword from './src/screens/ForgottenPasswordScreen'
 import ComponentLibraryScreen from './src/screens/ComponentLibraryScreen'
-import CreateAccountScreen from './src/screens/CreateAccountScreen'
 
-import useOverlayStore from './src/stores/overlay'
+import useOverlayStore from '@/stores/overlay'
+import useAuthStore from '@/stores/auth'
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
 export default function App() {
   const overlay = useOverlayStore()
+  const auth = useAuthStore()
 
   const [loaded] = useFonts({
     'Montserrat-Regular': require('./assets/fonts/Montserrat-Regular.ttf'),
@@ -30,18 +32,15 @@ export default function App() {
     'Comfortaa-Bold': require('./assets/fonts/Comfortaa-Bold.ttf'),
   })
 
+  const authed = auth.authenticated && loaded
+
   return (
     <GestureHandlerRootView className="flex-1">
       <StatusBar hidden={!overlay.showStatusBar} animated />
       <PortalProvider>
         <NavigationContainer>
-          {loaded && (
+          {!authed && (
             <Stack.Navigator>
-              <Stack.Screen
-                name="Home"
-                component={HomeScreen}
-                options={{ title: HomeScreen.title }}
-              />
               <Stack.Screen
                 name="Login"
                 component={LoginScreen}
@@ -64,6 +63,16 @@ export default function App() {
                 name="ComponentLibrary"
                 component={ComponentLibraryScreen}
                 options={{ title: ComponentLibraryScreen.title }}
+              />
+            </Stack.Navigator>
+          )}
+
+          {authed && (
+            <Stack.Navigator>
+              <Stack.Screen
+                name="Home"
+                component={HomeScreen}
+                options={{ title: HomeScreen.title, headerShown: false }}
               />
             </Stack.Navigator>
           )}
