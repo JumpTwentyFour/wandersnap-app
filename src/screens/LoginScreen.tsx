@@ -86,6 +86,7 @@ function LoginScreen(props: Props) {
           </View>
           <View className="absolute bottom-0 left-0 w-full pr-5">
             <Button
+              onPress={() => navigation.navigate('CreateAccount')}
               variant={ButtonVariant.Secondary}
               type={ButtonType.Outline}
               label="Create new account"
