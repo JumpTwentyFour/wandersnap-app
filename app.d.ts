@@ -24,3 +24,5 @@ declare module '*.jpeg' {
   const value: ImageSourcePropType
   export default value
 }
+
+declare module '@env'
