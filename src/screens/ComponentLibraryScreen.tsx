@@ -124,6 +124,8 @@ const ALBUM_IMAGES = [AlbumImage1, AlbumImage2, AlbumImage3]
 
 function ComponentLibraryScreen() {
   const [showBottomSheet, setShowBottomSheet] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [snapPointIndex, setSnapPointIndex] = useState(0)
   const [toggleValue, setToggleValue] = useState(false)
   const [showAlert, setShowAlert] = useState(false)
   const [showAlertTwo, setShowAlertTwo] = useState(false)
@@ -541,7 +543,7 @@ function ComponentLibraryScreen() {
           onPress={() => setShowBottomSheet(!showBottomSheet)}
         />
       </Backdrop>
-      <BottomSheet open={showBottomSheet}>
+      <BottomSheet open={showBottomSheet} setSnapPointIndex={setSnapPointIndex}>
         <Text className="w-full my-6 font-bold text-center text-ghost">
           Bottom sheet ⚡️
         </Text>

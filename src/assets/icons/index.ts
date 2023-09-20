@@ -18,6 +18,7 @@ export const icons: IconMap = {
   PlusIcon: require('./plus.svg'),
   PlusCircleIcon: require('./plus-circle.svg'),
   MapIcon: require('./map.svg'),
+  MapPinIcon: require('./map-pin.svg'),
   GridIcon: require('./grid.svg'),
   UserIcon: require('./user.svg'),
   ImageIcon: require('./image.svg'),

@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
-import { ImageSourcePropType } from 'react-native'
+import { ImageSourcePropType, Pressable } from 'react-native'
 import { Image } from 'expo-image'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { RootStackParamList } from '@/types/navigator'
 
 interface MasonryListItemProps {
   image: ImageSourcePropType
   containerWidth: number
+  navigation?: NativeStackNavigationProp<RootStackParamList, 'Trip', undefined>
 }
 
 const BLUR_FALLBACK_HASH =
@@ -13,7 +16,7 @@ const BLUR_FALLBACK_HASH =
 const IMG_HEIGHT_DEFAULT = 190
 
 function MasonryListItem(props: MasonryListItemProps) {
-  const { image, containerWidth } = props
+  const { image, containerWidth, navigation } = props
 
   const [imgHeight, setImageHeight] = useState<number>(IMG_HEIGHT_DEFAULT)
 
@@ -24,15 +27,17 @@ function MasonryListItem(props: MasonryListItemProps) {
   }
 
   return (
-    <Image
-      source={image}
-      style={{ height: imgHeight }}
-      className="flex w-full mb-2 bg-white rounded-xl"
-      placeholder={BLUR_FALLBACK_HASH}
-      contentFit="cover"
-      onLoad={(e) => handleImageHeight(e.source)}
-      contentPosition="center"
-    />
+    <Pressable onPress={() => navigation?.navigate('Image', { image: image })}>
+      <Image
+        source={image}
+        style={{ height: imgHeight }}
+        className="flex w-full mb-2 bg-white rounded-xl"
+        placeholder={BLUR_FALLBACK_HASH}
+        contentFit="cover"
+        onLoad={(e) => handleImageHeight(e.source)}
+        contentPosition="center"
+      />
+    </Pressable>
   )
 }
 

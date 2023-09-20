@@ -23,6 +23,12 @@ function HomeScreen({ navigation }: Props) {
       >
         <Text className="text-ghost">Go to component library</Text>
       </Pressable>
+      <Pressable
+        onPress={() => navigation.navigate('Trip')}
+        className="px-4 py-2 my-3 bg-green-400 rounded-md shadow drop-shadow"
+      >
+        <Text className="text-ghost">Go to Trip Screen</Text>
+      </Pressable>
     </View>
   )
 }

@@ -1,13 +1,16 @@
 import React, { useMemo, useState } from 'react'
 import { View, Dimensions, ImageSourcePropType } from 'react-native'
 import MasonryListItem from '@/components/listings/MasonryListItem'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { RootStackParamList } from '@/types/navigator'
 
 interface MasonryListingProps {
   images: ImageSourcePropType[]
+  navigation?: NativeStackNavigationProp<RootStackParamList, 'Trip', undefined>
 }
 
 function MasonryListing(props: MasonryListingProps) {
-  const { images } = props
+  const { images, navigation } = props
 
   const [gridWidth, setGridWidth] = useState<number>(
     Dimensions.get('window').width,
@@ -29,6 +32,7 @@ function MasonryListing(props: MasonryListingProps) {
         {leftImages.map((image, ix) => (
           <MasonryListItem
             key={ix}
+            navigation={navigation}
             image={image}
             containerWidth={gridWidth * 0.5}
           />
@@ -39,6 +43,7 @@ function MasonryListing(props: MasonryListingProps) {
           <MasonryListItem
             key={ix}
             image={image}
+            navigation={navigation}
             containerWidth={gridWidth * 0.5}
           />
         ))}

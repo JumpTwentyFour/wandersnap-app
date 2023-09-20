@@ -1,4 +1,5 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { ImageSourcePropType } from 'react-native'
 
 export type RootStackParamList = {
   Login: undefined
@@ -6,6 +7,8 @@ export type RootStackParamList = {
   Home: undefined
   ComponentLibrary: undefined
   CreateAccount: undefined
+  Trip: undefined
+  Image: { image: ImageSourcePropType }
 }
 
 export type Navigator = NativeStackNavigationProp<

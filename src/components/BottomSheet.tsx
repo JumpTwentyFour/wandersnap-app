@@ -1,16 +1,19 @@
-import React, { useEffect, useMemo, useRef } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef } from 'react'
 import { View, ViewProps } from 'react-native'
-import { BlurView } from 'expo-blur'
 import { Portal } from '@gorhom/portal'
-import BSheet from '@gorhom/bottom-sheet'
+import BSheet, { BottomSheetView } from '@gorhom/bottom-sheet'
+import { useColours } from '@/hooks/useTailwind'
 
 interface Props {
   open?: boolean
   children: React.ReactNode
+  setSnapPointIndex: React.Dispatch<React.SetStateAction<number>>
 }
 
 function BottomSheet(props: Props) {
-  const { open, children } = props
+  const { open, children, setSnapPointIndex } = props
+
+  const colours = useColours()
 
   const sheetRef = useRef<BSheet>(null)
   const snapPoints = useMemo(() => ['10%', '70%'], [])
@@ -21,18 +24,32 @@ function BottomSheet(props: Props) {
     sheetRef.current?.close()
   }, [open])
 
+  const handleSheetChanges = useCallback((index: number) => {
+    setSnapPointIndex(index)
+  }, [])
+
   return (
     <Portal>
       <BSheet
         index={open ? 0 : -1}
         ref={sheetRef}
         snapPoints={snapPoints}
+        handleStyle={{
+          backgroundColor: colours.tuatura,
+        }}
+        handleIndicatorStyle={{
+          backgroundColor: colours.ghost,
+        }}
+        backgroundStyle={{
+          backgroundColor: colours.tuatura,
+        }}
         backgroundComponent={({ pointerEvents, style }) => (
           <Background pointerEvents={pointerEvents} style={style} />
         )}
+        onChange={handleSheetChanges}
         style={{ paddingHorizontal: 20, paddingVertical: 10 }}
       >
-        {children}
+        <BottomSheetView>{children}</BottomSheetView>
       </BSheet>
     </Portal>
   )
@@ -44,14 +61,14 @@ function Background(props: {
 }) {
   return (
     <View
-      className="rounded-3xl overflow-hidden relative"
+      className="relative overflow-hidden rounded-3xl"
       pointerEvents={props.pointerEvents}
       accessible={true}
       accessibilityRole="adjustable"
       accessibilityLabel="Bottom Sheet"
       style={[props.style]}
     >
-      <BlurView className="bg-tuatura/90 w-full h-full blur" />
+      <View className="w-full h-full bg-tuatura" />
     </View>
   )
 }
