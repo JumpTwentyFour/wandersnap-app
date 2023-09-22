@@ -86,16 +86,6 @@ export default function App() {
               />
             </Stack.Navigator>
           )}
-
-          {/* {authed && (
-            <Stack.Navigator>
-              <Stack.Screen
-                name="Home"
-                component={HomeScreen}
-                options={{ title: HomeScreen.title, headerShown: false }}
-              />
-            </Stack.Navigator>
-          )} */}
         </NavigationContainer>
       </PortalProvider>
     </GestureHandlerRootView>
