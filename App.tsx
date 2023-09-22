@@ -10,8 +10,10 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import HomeScreen from './src/screens/HomeScreen'
 import LoginScreen from './src/screens/LoginScreen'
 import CreateAccountScreen from './src/screens/CreateAccountScreen'
+import ImageScreen from './src/screens/ImageScreen'
 import ForgottenPassword from './src/screens/ForgottenPasswordScreen'
 import ComponentLibraryScreen from './src/screens/ComponentLibraryScreen'
+import TripScreen from './src/screens/TripScreen'
 
 import useOverlayStore from '@/stores/overlay'
 import useAuthStore from '@/stores/auth'
@@ -35,12 +37,22 @@ export default function App() {
   const authed = auth.authenticated && loaded
 
   return (
-    <GestureHandlerRootView className="flex-1">
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <StatusBar hidden={!overlay.showStatusBar} animated />
       <PortalProvider>
         <NavigationContainer>
-          {!authed && (
+          {!authed && loaded && (
             <Stack.Navigator>
+              <Stack.Screen
+                name="Home"
+                component={HomeScreen}
+                options={{ title: HomeScreen.title, headerShown: false }}
+              />
+              <Stack.Screen
+                name="Trip"
+                component={TripScreen}
+                options={{ title: TripScreen.title, headerShown: false }}
+              />
               <Stack.Screen
                 name="Login"
                 component={LoginScreen}
@@ -60,19 +72,17 @@ export default function App() {
                 }}
               />
               <Stack.Screen
+                name="Image"
+                component={ImageScreen}
+                options={{
+                  title: ImageScreen.title,
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
                 name="ComponentLibrary"
                 component={ComponentLibraryScreen}
                 options={{ title: ComponentLibraryScreen.title }}
-              />
-            </Stack.Navigator>
-          )}
-
-          {authed && (
-            <Stack.Navigator>
-              <Stack.Screen
-                name="Home"
-                component={HomeScreen}
-                options={{ title: HomeScreen.title, headerShown: false }}
               />
             </Stack.Navigator>
           )}

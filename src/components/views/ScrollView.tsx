@@ -1,10 +1,17 @@
 import React from 'react'
-import { ScrollView as NativeScrollView } from 'react-native'
+import {
+  LayoutChangeEvent,
+  ScrollView as NativeScrollView,
+  StyleProp,
+  ViewStyle,
+} from 'react-native'
 import { styled } from 'nativewind'
 
 interface Props {
   children: React.ReactNode
   className?: string
+  style?: StyleProp<ViewStyle>
+  handleLayout?: React.Dispatch<React.SetStateAction<number>>
 }
 
 const StyledScrollView = styled(NativeScrollView, {
@@ -14,9 +21,17 @@ const StyledScrollView = styled(NativeScrollView, {
 })
 
 function ScrollView(props: Props) {
-  const { children, className } = props
+  const { children, className, style } = props
 
-  return <StyledScrollView className={className}>{children}</StyledScrollView>
+  const layout = (e: LayoutChangeEvent) => {
+    props.handleLayout && props.handleLayout(e.nativeEvent.layout.width)
+  }
+
+  return (
+    <StyledScrollView onLayout={layout} className={className} style={style}>
+      {children}
+    </StyledScrollView>
+  )
 }
 
 export default ScrollView
