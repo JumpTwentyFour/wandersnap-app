@@ -7,6 +7,7 @@ export type RootStackParamList = {
   Home: undefined
   ComponentLibrary: undefined
   CreateAccount: undefined
+  Onboarding: undefined
   Trip: undefined
   Image: { image: ImageSourcePropType; location: string }
 }

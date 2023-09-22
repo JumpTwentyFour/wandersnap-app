@@ -42,6 +42,7 @@ function CreateAccountScreen(props: Props) {
           <View className="flex flex-col self-stretch justify-between pt-5">
             <View className="w-full mb-12">
               <Button
+                onPress={() => navigation.navigate('Onboarding')}
                 variant={ButtonVariant.Secondary}
                 type={ButtonType.Solid}
                 label="Create account"

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import cn from 'classnames'
-import { ImageSourcePropType, Text, View } from 'react-native'
+import { ImageSourcePropType, Dimensions, Text, View } from 'react-native'
 import ScrollView from '@/components/views/ScrollView'
 import TextInput from '@/components/inputs/TextInput'
 import SearchInput from '@/components/inputs/SearchInput'
@@ -44,6 +44,8 @@ import ImageGridImage2 from '@/assets/images/fossil.jpeg'
 import ImageGridImage3 from '@/assets/images/mushroom.jpeg'
 import ImageGridImage4 from '@/assets/images/robin.jpeg'
 import MasonryListing from '@/components/listings/MasonryListing'
+import Wizard from '@/components/wizard/Wizard'
+import { WizardItemType } from '@/types/wizard'
 import { SetupProps } from '@/types/props'
 
 const LOCATION_LISTINGS = [
@@ -123,6 +125,27 @@ const MASONRY_LISTING_ITEMS = [
 
 const ALBUM_IMAGES = [AlbumImage1, AlbumImage2, AlbumImage3]
 
+const WIZARD_ITEMS: Array<WizardItemType> = [
+  {
+    title: 'Create a trip',
+    body: 'Start by adding your trip name and date',
+    actionText: 'Skip',
+    imageUrl: ImageGridImage1,
+  },
+  {
+    title: 'Add your destinations',
+    body: 'Add the locations you visited on your trip',
+    actionText: 'Skip',
+    imageUrl: ImageGridImage2,
+  },
+  {
+    title: 'Upload your snaps',
+    body: 'Add and organise your snaps for your trips',
+    actionText: 'Start wandering',
+    imageUrl: ImageGridImage3,
+  },
+]
+
 function ComponentLibraryScreen({
   navigation,
 }: SetupProps<'ComponentLibrary'>) {
@@ -134,6 +157,7 @@ function ComponentLibraryScreen({
   const [showAlertTwo, setShowAlertTwo] = useState(false)
   const [tabIndex, setTabIndex] = useState(0)
   const [selectedImages, onSelectedImagesChange] = useState<number[]>([])
+  const [activeDotIndex, setActiveDotIndex] = React.useState<number>(0)
 
   const handleNavigateToImage = (img: ImageSourcePropType) => {
     setTimeout(() => {
@@ -681,7 +705,15 @@ function ComponentLibraryScreen({
       </Backdrop>
 
       <Text className="w-full my-6 font-bold text-center">Wizard</Text>
-      {/* develop wizard here */}
+
+      <Wizard
+        data={WIZARD_ITEMS}
+        height={Dimensions.get('window').height}
+        width={Dimensions.get('window').width}
+        activeDotIndex={activeDotIndex}
+        setActiveDotIndex={setActiveDotIndex}
+      />
+      <View className="pb-4"></View>
     </ScrollView>
   )
 }

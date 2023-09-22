@@ -10,6 +10,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import HomeScreen from './src/screens/HomeScreen'
 import LoginScreen from './src/screens/LoginScreen'
 import CreateAccountScreen from './src/screens/CreateAccountScreen'
+import OnboardingScreen from './src/screens/OnboardingScreen'
 import ImageScreen from './src/screens/ImageScreen'
 import ForgottenPassword from './src/screens/ForgottenPasswordScreen'
 import ComponentLibraryScreen from './src/screens/ComponentLibraryScreen'
@@ -68,6 +69,14 @@ export default function App() {
                 component={CreateAccountScreen}
                 options={{
                   title: CreateAccountScreen.title,
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name="Onboarding"
+                component={OnboardingScreen}
+                options={{
+                  title: OnboardingScreen.title,
                   headerShown: false,
                 }}
               />
