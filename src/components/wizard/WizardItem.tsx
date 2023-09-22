@@ -1,7 +1,8 @@
 import { WizardItemProps } from '@/types/wizard'
 import { LinearGradient } from 'expo-linear-gradient'
 import React from 'react'
-import { Pressable, View, Image, Text } from 'react-native'
+import { Pressable, View, Text } from 'react-native'
+import { Image } from 'expo-image'
 import { Pagination } from 'react-native-snap-carousel'
 
 function WizardItem(props: WizardItemProps) {
@@ -23,7 +24,7 @@ function WizardItem(props: WizardItemProps) {
           source={item.imageUrl}
           style={{ height: height * 0.6 }}
           className="w-full mb-5 bg-white shadow rounded-xl"
-          resizeMode="cover"
+          contentFit="cover"
         />
       </LinearGradient>
       <Pagination
