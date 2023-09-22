@@ -38,7 +38,7 @@ function ImageGridItem(props: ImageGridItemProps) {
     >
       <ImageBackground
         source={image.url}
-        className="flex flex-row items-end justify-end w-full h-full overflow-hidden bg-white shadow rounded-xl"
+        className="flex flex-row items-end justify-end w-full h-full overflow-hidden bg-white rounded-xl"
         resizeMode="cover"
       >
         {isSelected && (

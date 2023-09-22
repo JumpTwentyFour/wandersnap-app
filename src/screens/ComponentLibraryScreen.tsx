@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import cn from 'classnames'
-import { Dimensions, Text, View } from 'react-native'
+import { ImageSourcePropType, Dimensions, Text, View } from 'react-native'
 import ScrollView from '@/components/views/ScrollView'
 import TextInput from '@/components/inputs/TextInput'
 import SearchInput from '@/components/inputs/SearchInput'
@@ -46,6 +46,7 @@ import ImageGridImage4 from '@/assets/images/robin.jpeg'
 import MasonryListing from '@/components/listings/MasonryListing'
 import Wizard from '@/components/wizard/Wizard'
 import { WizardItemType } from '@/types/wizard'
+import { SetupProps } from '@/types/props'
 
 const LOCATION_LISTINGS = [
   {
@@ -145,14 +146,24 @@ const WIZARD_ITEMS: Array<WizardItemType> = [
   },
 ]
 
-function ComponentLibraryScreen() {
+function ComponentLibraryScreen({
+  navigation,
+}: SetupProps<'ComponentLibrary'>) {
   const [showBottomSheet, setShowBottomSheet] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [snapPointIndex, setSnapPointIndex] = useState(0)
   const [toggleValue, setToggleValue] = useState(false)
   const [showAlert, setShowAlert] = useState(false)
   const [showAlertTwo, setShowAlertTwo] = useState(false)
   const [tabIndex, setTabIndex] = useState(0)
   const [selectedImages, onSelectedImagesChange] = useState<number[]>([])
   const [activeDotIndex, setActiveDotIndex] = React.useState<number>(0)
+
+  const handleNavigateToImage = (img: ImageSourcePropType) => {
+    setTimeout(() => {
+      navigation.navigate('Image', { image: img, location: 'Angkor Wat' })
+    }, 500)
+  }
 
   const colours = useColours()
 
@@ -553,7 +564,10 @@ function ComponentLibraryScreen() {
       </Backdrop>
 
       <Backdrop bgClass="bg-slate-900/80" fullWidth>
-        <MasonryListing images={MASONRY_LISTING_ITEMS} />
+        <MasonryListing
+          images={MASONRY_LISTING_ITEMS}
+          handleNavigate={handleNavigateToImage}
+        />
       </Backdrop>
 
       <Text className="w-full my-6 font-bold text-center">Bottom sheets</Text>
@@ -565,7 +579,7 @@ function ComponentLibraryScreen() {
           onPress={() => setShowBottomSheet(!showBottomSheet)}
         />
       </Backdrop>
-      <BottomSheet open={showBottomSheet}>
+      <BottomSheet open={showBottomSheet} setSnapPointIndex={setSnapPointIndex}>
         <Text className="w-full my-6 font-bold text-center text-ghost">
           Bottom sheet ⚡️
         </Text>

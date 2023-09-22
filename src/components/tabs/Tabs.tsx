@@ -6,13 +6,14 @@ interface Props {
   value: number
   onChange: (value: number) => void
   children: React.ReactNode
+  className?: string
 }
 
 function Tabs(props: Props) {
-  const { value, onChange, children } = props
+  const { value, onChange, children, className } = props
 
   return (
-    <View className="flex flex-row justify-center gap-5 p-2">
+    <View className={cn(['flex flex-row justify-center gap-5 p-2', className])}>
       {React.Children.map(children, (child, index) => {
         if (!React.isValidElement(child)) return null
 
