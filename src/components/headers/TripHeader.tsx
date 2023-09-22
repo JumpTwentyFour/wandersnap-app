@@ -4,7 +4,12 @@ import { useNavigation } from '@react-navigation/native'
 import IconButton from '@/components/pressables/IconButton'
 import { IconSize } from '@/types/icon'
 
-function TripHeader() {
+type TripHeaderProps = {
+  handleNavigateBack?: () => void
+}
+
+function TripHeader(props: TripHeaderProps) {
+  const { handleNavigateBack } = props
   const navigation = useNavigation()
 
   return (
@@ -14,7 +19,9 @@ function TripHeader() {
         icon="ChevronLeftIcon"
         colour="#7E5BFF"
         bgClass="bg-gray-50"
-        onPress={() => navigation.goBack()}
+        onPress={() =>
+          handleNavigateBack ? handleNavigateBack() : navigation.goBack()
+        }
       />
       <IconButton
         size={IconSize.Small}

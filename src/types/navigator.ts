@@ -8,7 +8,7 @@ export type RootStackParamList = {
   ComponentLibrary: undefined
   CreateAccount: undefined
   Trip: undefined
-  Image: { image: ImageSourcePropType }
+  Image: { image: ImageSourcePropType; location: string }
 }
 
 export type Navigator = NativeStackNavigationProp<

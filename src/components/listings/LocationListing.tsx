@@ -1,6 +1,9 @@
 import React from 'react'
-import { View, Image, Text, Pressable } from 'react-native'
+import { Image } from 'expo-image'
+import { View, Text, Pressable } from 'react-native'
+
 import Icon from '@/components/Icon'
+
 import { IconSize } from '@/types/icon'
 import { useColours } from '@/hooks/useTailwind'
 import { LocationListItem } from '@/types/location'
@@ -25,6 +28,7 @@ function LocationListing(props: LocationListingProps) {
             >
               <Image
                 source={location.imageUrl}
+                contentFit="contain"
                 className="w-40 h-40 rounded-xl"
               />
               <View className="flex flex-row self-stretch justify-center my-2">

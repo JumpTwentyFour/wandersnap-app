@@ -6,7 +6,10 @@ type Props = SetupProps<'Home'>
 
 function HomeScreen({ navigation }: Props) {
   return (
-    <View className="flex items-center justify-center h-screen">
+    <View
+      style={{ flex: 1 }}
+      className="flex items-center justify-center h-screen"
+    >
       <Text className="w-1/2 mb-6 text-center">
         Hello, I am an example screen using a component!
       </Text>

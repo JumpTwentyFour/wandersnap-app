@@ -1,110 +1,137 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import { SetupProps } from '@/types/props'
-import { View, Text, ImageBackground, Dimensions } from 'react-native'
-import ImageGridImage2 from '@/assets/images/fossil.jpeg'
+import React, { useEffect, useState } from 'react'
+import {
+  View,
+  Text,
+  ImageBackground,
+  Dimensions,
+  ImageSourcePropType,
+  ActivityIndicator,
+} from 'react-native'
+import { BlurView } from 'expo-blur'
+import Animated, { useSharedValue, withSpring } from 'react-native-reanimated'
+import { ScrollView } from 'react-native-gesture-handler'
+
 import TripHeader from '@/components/headers/TripHeader'
 import BottomSheet from '@/components/BottomSheet'
 import Tabs from '@/components/tabs/Tabs'
 import TabsView from '@/components/tabs/TabsView'
 import Icon from '@/components/Icon'
-import { IconSize } from '@/types/icon'
-import { BlurView } from 'expo-blur'
-import ScrollView from '@/components/views/ScrollView'
+import Toggle from '@/components/pressables/Toggle'
+import LocationListing from '@/components/listings/LocationListing'
 import MasonryListing from '@/components/listings/MasonryListing'
+import Map from '@/components/Map'
+
+import { SetupProps } from '@/types/props'
+import { IconSize } from '@/types/icon'
+import { MarkerSize } from '@/types/map'
+
 import {
   LOCATION_LISTINGS,
   MASONRY_LISTING_ITEMS,
 } from '@/helper/tripsScreenHelper'
-import Toggle from '@/components/pressables/Toggle'
-import LocationListing from '@/components/listings/LocationListing'
-import Map from '@/components/Map'
-import { MarkerSize } from '@/types/map'
-import Animated, { useSharedValue, withSpring } from 'react-native-reanimated'
 
 type Props = SetupProps<'Trip'>
-
 function TripScreen(props: Props) {
   const { navigation } = props
-  const height = Dimensions.get('window').height
 
-  const topValueStyle = useSharedValue<number>(height * 0.3)
-
-  const [sheetOpen, setSheetOpen] = useState(false)
-
-  React.useEffect(
-    () => navigation.addListener('focus', () => setSheetOpen(true)),
-    [],
-  )
-
-  React.useEffect(
-    () => navigation.addListener('blur', () => setSheetOpen(false)),
-    [],
-  )
-
+  const [sheetOpen, setSheetOpen] = useState(true)
   const [tabIndex, setTabIndex] = useState(0)
   const [snapPointIndex, setSnapPointIndex] = useState(0)
   const [toggleValue, setToggleValue] = useState(false)
 
+  const [imageLoaded, setImageLoad] = useState(false)
+
+  const height = Dimensions.get('window').height
+  const topValueStyle = useSharedValue<number>(height * 0.3)
+
   useEffect(() => {
     topValueStyle.value = withSpring(
-      snapPointIndex == 0 ? height * 0.15 : height * 0.3,
+      snapPointIndex == 0 ? height * 0.3 : height * 0.15,
       {
         duration: 2000,
         stiffness: 100,
-        dampingRatio: 0.5,
+        dampingRatio: 0.6,
       },
     )
   }, [snapPointIndex])
 
-  const infoStlyes = useMemo(() => {
-    return {
-      top: topValueStyle.value,
-    }
-  }, [topValueStyle.value])
+  const handleNavigateToImage = (img: ImageSourcePropType) => {
+    setSheetOpen(false)
+    setTimeout(() => {
+      navigation.navigate('Image', { image: img, location: 'Angkor Wat' })
+    }, 500)
+  }
+
+  function handleNavigateBack() {
+    setSheetOpen(false)
+    setTimeout(() => {
+      navigation.goBack()
+    })
+  }
+
+  useEffect(() => navigation.addListener('focus', () => setSheetOpen(true)), [])
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <ImageBackground
-        source={ImageGridImage2}
+        source={MASONRY_LISTING_ITEMS[0]}
+        onLoad={() => setImageLoad(true)}
         style={{ height: height }}
-        className="relative flex w-full pt-16"
+        className="relative flex w-full pt-12"
         resizeMode="cover"
       >
-        <TripHeader />
-        <Animated.View style={infoStlyes} className="absolute w-full">
-          <BlurView
-            intensity={20}
-            tint="dark"
-            className="flex flex-col px-4 py-10"
+        {imageLoaded && sheetOpen ? (
+          <>
+            <TripHeader handleNavigateBack={handleNavigateBack} />
+            <Animated.View
+              style={{
+                top: 0,
+                transform: [{ translateY: topValueStyle }],
+              }}
+              className="absolute top-0 w-full transform"
+            >
+              <BlurView
+                intensity={20}
+                tint="dark"
+                className="flex flex-col px-4 py-10"
+              >
+                <Text className="text-3xl text-ghost font-comfortaa">
+                  South East Asia
+                </Text>
+                <Text className="text-xs text-ghost font-mont-medium">
+                  23 FEB 2020 - 9 APR 2020
+                </Text>
+                {snapPointIndex === 0 && (
+                  <View className="flex flex-row items-center gap-4 mt-1">
+                    <View className="flex flex-row items-center gap-1">
+                      <Icon
+                        name="MapPinIcon"
+                        size={IconSize.Small}
+                        colour="#fefefe"
+                      />
+                      <Text className="text-ghost">12 locations</Text>
+                    </View>
+                    <View className="flex flex-row items-center gap-1">
+                      <Icon
+                        name="ImageIcon"
+                        size={IconSize.Small}
+                        colour="#fefefe"
+                      />
+                      <Text className="text-ghost">121 photos</Text>
+                    </View>
+                  </View>
+                )}
+              </BlurView>
+            </Animated.View>
+          </>
+        ) : (
+          <View
+            className="flex flex-col items-center justify-center w-full"
+            style={{ height: height }}
           >
-            <Text className="text-3xl text-ghost font-comfortaa">
-              South East Asia
-            </Text>
-            <Text className="text-xs text-ghost font-mont-medium">
-              23 FEB 2020 - 9 APR 2020
-            </Text>
-            {snapPointIndex === 0 && (
-              <View className="flex flex-row items-center gap-4 mt-1">
-                <View className="flex flex-row items-center gap-1">
-                  <Icon
-                    name="MapPinIcon"
-                    size={IconSize.Small}
-                    colour="#fefefe"
-                  />
-                  <Text className="text-ghost">12 locations</Text>
-                </View>
-                <View className="flex flex-row items-center gap-1">
-                  <Icon
-                    name="ImageIcon"
-                    size={IconSize.Small}
-                    colour="#fefefe"
-                  />
-                  <Text className="text-ghost">121 photos</Text>
-                </View>
-              </View>
-            )}
-          </BlurView>
-        </Animated.View>
+            <ActivityIndicator size="large" color={'#9F85FF'} />
+          </View>
+        )}
         <BottomSheet open={sheetOpen} setSnapPointIndex={setSnapPointIndex}>
           <Tabs value={tabIndex} onChange={setTabIndex}>
             <Tabs.Item title="Snaps" />
@@ -116,11 +143,11 @@ function TripScreen(props: Props) {
               <ScrollView className="pb-6 " style={{ height: height * 0.58 }}>
                 <MasonryListing
                   images={MASONRY_LISTING_ITEMS}
-                  navigation={navigation}
+                  handleNavigate={handleNavigateToImage}
                 />
               </ScrollView>
             </TabsView.Item>
-            <TabsView.Item className="relative">
+            <TabsView.Item className="relative pt-8">
               <ScrollView
                 className="relative pb-6"
                 style={{ height: height * 0.58 }}

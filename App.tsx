@@ -37,7 +37,7 @@ export default function App() {
   const authed = auth.authenticated && loaded
 
   return (
-    <GestureHandlerRootView className="flex-1">
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <StatusBar hidden={!overlay.showStatusBar} animated />
       <PortalProvider>
         <NavigationContainer>
