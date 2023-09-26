@@ -1,10 +1,13 @@
 import React from 'react'
 import { Text, View, Pressable } from 'react-native'
 import { SetupProps } from '@/types/props'
+import useAuthStore from '@/stores/auth'
 
 type Props = SetupProps<'Home'>
 
 function HomeScreen({ navigation }: Props) {
+  const auth = useAuthStore()
+
   return (
     <View
       style={{ flex: 1 }}
@@ -31,6 +34,12 @@ function HomeScreen({ navigation }: Props) {
         className="px-4 py-2 my-3 bg-green-400 rounded-md shadow drop-shadow"
       >
         <Text className="text-ghost">Go to Trip Screen</Text>
+      </Pressable>
+      <Pressable
+        onPress={() => auth.logout()}
+        className="px-4 py-2 my-3 bg-green-400 rounded-md shadow drop-shadow"
+      >
+        <Text className="text-ghost">Logout</Text>
       </Pressable>
     </View>
   )

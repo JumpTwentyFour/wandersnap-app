@@ -3,6 +3,11 @@ import { devtools, persist } from 'zustand/middleware'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { API_URL } from '@env'
 
+type AuthResponse = {
+  success: boolean
+  message: string
+  errors?: { [key: string]: string }
+}
 interface AuthState {
   authenticated: boolean
   user?: {
@@ -11,8 +16,9 @@ interface AuthState {
     email: string
   }
 
-  login: (content: LoginContent) => void
-  register: (content: RegisterContent) => void
+  login: (content: LoginContent) => Promise<AuthResponse>
+  register: (content: RegisterContent) => Promise<AuthResponse>
+  logout(): Promise<void>
 }
 
 interface LoginContent {
@@ -31,19 +37,15 @@ interface RegisterContent {
 type Set<T> = StoreApi<T>['setState']
 
 const store = (set: Set<AuthState>): AuthState => {
-  async function login(content: LoginContent) {
+  async function login(content: LoginContent): Promise<AuthResponse> {
     const { email, password, deviceName } = content
-
-    if (!email || !password || !deviceName) {
-      console.log('email, password, deviceName is required')
-      return
-    }
 
     try {
       const response = await fetch(`${API_URL}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
         body: JSON.stringify({
           email,
@@ -56,29 +58,43 @@ const store = (set: Set<AuthState>): AuthState => {
 
       console.log(data)
 
-      set({
-        authenticated: true,
-      })
+      if (response.ok) {
+        AsyncStorage.setItem('token', data.token)
+        set({
+          authenticated: true,
+        })
+
+        return {
+          success: true,
+          message: data.message,
+        }
+      } else {
+        return {
+          success: false,
+          errors: data.errors,
+          message: data.message,
+        }
+      }
     } catch (error) {
       set({
         authenticated: false,
       })
+      return {
+        success: false,
+        message: 'An error occurred while logging in',
+      }
     }
   }
 
-  async function register(content: RegisterContent) {
+  async function register(content: RegisterContent): Promise<AuthResponse> {
     const { name, email, password, deviceName } = content
-
-    if (!name || !email || !password || !deviceName) {
-      console.log('name, email, password, deviceName is required')
-      return
-    }
 
     try {
       const response = await fetch(`${API_URL}/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
         body: JSON.stringify({
           name,
@@ -90,16 +106,32 @@ const store = (set: Set<AuthState>): AuthState => {
 
       const data = await response.json()
 
-      console.log(data)
-
-      set({
-        authenticated: true,
-      })
+      if (response.ok) {
+        AsyncStorage.setItem('token', data.token)
+        set({
+          authenticated: true,
+        })
+        return { success: true, message: data.message }
+      } else {
+        return { success: false, message: data.message, errors: data.errors }
+      }
     } catch (error) {
       set({
         authenticated: false,
       })
+
+      return {
+        success: false,
+        message: 'Invalid credentials',
+      }
     }
+  }
+  async function logout() {
+    await AsyncStorage.removeItem('token').then(() => {
+      set({
+        authenticated: false,
+      })
+    })
   }
 
   return {
@@ -108,6 +140,7 @@ const store = (set: Set<AuthState>): AuthState => {
 
     login,
     register,
+    logout,
   }
 }
 

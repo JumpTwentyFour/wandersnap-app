@@ -7,14 +7,51 @@ import TextInput from '@/components/inputs/TextInput'
 import { ButtonType, ButtonVariant } from '@/types/button'
 import { SetupProps } from '@/types/props'
 import { useColours } from '@/hooks/useTailwind'
+import useAuthStore from '@/stores/auth'
 
 type Props = SetupProps<'CreateAccount'>
 
+const DEFAULT_FORM = {
+  name: '',
+  email: '',
+  password: '',
+  deviceName: 'string',
+}
 function CreateAccountScreen(props: Props) {
   const { navigation } = props
 
+  const auth = useAuthStore()
+
   const windowHeight = Dimensions.get('window').height
   const colours = useColours()
+
+  const [form, setForm] = React.useState(DEFAULT_FORM)
+
+  const [errors, setErrors] = React.useState<{ [key: string]: string }>({
+    name: '',
+    email: '',
+    password: '',
+  })
+
+  function clearForm() {
+    setForm(DEFAULT_FORM)
+    setErrors({
+      name: '',
+      email: '',
+      password: '',
+    })
+  }
+
+  async function handleCreateAccount() {
+    await auth.register(form).then((res) => {
+      if (res.success) {
+        clearForm()
+        navigation.navigate('Onboarding')
+      } else {
+        setErrors(res.errors || {})
+      }
+    })
+  }
 
   return (
     <LinearGradient
@@ -28,21 +65,43 @@ function CreateAccountScreen(props: Props) {
         <View className="flex flex-col items-center justify-centser"></View>
         <View
           className="flex flex-col gap-5"
-          style={{ height: windowHeight * 0.5 }}
+          style={{ height: windowHeight * 0.52 }}
         >
           <Text className="text-3xl font-comfortaa text-ghost">
             Create new account
           </Text>
           <View>
-            <TextInput placeholder="Email Address" />
+            <TextInput
+              onChangeText={(text) => setForm({ ...form, name: text })}
+              placeholder="Name"
+            />
+            {errors.name && (
+              <Text className="mt-1 ml-1 text-ghost">{errors.name}</Text>
+            )}
           </View>
           <View>
-            <TextInput placeholder="Password" type="password" />
+            <TextInput
+              onChangeText={(text) => setForm({ ...form, email: text })}
+              placeholder="Email Address"
+            />
+            {errors.email && (
+              <Text className="mt-1 ml-1 text-ghost">{errors.email}</Text>
+            )}
+          </View>
+          <View>
+            <TextInput
+              onChangeText={(text) => setForm({ ...form, password: text })}
+              placeholder="Password"
+              type="password"
+            />
+            {errors.password && (
+              <Text className="mt-1 ml-1 text-ghost">{errors.password}</Text>
+            )}
           </View>
           <View className="flex flex-col self-stretch justify-between pt-5">
             <View className="w-full mb-12">
               <Button
-                onPress={() => navigation.navigate('Onboarding')}
+                onPress={() => handleCreateAccount()}
                 variant={ButtonVariant.Secondary}
                 type={ButtonType.Solid}
                 label="Create account"

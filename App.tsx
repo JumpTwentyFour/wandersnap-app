@@ -42,18 +42,43 @@ export default function App() {
       <StatusBar hidden={!overlay.showStatusBar} animated />
       <PortalProvider>
         <NavigationContainer>
-          {!authed && loaded && (
+          {loaded && (
             <Stack.Navigator>
-              <Stack.Screen
-                name="Home"
-                component={HomeScreen}
-                options={{ title: HomeScreen.title, headerShown: false }}
-              />
-              <Stack.Screen
-                name="Trip"
-                component={TripScreen}
-                options={{ title: TripScreen.title, headerShown: false }}
-              />
+              {authed && (
+                <>
+                  <Stack.Screen
+                    name="Home"
+                    component={HomeScreen}
+                    options={{ title: HomeScreen.title, headerShown: false }}
+                  />
+                  <Stack.Screen
+                    name="Trip"
+                    component={TripScreen}
+                    options={{ title: TripScreen.title, headerShown: false }}
+                  />
+                  <Stack.Screen
+                    name="Onboarding"
+                    component={OnboardingScreen}
+                    options={{
+                      title: OnboardingScreen.title,
+                      headerShown: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name="Image"
+                    component={ImageScreen}
+                    options={{
+                      title: ImageScreen.title,
+                      headerShown: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name="ComponentLibrary"
+                    component={ComponentLibraryScreen}
+                    options={{ title: ComponentLibraryScreen.title }}
+                  />
+                </>
+              )}
               <Stack.Screen
                 name="Login"
                 component={LoginScreen}
@@ -71,27 +96,6 @@ export default function App() {
                   title: CreateAccountScreen.title,
                   headerShown: false,
                 }}
-              />
-              <Stack.Screen
-                name="Onboarding"
-                component={OnboardingScreen}
-                options={{
-                  title: OnboardingScreen.title,
-                  headerShown: false,
-                }}
-              />
-              <Stack.Screen
-                name="Image"
-                component={ImageScreen}
-                options={{
-                  title: ImageScreen.title,
-                  headerShown: false,
-                }}
-              />
-              <Stack.Screen
-                name="ComponentLibrary"
-                component={ComponentLibraryScreen}
-                options={{ title: ComponentLibraryScreen.title }}
               />
             </Stack.Navigator>
           )}
