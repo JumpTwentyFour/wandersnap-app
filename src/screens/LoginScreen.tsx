@@ -11,6 +11,11 @@ import useAuthStore from '@/stores/auth'
 
 type Props = SetupProps<'Login'>
 
+const DEFAULT_FORM = {
+  email: '',
+  password: '',
+}
+
 function LoginScreen(props: Props) {
   const { navigation } = props
 
@@ -18,17 +23,31 @@ function LoginScreen(props: Props) {
   const colours = useColours()
   const auth = useAuthStore()
 
-  const [userDetails, setUserDetails] = React.useState({
-    email: '',
-    password: '',
-  })
+  const [userDetails, setUserDetails] = React.useState(DEFAULT_FORM)
+
+  const [errors, setErrors] = React.useState<{ [key: string]: string }>({})
+
+  function clearForm() {
+    setUserDetails(DEFAULT_FORM)
+    setErrors({})
+  }
 
   async function handleLogin() {
-    await auth.login({
-      email: userDetails.email,
-      password: userDetails.password,
-      deviceName: 'mobile',
-    })
+    await auth
+      .login({
+        email: userDetails.email,
+        password: userDetails.password,
+        deviceName: 'mobile',
+      })
+      .then((res) => {
+        if (res.success) {
+          clearForm()
+          navigation.navigate('Home')
+        } else {
+          setErrors(res.errors || {})
+          console.log(res.success)
+        }
+      })
   }
 
   return (
@@ -48,6 +67,7 @@ function LoginScreen(props: Props) {
           <Text className="text-3xl font-comfortaa text-ghost">Log In</Text>
           <View>
             <TextInput
+              value={userDetails.email}
               placeholder="Email Address"
               onChangeText={(text) =>
                 setUserDetails({
@@ -59,6 +79,7 @@ function LoginScreen(props: Props) {
           </View>
           <View>
             <TextInput
+              value={userDetails.password}
               placeholder="Password"
               type="password"
               onChangeText={(text) =>
@@ -68,6 +89,9 @@ function LoginScreen(props: Props) {
                 })
               }
             />
+            {errors?.email && (
+              <Text className="text-white">{errors.email}</Text>
+            )}
           </View>
           <View className="flex flex-col self-stretch justify-between pt-5">
             <View className="w-full mb-12">
