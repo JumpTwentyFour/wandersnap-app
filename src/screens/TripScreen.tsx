@@ -29,10 +29,12 @@ import {
   LOCATION_LISTINGS,
   MASONRY_LISTING_ITEMS,
 } from '@/helper/tripsScreenHelper'
+import useTripStore from '@/stores/trip'
 
 type Props = SetupProps<'Trip'>
 function TripScreen(props: Props) {
   const { navigation } = props
+  const { trip } = useTripStore()
 
   const [sheetOpen, setSheetOpen] = useState(true)
   const [tabIndex, setTabIndex] = useState(0)
@@ -74,7 +76,7 @@ function TripScreen(props: Props) {
   return (
     <View style={{ flex: 1 }}>
       <ImageBackground
-        source={MASONRY_LISTING_ITEMS[0]}
+        source={trip.images[0] || MASONRY_LISTING_ITEMS[0]}
         onLoad={() => setImageLoad(true)}
         style={{ height: height }}
         className="relative flex w-full pt-12"
@@ -96,10 +98,12 @@ function TripScreen(props: Props) {
                 className="flex flex-col px-4 py-10"
               >
                 <Text className="text-3xl text-ghost font-comfortaa">
-                  South East Asia
+                  {trip.title || 'South East Asia'}
                 </Text>
                 <Text className="text-xs text-ghost font-mont-medium">
-                  23 FEB 2020 - 9 APR 2020
+                  {(trip.dateFrom || '23 FEB 2020') +
+                    ' - ' +
+                    (trip.dateTo || '9 APR 2020')}
                 </Text>
                 {snapPointIndex === 0 && (
                   <View className="flex flex-row items-center gap-4 mt-1">
@@ -142,7 +146,7 @@ function TripScreen(props: Props) {
             <TabsView.Item className="pt-8">
               <ScrollView className="pb-6 " style={{ height: height * 0.58 }}>
                 <MasonryListing
-                  images={MASONRY_LISTING_ITEMS}
+                  images={trip.images || MASONRY_LISTING_ITEMS}
                   handleNavigate={handleNavigateToImage}
                 />
               </ScrollView>
@@ -153,6 +157,7 @@ function TripScreen(props: Props) {
                 style={{ height: height * 0.58 }}
               >
                 {!toggleValue ? (
+                  // TODO: Pass Locations with Trip data from tripStore when API is implemented
                   <LocationListing locations={LOCATION_LISTINGS} />
                 ) : (
                   <View style={{ height: height * 0.58 }}>

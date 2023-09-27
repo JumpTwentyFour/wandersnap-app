@@ -14,10 +14,13 @@ import OnboardingScreen from './src/screens/OnboardingScreen'
 import ImageScreen from './src/screens/ImageScreen'
 import ForgottenPassword from './src/screens/ForgottenPasswordScreen'
 import ComponentLibraryScreen from './src/screens/ComponentLibraryScreen'
+import TripDashboardScreen from './src/screens/TripDashboardScreen'
 import TripScreen from './src/screens/TripScreen'
+import TripCreateScreen from './src/screens/TripCreateScreen'
 
 import useOverlayStore from '@/stores/overlay'
 import useAuthStore from '@/stores/auth'
+import AccountScreen from '@/screens/AccountScreen'
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
@@ -52,6 +55,11 @@ export default function App() {
                     options={{ title: HomeScreen.title, headerShown: false }}
                   />
                   <Stack.Screen
+                    name="Account"
+                    component={AccountScreen}
+                    options={{ title: AccountScreen.title, headerShown: false }}
+                  />
+                  <Stack.Screen
                     name="Trip"
                     component={TripScreen}
                     options={{ title: TripScreen.title, headerShown: false }}
@@ -76,6 +84,19 @@ export default function App() {
                     name="ComponentLibrary"
                     component={ComponentLibraryScreen}
                     options={{ title: ComponentLibraryScreen.title }}
+                  />
+                  <Stack.Screen
+                    name="TripDashboard"
+                    component={TripDashboardScreen}
+                    options={{
+                      title: TripDashboardScreen.title,
+                      headerShown: false,
+                    }}
+                  />
+                  <Stack.Screen
+                    name="TripCreate"
+                    component={TripCreateScreen}
+                    options={{ title: TripCreateScreen.title }}
                   />
                 </>
               )}

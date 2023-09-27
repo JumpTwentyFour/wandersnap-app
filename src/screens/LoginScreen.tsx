@@ -42,7 +42,7 @@ function LoginScreen(props: Props) {
       .then((res) => {
         if (res.success) {
           clearForm()
-          navigation.navigate('Home')
+          navigation.navigate('TripDashboard')
         } else {
           setErrors(res.errors || {})
           console.log(res.success)

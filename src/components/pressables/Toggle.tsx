@@ -44,7 +44,7 @@ function Toggle(props: Props) {
 
   return (
     <Pressable
-      className="flex flex-row p-1 rounded-lg h-9 bg-tropical-indigo/25 space-around"
+      className="flex flex-row p-1 rounded-lg h-9 bg-tropical-indigo space-around"
       onPress={handleChange}
     >
       {options.map((option, ix) => (

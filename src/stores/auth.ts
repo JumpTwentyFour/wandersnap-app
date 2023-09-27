@@ -1,5 +1,5 @@
 import { StoreApi, create } from 'zustand'
-import { devtools, persist } from 'zustand/middleware'
+import { createJSONStorage, devtools, persist } from 'zustand/middleware'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { API_URL } from '@env'
 
@@ -148,7 +148,7 @@ const useAuthStore = create<AuthState>()(
   devtools(
     persist(store, {
       name: 'auth-store',
-      getStorage: () => AsyncStorage,
+      storage: createJSONStorage(() => AsyncStorage),
     }),
   ),
 )
