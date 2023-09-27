@@ -1,11 +1,6 @@
 import React from 'react'
-import {
-  View,
-  Text,
-  Image,
-  ImageBackground,
-  ImageSourcePropType,
-} from 'react-native'
+import { View, Text, ImageBackground, ImageSourcePropType } from 'react-native'
+import { Image } from 'expo-image'
 import { format } from 'date-fns'
 
 interface AlbumListingProps {
@@ -35,14 +30,14 @@ function AlbumListing(props: AlbumListingProps) {
           <Image
             source={images[0]}
             className="w-full h-[248px] rounded-xl bg-white"
-            resizeMode="cover"
+            contentFit="cover"
           />
         </View>
         <View className="flex flex-col w-2/5 pl-2">
           <Image
             source={images[1]}
             className="w-full h-[114px] mb-5 bg-white rounded-xl"
-            resizeMode="cover"
+            contentFit="cover"
           />
           <ImageBackground
             source={images[2]}
