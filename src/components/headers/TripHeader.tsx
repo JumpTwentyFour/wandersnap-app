@@ -6,10 +6,12 @@ import { IconSize } from '@/types/icon'
 
 type TripHeaderProps = {
   handleNavigateBack?: () => void
+  handleMenu?: () => void
+  menuOpen?: boolean
 }
 
 function TripHeader(props: TripHeaderProps) {
-  const { handleNavigateBack } = props
+  const { handleNavigateBack, handleMenu, menuOpen = false } = props
   const navigation = useNavigation()
 
   return (
@@ -25,10 +27,10 @@ function TripHeader(props: TripHeaderProps) {
       />
       <IconButton
         size={IconSize.Small}
-        icon="EllipsisIcon"
+        icon={!menuOpen ? 'EllipsisIcon' : 'XMarkIcon'}
         colour="#7E5BFF"
         bgClass="bg-gray-50"
-        onPress={() => console.log('Open Menu')}
+        onPress={() => (handleMenu ? handleMenu() : console.log('Open Menu'))}
       />
     </View>
   )

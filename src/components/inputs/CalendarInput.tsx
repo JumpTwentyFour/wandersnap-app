@@ -13,7 +13,20 @@ const FALLBACK_SELECTED = {
   endDate: format(new Date(), 'yyyy-MM-dd'),
 }
 
-function CalendarInput() {
+type CalendarInputProps = {
+  setFormDates: ({
+    startDate,
+    endDate,
+  }: {
+    startDate: string
+    endDate: string
+  }) => void
+  startDateError?: string
+  endDateError?: string
+}
+
+function CalendarInput(props: CalendarInputProps) {
+  const { setFormDates } = props
   const [showCalendar, setShowCalendar] = useState(false)
   const [dates, setDates] = useState<StartEndDates>()
 
@@ -39,6 +52,7 @@ function CalendarInput() {
       startDate,
       endDate,
     })
+    setFormDates({ startDate, endDate })
   }
 
   function setVisibility(show: boolean) {
@@ -49,19 +63,21 @@ function CalendarInput() {
   return (
     <>
       <View className="w-full">
-        <Pressable className="w-full flex flex-row justify-center">
-          <View className="w-1/2">
+        <Pressable className="flex flex-row justify-center w-full">
+          <View className="w-1/2 pr-2">
             <TextInput
               ref={startRef}
               placeholder="Start date"
+              error={props.startDateError}
               onFocus={() => setVisibility(true)}
               value={dates?.startDate || ''}
             />
           </View>
-          <View className="w-1/2">
+          <View className="w-1/2 pl-2">
             <TextInput
               ref={endRef}
               placeholder="End date"
+              error={props.endDateError}
               onFocus={() => setVisibility(true)}
               value={dates?.endDate || ''}
             />

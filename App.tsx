@@ -96,7 +96,10 @@ export default function App() {
                   <Stack.Screen
                     name="TripCreate"
                     component={TripCreateScreen}
-                    options={{ title: TripCreateScreen.title }}
+                    options={{
+                      title: TripCreateScreen.title,
+                      headerShown: false,
+                    }}
                   />
                 </>
               )}

@@ -10,6 +10,7 @@ import Icon from '@/components/Icon'
 import { useColours } from '@/hooks/useTailwind'
 import { ImageInputSize } from '@/types/imageInput'
 import { IconSize } from '@/types/icon'
+import { Image } from 'expo-image'
 
 interface Props {
   size: ImageInputSize
@@ -32,14 +33,23 @@ function ImageInput(props: Props) {
     'h-96': isLarge,
   })
 
-  async function pickImage() {
-    const result = await launchImageLibraryAsync({
-      mediaTypes: MediaTypeOptions.All,
-      allowsMultipleSelection: true,
-    })
+  const [selectedImage, setSelectedImage] = React.useState<ImagePickerAsset>()
 
-    if (!result.canceled) {
-      onChange(result.assets)
+  async function pickImage() {
+    try {
+      const result = await launchImageLibraryAsync({
+        mediaTypes: MediaTypeOptions.All,
+        allowsMultipleSelection: true,
+      })
+      console.log('imagepicker result', result)
+      if (!result.canceled) {
+        if (isLarge) {
+          setSelectedImage(result.assets[0])
+        }
+        onChange(result.assets)
+      }
+    } catch (e) {
+      console.log('ERROR PICKING IMAGE', e)
     }
   }
 
@@ -52,14 +62,26 @@ function ImageInput(props: Props) {
         sizeStyles,
       )}
     >
-      <Icon
-        name="PhotoIcon"
-        size={IconSize.Medium}
-        colour={colors['tropical-indigo']}
-      />
-      <Text className={cn('text-ghost', isSmall && 'ml-2', !isSmall && 'mt-2')}>
-        {label}
-      </Text>
+      {isLarge && selectedImage ? (
+        <Image
+          className="rounded-2xl"
+          source={{ uri: selectedImage.uri }}
+          style={{ width: '100%', height: 382 }}
+        />
+      ) : (
+        <>
+          <Icon
+            name="PhotoIcon"
+            size={IconSize.Medium}
+            colour={colors['tropical-indigo']}
+          />
+          <Text
+            className={cn('text-ghost', isSmall && 'ml-2', !isSmall && 'mt-2')}
+          >
+            {label}
+          </Text>
+        </>
+      )}
     </Pressable>
   )
 }

@@ -1,6 +1,7 @@
 import React, { Ref, forwardRef, useState } from 'react'
 import {
   TextInput as NativeInput,
+  Text,
   View,
   KeyboardTypeOptions,
   Pressable,
@@ -12,6 +13,7 @@ import EyeSlashIcon from '@/assets/icons/eye-slash.svg'
 interface Props {
   placeholder?: string
   value?: string
+  error?: string
   type?: 'password' | KeyboardTypeOptions
   className?: string
   onFocus?: () => void
@@ -31,7 +33,10 @@ function TextInput(props: Props, ref: Ref<NativeInput>) {
   return (
     <View className={cn('relative w-full', props.className)}>
       <NativeInput
-        className="w-full p-2 text-ghost border-b border-ghost rounded-md"
+        className={cn(
+          'w-full p-2 text-ghost border-b border-ghost rounded-md',
+          props.error && 'border-red-500',
+        )}
         placeholder={props.placeholder}
         placeholderTextColor="#f4f4f5"
         keyboardType={props.type === 'password' ? 'default' : props.type}
@@ -53,6 +58,9 @@ function TextInput(props: Props, ref: Ref<NativeInput>) {
             <EyeIcon fill="#fff" />
           )}
         </Pressable>
+      )}
+      {props.error && (
+        <Text className="mt-1 ml-2 text-red-300">{props.error}</Text>
       )}
     </View>
   )

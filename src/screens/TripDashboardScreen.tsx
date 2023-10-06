@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import {
   View,
   Text,
@@ -26,7 +26,7 @@ function TripDashboardScreen({ navigation }: Props) {
   const [headerHeight, setHeaderHeight] = useState(0)
   const { height } = Dimensions.get('window')
   const colours = useColours()
-  const { setTrip } = useTripStore()
+  const { setTrip, trips, fetchTrips } = useTripStore()
 
   function handleSetHeaderHeight(e: LayoutChangeEvent) {
     setHeaderHeight(e.nativeEvent.layout.height)
@@ -38,6 +38,10 @@ function TripDashboardScreen({ navigation }: Props) {
       flex: 1,
     }
   }, [headerHeight])
+
+  useEffect(() => {
+    fetchTrips()
+  }, [])
 
   return (
     <View style={{ flex: 1 }} className="relative w-full h-screen bg-tuatura">
@@ -75,7 +79,7 @@ function TripDashboardScreen({ navigation }: Props) {
           <View style={{ flex: 1, height: height }} className="py-6">
             <FlatList
               style={contentViewStyles}
-              data={TRIPS}
+              data={trips && trips.length > 0 ? trips : TRIPS}
               renderItem={({ item }) => (
                 <Pressable
                   key={item.id}
@@ -85,10 +89,12 @@ function TripDashboardScreen({ navigation }: Props) {
                   }}
                 >
                   <AlbumListing
-                    title={item.title}
-                    images={item.images}
-                    dateFrom={item.dateFrom}
-                    dateTo={item.dateTo}
+                    name={item.name}
+                    cover_photo={item.cover_photo}
+                    // TODO: images could be the first two images of the first location in the trip
+                    images={[]}
+                    dateFrom={new Date(item.end_date)}
+                    dateTo={new Date(item.start_date)}
                   />
                 </Pressable>
               )}
