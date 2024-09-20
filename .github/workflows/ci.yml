@@ -40,7 +40,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install JS Dependencies
-        run: yarn
+        run: npm install
 
       - name: Lint application code
-        run: yarn lint
+        run: npm run lint
