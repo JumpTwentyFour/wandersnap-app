@@ -31,6 +31,7 @@ import {
   MASONRY_LISTING_ITEMS,
 } from '@/helper/tripsScreenHelper'
 import useTripStore from '@/stores/trip'
+import { API_URL } from '@env'
 
 type Props = SetupProps<'Trip'>
 function TripScreen(props: Props) {
@@ -38,6 +39,7 @@ function TripScreen(props: Props) {
   const { trip, handleRemoveTrip } = useTripStore()
 
   const [sheetOpen, setSheetOpen] = useState(true)
+  const [imageLoadFail, setImageLoadFail] = useState(true)
   const [tabIndex, setTabIndex] = useState(0)
   const [snapPointIndex, setSnapPointIndex] = useState(0)
   const [toggleValue, setToggleValue] = useState(false)
@@ -91,13 +93,21 @@ function TripScreen(props: Props) {
     }
   }
 
-  useEffect(() => navigation.addListener('focus', () => setSheetOpen(true)), [])
+  useEffect(() => {
+    navigation.addListener('focus', () => setSheetOpen(true))
+    console.log(trip.cover_photo)
+  }, [])
 
   return (
     <View style={{ flex: 1 }}>
       <ImageBackground
-        source={trip.cover_photo ? trip.cover_photo : MASONRY_LISTING_ITEMS[0]}
+        source={
+          trip.cover_photo && !imageLoadFail
+            ? { uri: API_URL + trip.cover_photo }
+            : MASONRY_LISTING_ITEMS[0]
+        }
         onLoad={() => setImageLoad(true)}
+        onError={() => setImageLoadFail(true)}
         style={{ height: height }}
         className="relative flex w-full pt-12"
         resizeMode="cover"
