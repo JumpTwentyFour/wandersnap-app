@@ -1,5 +1,5 @@
-import React from 'react'
-import { ImageURISource, View } from 'react-native'
+import React, { useEffect } from 'react'
+import { ImageURISource, View, Platform } from 'react-native'
 import MapView, {
   MapPressEvent,
   Marker,
@@ -323,10 +323,12 @@ const MAP_STYLE = [
 function Map(props: Props) {
   const { markers = [], initialRegion } = props
 
+  useEffect(() => console.log(markers), [markers])
+
   return (
     <View className="flex">
       <MapView
-        provider={PROVIDER_GOOGLE}
+        {...(Platform.OS === 'ios' ? {} : { provider: PROVIDER_GOOGLE })}
         className="w-full h-full"
         initialRegion={initialRegion}
         region={props.region}
