@@ -92,26 +92,26 @@ const MAP_LOCATIONS_LISTINGS = [
 
 const IMAGE_GRID_LISTING = [
   {
-    title: 'Batu Caves',
+    name: 'Batu Caves',
     url: ImageGridImage1,
     id: 1,
   },
   {
-    title: 'Hạ Long Bay',
+    name: 'Hạ Long Bay',
     url: ImageGridImage2,
     id: 2,
   },
   {
-    title: 'Golden Bridge',
+    name: 'Golden Bridge',
     url: ImageGridImage3,
     id: 3,
   },
   {
-    title: 'Angkor Wat',
+    name: 'Angkor Wat',
     url: ImageGridImage4,
     id: 4,
   },
-] as ImageGridImage[]
+] as unknown as ImageGridImage[]
 
 const MASONRY_LISTING_ITEMS = [
   ImageGridImage1,
@@ -156,7 +156,9 @@ function ComponentLibraryScreen({
   const [showAlert, setShowAlert] = useState(false)
   const [showAlertTwo, setShowAlertTwo] = useState(false)
   const [tabIndex, setTabIndex] = useState(0)
-  const [selectedImages, onSelectedImagesChange] = useState<number[]>([])
+  const [selectedImages, setSelectedImages] = useState<Array<number | string>>(
+    [],
+  )
   const [activeDotIndex, setActiveDotIndex] = React.useState<number>(0)
 
   const handleNavigateToImage = (img: ImageSourcePropType) => {
@@ -182,7 +184,17 @@ function ComponentLibraryScreen({
 
       <Title>Calendar input</Title>
       <Backdrop bgClass="bg-purple-400">
-        <CalendarInput />
+        <CalendarInput
+          setFormDates={function ({
+            startDate,
+            endDate,
+          }: {
+            startDate: string
+            endDate: string
+          }): void {
+            console.log(startDate, endDate)
+          }}
+        />
       </Backdrop>
 
       <Title>Search input</Title>
@@ -538,7 +550,8 @@ function ComponentLibraryScreen({
       <Text className="w-full my-6 font-bold text-center">Listings</Text>
       <Backdrop bgClass="bg-slate-900/80" fullWidth>
         <AlbumListing
-          title="South East Asia"
+          name="South East Asia"
+          cover_photo={AlbumImage1}
           images={ALBUM_IMAGES}
           dateFrom={new Date('2020-02-23T00:00:00+0000')}
           dateTo={new Date('2020-04-09T00:00:00+0000')}
@@ -559,7 +572,7 @@ function ComponentLibraryScreen({
         <ImageGrid
           images={IMAGE_GRID_LISTING}
           selectedItems={selectedImages}
-          onSelectedImagesChange={onSelectedImagesChange}
+          onSelectedImagesChange={setSelectedImages}
         />
       </Backdrop>
 

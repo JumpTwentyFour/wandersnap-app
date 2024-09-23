@@ -7,7 +7,8 @@ import { useColours } from '@/hooks/useTailwind'
 interface Props {
   open?: boolean
   children: React.ReactNode
-  setSnapPointIndex: React.Dispatch<React.SetStateAction<number>>
+  setSnapPointIndex?: React.Dispatch<React.SetStateAction<number>>
+  snapPoints?: string[]
 }
 
 function BottomSheet(props: Props) {
@@ -16,7 +17,10 @@ function BottomSheet(props: Props) {
   const colours = useColours()
 
   const sheetRef = useRef<BSheet>(null)
-  const snapPoints = useMemo(() => ['10%', '70%'], [])
+  const snapPoints = useMemo(
+    () => (props.snapPoints ? props.snapPoints : ['10%', '70%']),
+    [],
+  )
 
   useEffect(() => {
     if (open) return
@@ -25,6 +29,7 @@ function BottomSheet(props: Props) {
   }, [open])
 
   const handleSheetChanges = useCallback((index: number) => {
+    if (!setSnapPointIndex) return
     setSnapPointIndex(index)
   }, [])
 
